@@ -1,4 +1,4 @@
-# Project Name
+# Solar Cooker Calculation 
 
 Developer Names: Deesha Patel   
 
