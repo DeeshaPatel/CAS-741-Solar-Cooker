@@ -1,62 +1,31 @@
 \documentclass{article}
 
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{xfrac}
 \usepackage{tabularx}
+\usepackage{float}
+\usepackage{siunitx}
 \usepackage{booktabs}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
 
-\title{Problem Statement and Goals\\\progname}
+\usepackage[round]{natbib}
 
-\author{\authname}
-
-\date{}
-
-\input{../Comments}
-\input{../Common}
-
-\begin{document}
-
-\maketitle
-
-\begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Problem Statement}
-
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.}
-\wss{You can change the section headings, as long as you include the required information.}
-
-\subsection{Problem}
-
-\subsection{Inputs and Outputs}
-
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
-
-\subsection{Stakeholders}
-
-\subsection{Environment}
-
-\wss{Hardware and software}
-
-\section{Goals}
-
-\section{Stretch Goals}
-
-\end{document}\documentclass{article}
-
-\usepackage{tabularx}
-\usepackage{booktabs}
+\hypersetup{       
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
 
 \title{Problem Statement and Goals\\Solar Cooker Energy Calculation}
 
@@ -77,7 +46,7 @@ Use abstraction so that you can avoid details.}
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 20 January 2023 & Deesha Patel & Initial release of document\\
-
+22 January 2023 & Deesha Patel & Updates according to issue\\ 
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -89,11 +58,11 @@ Renewable energy is essential nowadays as fossil fuel causing damage to the envi
 
 \subsection{Problem}
 
- The main challenge for developing is that how we can utilise more solar energy especially for cooking meal. Solar Cooker Energy Calculation is developed to calculate and analyse the total used energy and heat loss with all sides in solar cooker box that can help to utilize more heat power.  
+ The main challenge for developing is how to utilize more solar energy by changing the box design or choice of glass. One work by Grupp, M., Montagne, P., and Wackernagel, M.~\cite{NovelBoxType} includes replacing the conventional solar cooker (where we can put the pot anywhere in the box) with the fixed pot position in a solar cooker. Even though such design choices give good results, we need to focus on how the internal reflector of the glasses can affect the cooking temperature in the conventional box. This project aims to calculate and analyze how internal reflectors can be helpful in improving the overall cooking temperature in the solar cooker. We got the inspiration for this project from a proposed mathematical model of internal reflectors~\cite{MathsModel}. And when the internal steps are added, the inside temperatures in the solar cooker also increase. 
 
 \subsection{Inputs and Outputs}
 
-It will take dimensional inputs and temperature parameters and give output of total prediction of energy consumption. 
+It will take several inputs including the number of reflectors, glass considerations (angle, size, dimension, thickness), and solar radiation, and give an output of our analysis to use the internal reflector method in increasing temperature in the box. 
 
 \subsection{Stakeholders}
 
@@ -101,18 +70,21 @@ The companies who manufacture the solar cooker are the potential stakeholders of
 
 \subsection{Environment}
 
-This software can be deploy on Mac OS, Windows 10 and greater and Linux operating system.   
+This software can be deploy on any operating system including Mac OS, Windows 10 and greater and Linux operating system.   
 
 \section{Goals}
 \begin{enumerate}
-    \item It will provide simplified energy calculation for Solar Cooker. 
-    \item It will give solution to utilize more heat energy for cooking food.   
+    \item It will provide improved temperature in Solar Cooker. 
+    \item It will give solution to utilize more heat energy for cooking food compare to existing solutions.   
 \end{enumerate} 
 
 \section{Stretch Goals}
 \begin{enumerate}
     \item We will Visualize the final Structure and make it real. 
-    \item We will Test product in different environment and regions. 
+    \item We will experiment proposed solution in different environment and regions which can give us a surety that it work as desired. 
 \end{enumerate} 
+
+\bibliographystyle {plain}
+\bibliography {srs}
 
 \end{document}
