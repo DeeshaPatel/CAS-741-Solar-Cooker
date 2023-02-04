@@ -144,7 +144,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-01/22/2023 & 1.0 & Initial Release\\
+02/04/2023 & 1.0 & Initial Release\\
 
 \bottomrule
 \end{tabularx}
@@ -180,23 +180,6 @@ description of the unit and the SI name.
   %	\caption{Provide a caption}
 %\end{table}
 
-
-\plt{Derived units, like newtons, pascal, etc, should show their derivation
-    (the units they are derived from) if their constituent units are in the
-    table of units (that is, if the units they are derived from are used in the
-    document).  For instance, the derivation of pascals as
-    $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
-    both in the table.  The derivations of newtons would not be shown if kg and
-    s are not both in the table.}
-
-The symbol for units named after people use capital letters, but the name
-  of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
-  watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
-  etc.  The one exception to this is degree Celsius.  Details on writing metric
-  units can be found on the 
-  \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
-  {NIST} web-page.
-
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
@@ -209,15 +192,56 @@ systems.  The symbols are listed in alphabetical order.
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
-\\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
+
+$A_\text{g}$ & \si[per-mode=symbol] {\square\metre} & Area of glass
 \\ 
+
+$A_\text{m}$ & \si[per-mode=symbol] {\square\metre} & wet surface area over which heat is transferred in
+\\ 
+
+$A_r$ & \si[per-mode=symbol] {\square\metre} & Area of Reflector
+\\
+
+
+
+$A_\text{ref}$ & $\si[per-mode=symbol] {\square\metre} $ & Reflector area with respect to different reflectors \\
+
+$C_W$ & $\si{\joule\per(\kilogram \celsius)}$ & Specific Heat Capacity of Water \\
+
+$E_W$ & $\si{\joule}$ & Change in heat energy in the Water \\
+
+$f$ & - & Fluid \\
+
+$G$ & \si[per-mode=symbol]{\watt\per\square\metre} & Incidental solar radiation \\
+
+$h$ & \si[per-mode=symbol]{\watt\per\square\metre K} & heat transfer convection coefficient \\
+
+$int2$ & - & Inner 2  \\
+
+$L$ & \si{\metre} & Length \\
+
+$m_W$ & \si{\kilogram} & Mass of Water \\
+
+$n$ & - & Number of Reflector \\
+
+$r$ & - & Reflector \\
+
+$T$ & \si{\celsius} & Temperature\\
+
+$T_W$ & \si{\celsius} & Temperature of Water\\
+
+$\epsilon$ & - & Emittance \\
+
+$\tau$ & - & Transmittivity \\
+
+$\theta$ & - & Reflector Angle \\ 
+
+$\sigma$ & - & Steffan-Boltzman constant \\
+
+$\rho$ & - & Reflectivity \\
+
 \bottomrule
 \end{longtable*}
-\plt{Use your problems actual symbols.  The si package is a good idea to use for
-  units.}
 
 \subsection{Abbreviations and Acronyms}
 
@@ -235,102 +259,20 @@ which heat is transferred in
   PS & Physical System Description\\
   R & Requirement\\
   SRS & Software Requirements Specification\\
-  \progname{} & \plt{put an expanded version of your program name here (as appropriate)}\\
   T & Theoretical Model\\
   \bottomrule
 \end{tabular}\\
-
-\plt{Add any other abbreviations or acronyms that you add}
-
-\subsection{Mathematical Notation}
-
-\plt{This section is optional, but should be included for projects that make use
-  of notation to convey mathematical information.  For instance, if typographic
-  conventions (like bold face font) are used to distinguish matrices, this
-  should be stated here.  If symbols are used to show mathematical operations,
-  these should be summarized here.  In some cases the easiest way to summarize
-  the notation is to point to a text or other source that explains the
-  notation.}
-
-\plt{This section was added to the template because some students use very
-  domain specific notation.  This notation will not be readily understandable to
-  people outside of your domain.  It should be explained.}
 
 \newpage
 
 \pagenumbering{arabic}
 
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007}.  It
-  will get you started.  You should not modify the section headings, without
-  first discussing the change with the course instructor.  Modification means
-  you are not following the template, which loses some of the advantage of a
-  template, especially standardization.  Although the bits shown below do not
-  include type information, you may need to add this information for your
-  problem.  If you are unsure, please can ask the instructor.}
-
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
-
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
-
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
-\begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
-\end{itemize}
-}
-
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
-}
-
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
-
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
-
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
-
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
-
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
-
 \section{Introduction}
 
-\plt{
 As fossil fuels adversely affect the environment, many countries like India, where they have good Solar rays throughout the year, have started to implement devices for utilizing solar energy and transforming it into valuable energy. It includes Solar Water heaters, Solar panels, and Solar Cookers. It is indeed a fact that the demand for renewable energy has increased to deal with the problem. Focusing on solar cooker, several design such as Solar Panel Cooker, Solar Parabolic Cooker, and Solar Box Cooker has been proposed to utilize more solar energy. Using internal reflectors, we would like to improve the utilization of solar energy during cooking a food.   
 
 The following section provides an overview of Software Requirement Specification (SRS) for a box-type Solar Cooker. This section explains the purpose of the document, the scope of requirements, the characteristic of the intended reader, and the organization of a document.   
 
-}
 
 \subsection{Purpose of Document}
 
@@ -431,7 +373,6 @@ easier to correctly understand the requirements:
 \begin{itemize}
 
 \item Reflectivity: The fraction of radiation reflected by the surface is called the reflectivity ($\rho$) 
-\item Absorptivity: The fraction of irradiation absorbed by the surface is called the absorptivity ($\alpha$)
 \item Transmittivity: The fraction of radiation transmitted is called the transmissivity ($\tau$)
 \item Emittance: the energy radiated by the surface of a body per second per unit area ($\epsilon$)
 \item Reflactor Angle: the angle between a reflected ray and the normal drawn at the point of incidence to a reflecting surface ($\theta$)
@@ -482,13 +423,13 @@ includes the following elements:
 
 \subsubsection{Goal Statements}
 
-\noindent Given the Area of glass, Incident solar radiation, difference in temperature, Reflection angle, Steffan-Boltzman constant, heat transfer convection coefficient, the goal statements are:
+\noindent Given the thermal attributes and solar box characteristics the goal statements are:
 
 \begin{itemize}
 
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{predicts the Balance of energy in the recipient.}
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] predicts the Balance of temperature on the recipient.
 
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{predicts the cooking power in the recipient.}
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] predicts the cooking energy in the recipient over time.
 
 \end{itemize}
 
@@ -511,17 +452,28 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant}:] Properties like emissivity(\si{\epsilon}) reflectivity (\si{\rho}) and transmisivity (\si{\tau}) have been considered constant [\dref{HFC}, \iref{ewat}]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant_A_1}:] The emissivity(\si{\epsilon}) have been considered constant [\dref{HFC}, \ddref{dd_q_15}, \ddref{dd_q_16}, \iref{ewat}] 
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_fluid_type}:] The material in the recipient (Container) is liquid for this case (For us, it's water). This implies that the  temperature will not drop below melting point and not rise above the boiling point [\iref{ewat}, \tref{T:SHE}]   
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant_A_2}:] The reflectivity (\si{\rho}) have been considered constant [\ddref{dd_q_14}]
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_int_temp_formula}:] The temperature $T_\text{int2}$ are obtained in function of others temperatures by means of the following supposition: [\iref{ewat}] 
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant_A_3}:] The Transmisivity (\si{\tau}) have been considered constant [\ddref{dd_q_14}]
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_fluid_type}:] The material in the recipient (Container) is liquid for this case (For us, it's water). This implies that the  temperature will not drop below melting point and not rise above the boiling point [\iref{ewat}, \tref{TM_2}]   
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_int_temp_formula}:] The temperature $T_\text{int2}$ are obtained in function of others temperatures by means of the following supposition: [\iref{ewat}, \ddref{dd_q_13}] 
 ~\newline
+
+
 \begin{center}  
 $T_\text{int2} = \frac{T_\text{g2} + T_t + T_r}{3} $ 
 \end{center}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact}:] The solar radiation impact over the solar cooker occurs in perpendicular way. [\iref{ewat}] 
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact}:] The solar radiation impact over the solar cooker occurs in perpendicular way. [\iref{ewat}, \ddref{dd_q_14}] 
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact_a_7}:] The only form of energy considered in this problem is thermal energy. Other energy such as mechanical energy are assumed to be a negligible. [\iref{ewat}, \lcref{LC_1}] 
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact_a_8}:] The temperature of the reflector is constant over the different time. [\ddref{FluxCoil}, \lcref{LC_2}] 
+
 
 \end{itemize}
 
@@ -529,94 +481,71 @@ $T_\text{int2} = \frac{T_\text{g2} + T_t + T_r}{3} $
 
 This section focuses on the general equations and laws that Solar Cooker
 Energy Calculation is based
-on. Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.
-
-
+on.
 
 ~\newline
 
 \noindent
-\deftheory
-% #2 refname of theory
-{T:CHTC}
-% #3 label
-{Convective Heat Transfer Coefficient}
-% #4 equation
-{
-  h = $\frac{q}{\triangle T}$
-}
-% #5 description
-{
-  The above equation is used to calculate the heat transfer typically by convection or phase transition. ~\newline
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& TM\refstepcounter{theorynum}\thetheorynum \label{TM_1}\\
+  \hline
+  Label& \bf Convective Heat Transfer Coefficient\\
+  \hline
+  Equation &
+    h = $\frac{q}{\triangle T}$ \\ 
+  \hline
+  Description
+    & The above equation is used to calculate the heat transfer typically by convection or phase transition.  \\
   
-  h is the heat transfer convection coefficient (\si[per-mode=symbol] {\watt\per\square\metre} K). ~\newline 
+   & $h$ is the heat transfer convection coefficient $(\si[per-mode=symbol] {\watt\per\square\metre} K).$  \\
   
-  q is the thermal flux vector (\si{\watt\per\square\metre} ). ~\newline 
+  & $q$ is the thermal flux vector $(\si{\watt\per\square\metre} )$.  \\
   
-  $\triangle$T is the change in temperature.
-}
-% #6 Notes
-{
-None.
-}
-% #7 Source
-{
-  \url{https://en.wikipedia.org/wiki/Heat_transfer_coefficient}
-}
-% #8 Referenced by
-{
-  \dref{HFC}, \iref{ewat}
-}
-% #9 Preconditions
-{
-None
-}
-% #1 derivation - not applicable by default
-{}
-
-
+  & $\triangle$T is the change in temperature. \\
+  \hline
+  Notes & none. \\
+  \hline
+  Sources& \url{https://en.wikipedia.org/wiki/Heat_transfer_coefficient} \\
+  \hline
+  Ref.\ By &  \dref{HFC}, \iref{ewat} \\
+  \hline
+\end{tabular}
+\end{minipage}\\
 ~\newline
 
-
 \noindent
-\deftheory
-% #2 refname of theory
-{T:SHE}
-% #3 label
-{Sensible Heat energy Calculation}
-% #4 equation
-{
-  Q = $Cm \triangle T$
-}
-% #5 description
-{
-  This calculation occurs until the highest or lowest temperature reach, as assumed in [\aref{A_fluid_type}] ~\newline
-  Q is the quantity of heat transferred to or from the object ~\newline 
-  m is the mass of the object ~\newline 
-  C is the specific heat capacity of the material the object is composed of ~\newline 
-  \si{\triangle} T is the resulting temperature change of the object ~\newline 
-}
-% #6 Notes
-{
-None.
-}
-% #7 Source
-{
-  \url{https://www.physicsclassroom.com/class/thermalP/Lesson-2/Measuring-the-Quantity-of-Heat}
-}
-% #8 Referenced by
-{
-  \iref{ewat}
-}
-% #9 Preconditions
-{
-None
-}
-% #1 derivation - not applicable by default
-{}
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& TM\refstepcounter{theorynum}\thetheorynum \label{TM_2}\\
+  \hline
+  Label& \bf Sensible Heat energy Calculation\\
+  \hline
+  Equation &
+    Q = $Cm \triangle T$ \\ 
+  \hline
+  Description
+    & This calculation occurs until the highest or lowest temperature reach, as assumed in [\aref{A_fluid_type}] \\
+  & $Q$ is the quantity of heat transferred to or from the object \\ 
+  & $m$ is the mass of the object \\ 
+ & $C$ is the specific heat capacity of the material the object is composed of \\ 
+  & $\si{\triangle} T$ is the resulting temperature change of the object   \\
+  
+  \hline
+  Notes & none. \\
+  \hline
+  Sources& \url{https://www.physicsclassroom.com/class/thermalP/Lesson-2/Measuring-the-Quantity-of-Heat} \\
+  \hline
+  Ref.\ By &  \iref{I_HETR}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
 
 
 ~\newline
@@ -624,18 +553,9 @@ None
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
 
 This section collects the laws and equations that will be used in building the
 instance models.
-
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
 
 ~\newline
 
@@ -664,7 +584,7 @@ in temperatures between the body and its surroundings.
 & $h$ is the heat transfer coefficient
 	(\si{\watt\per\square\metre\per\celsius}).\\
  & $A$ is the exposed surface area (\si[per-mode=symbol] {\square\metre}). \\  
-&$\Delta T(t)$ is the time-difference (\si{\celsius}).
+&$\Delta T(t)$ is the temperature difference (\si{\celsius}).
 \\
 \hline
   Source & \url{https://en.wikipedia.org/wiki/Convection_(heat_transfer)} \\
@@ -683,7 +603,7 @@ in temperatures between the body and its surroundings.
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
 \hline
 \rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum \label{HFC}\\
+Number& GD\refstepcounter{defnum}\thedefnum \label{HFR}\\
 \hline
 Label &\bf Heat Flow Radiation \\
 \hline
@@ -701,7 +621,7 @@ An object emits radiant energy in all directions unless its temperature is absol
 	$(5.669 X 10^{-8} W / m^2 K^4)$.\\
  & $e$ is the emissivity of object(\si[per-mode=symbol] {\watt\per\metre}). \\  
  & $A$ is the exposed surface area (\si[per-mode=symbol] {\square\metre}) \\
-&$\triangle T(t)$ is the time-difference (\si{\celsius}).
+&$\triangle T(t)$ is the temperature difference (\si{\celsius}).
 \\
 \hline
   Source & ~\cite{rediationdef} \\
@@ -715,27 +635,190 @@ An object emits radiant energy in all directions unless its temperature is absol
 ~\newline
 
 
-\subsubsection*{Detailed derivation of simplified rate of change of temperature}
-
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
-
 \subsubsection{Data Definitions}\label{sec_datadef}
 
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
-
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
 
 This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
+models. The dimension of each quantity is also given.  
+
+~\newline
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_13}\\
+\hline
+Label& \bf Data Definition of Q13\\
+\hline
+Symbol &$Q13$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q13} = A_r h_\text{r-int2}(T_\text{int2} - T_r)$ \\
+  \hline
+  Description & This equation calculates the Heat flow convection of recipient to inner 2 \\
+  
+  &$A_r$ is the Area of Reflector (\si{\square\metre}).  \\
+               &$h_\text{r-int2}$ is the thermal flux difference between Reflector and Inner area inside the box \\ 
+                &$T_\text{int2} - T_r$ is the temperature difference between inner area and reflector (\si{\celsius}). 
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{ewat}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+~\newline
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_14}\\
+\hline
+Label& \bf Data Definition of Q14\\
+\hline
+Symbol &$Q14$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q14} = \sum_{i=1}^n \rho A_\text{ref,n} G \tau_g^2 cos (90 - \theta_\text{ref,n})$ \\
+  \hline
+  Description & This equation calculates the Heat flow reflection of incident radiation on the reflectors \\
+  
+  &$\rho$ is the reflectivity constant (\si{kg\per\metre^3}).  \\
+               &$A_\text{ref,n}$ is the Area of the number of reflectors  \\ 
+               &$G$ is Incidental solar radiation taken as an input (\si[per-mode=symbol] {\watt\per\square\metre})  \\ 
+               &$\tau_g$ is the Transmittivity constant for glass $(0 \leq \tau \leq 1)$ \\ 
+                &$cos(90-\theta_\text{ref,n})$ is the angle difference of reflectors. 
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{ewat}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+~\newline
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_15}\\
+\hline
+Label& \bf Data Definition of Q15\\
+\hline
+Symbol &$Q15$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q15} = A_r \sigma \epsilon_r (T^4_r - T^4_\text{g2})$ \\
+  \hline
+  Description & This equation calculates the Heat flow radiation of recipient toward glass 2 \\
+  
+  &$A_r$ is the Area of Reflector (\si{\square\metre}).  \\
+               &$\sigma$ is the Steffan-Boltzman constant $(5.669 X 10^{-8} W / m^2 K^4)$ \\ 
+               &$\epsilon_r$ is the Emittance of Reflector (\si[per-mode=symbol] {\watt\per\metre})  \\ 
+                &$T_r - T_\text{g2}$ is the temperature difference of reflectors and glass 2 (\si{\celsius}). 
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{ewat}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+~\newline
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_16}\\
+\hline
+Label& \bf Data Definition of Q16\\
+\hline
+Symbol &$Q16$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q16} = A_r \sigma \epsilon_r (T^4_r - T^4_f)$ \\
+  \hline
+  Description & This equation calculates the Heat flow radiation of recipient toward the fluid \\
+  
+  &$A_r$ is the Area of Reflector (\si{\square\metre}).  \\
+               &$\sigma$ is the Steffan-Boltzman constant $(5.669 X 10^{-8} W / m^2 K^4)$ \\ 
+               &$\epsilon_r$ is the Emittance of Reflector (\si[per-mode=symbol] {\watt\per\metre})  \\ 
+                &$T_r - T_f$ is the temperature difference of reflectors and fluid(\si{\celsius}). 
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{ewat}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+~\newline
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_17}\\
+\hline
+Label& \bf Data Definition of Q17\\
+\hline
+Symbol &$Q17$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q17} = A_m h_\text{r-f}(T_r - T_f)$ \\
+  \hline
+  Description & This equation calculates the Heat flow convection of recipient toward the fluid \\
+  
+  &$A_m$ is the wet inside the container (\si{\square\metre}).  \\
+               &$h_\text{r-f}$ is the thermal flux difference between Reflector and fluid inside the container \\ 
+                &$T_r - T_f$ is the temperature difference between reflector and fluid (\si{\celsius}). 
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{ewat}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+
 
 ~\newline
 
@@ -755,21 +838,22 @@ Symbol &$q$\\
 % \hline
   SI Units & \si{\watt\per\square\metre}\\
   \hline
-  Equation&$q (t) = -\lambda \frac{\triangle T}{\triangle x} \\
+  Equation&$q (t) = h_r (T_r - T_W (t) )$, over area $A_r$ \\
   \hline
   Description & It is necessary to know the thermal conductivity of a material if you want to calculate the heat energy transferred through it \\
   
   &$q$ is the heat flux  \\
-               &$\lambda$ is the thermal conductivity of the material \\ 
-                &$\triangle T$ is the temperature difference across the object \\
-                &$\triangle x$ is the distance of heat   transfer (the thickness of the object) 
+               &$h_r$ is the convective heat transfer coefficient between reflector and water \\ 
+                &$T_r$ is the temperature of reflector \si{\celsius} \\
+                &$T_W(t)$ is the temperature of water \si{\celsius} \\
+                &$t$ is the time (s) 
 \\
   \hline
   Sources& \url{https://www.omnicalculator.com/physics/thermal-conductivity} \\
   \hline
   Ref.\ By & \iref{ewat}\\
   \hline
-\end{tabular}
+\end{tabular} \\
 \end{minipage}\\
 
 
@@ -793,25 +877,19 @@ identified in Sections~\ref{sec_theoretical}.
   \rowcolor[gray]{0.9}
   Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
   \hline
-  Label& \bf Balance of energy on the recipient to find $T_r$\\
+  Label& \bf Balance of energy on the recipient to find $T_W$\\
   \hline
-  Input&$A_r$, $\epsilon_r$, $T_r$, $T_f$, $T_\text{int2}$, $A_m$, $T_f$\\
+  Input&$A_r$, $\epsilon_r$, $T_r$, $T_f$, $T_\text{int2}$, $A_m$, $T_f$, $G$\\
   & The input is constrained so that $\epsilon_t \leq 0 $ \\
   \hline
   Output&$T_f(t)$, $t \geq 0 $, such that\\
 
-  & $ \bf m_r c_r  \frac{dT_r}{dt} $ $  = Q13 + 4Q14 - Q15 - Q16 - Q17 \\
+  & $ \bf m_W c_W  \frac{dT_W}{dt}  = Q13 + 4Q14 - Q15 - Q16 - Q17 $\\
   \hline
   Description
-   & $\textbf{Q13} = A_r h_\text{r-int2}(T_\text{int2} - T_r)$ - Heat flow convection of recipient to the inner 2\\
-  & $\textbf{Q14} = 4\sum_{i=1}^n \rho A_\text{ref,n} G \tau_g^2 cos (90 - \theta_\text{ref,n})$ - Heat flow reflection of incident radiation on the reflectors \\
-  & $\textbf{Q15} = A_r \sigma \epsilon_r (T^4_r - T^4_\text{g2})$ - Heat flow radiation of recipient toward glass 2 \\ 
-  & $\textbf{Q16} = A_r \sigma \epsilon_r (T^4_r - T^4_\text{f})$ - Heat flow radiation of recipient toward the fluid\\
-  & $\textbf{Q17} = A_m h_\text{r-f}(T_r - T_f)$ - Heat flow convection of recipient toward the fluid \\
   &$A_r$ is the Area of Reflector (\si{\square\metre}).\\
   &$\epsilon_r$ is the Emittance of recipient (\si[per-mode=symbol] {\watt\per\metre}).\\
   &$T_r$ is the Reflector temperature (\si{\celsius}).\\
-  &$T_\text{g2}$ is a temperature of glass 2 (\si{\celsius}).\\
   &$T_\text{int2}$ is a temperature inside the box (\si{\celsius}).\\
   &$G$ is the Incidental solar radiation (\si[per-mode=symbol] {\watt\per\square\metre}).\\
   &$T_f$ is a current temperature of Fluid (\si{\celsius}).\\
@@ -837,7 +915,7 @@ identified in Sections~\ref{sec_theoretical}.
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
-  Number& IM\refstepcounter{instnum}\theinstnum \label{I_HWAT}\\
+  Number& IM\refstepcounter{instnum}\theinstnum \label{I_HETR}\\
   \hline
   Label& \bf Heat energy in the recipient\\
   \hline
@@ -853,20 +931,15 @@ identified in Sections~\ref{sec_theoretical}.
   the temperature at time t, $T_W$, and the initial temperature, $T_\text{init}$, this
   equation applies as long as $0 < T_W < 100^o\text{C}$ (\aref{A_fluid_type}).\\
   \hline
-  Sources&~\cite{Lightstone2012}\ \\
+  Sources&~\cite{cookingpower}\ \\
   \hline
-  Ref.\ By & --\\
+  Ref.\ By & None\\
   \hline
 \end{tabular}
 \end{minipage}\\
 
 ~\newline
 
-\subsubsection*{Derivation of ...}
-
-\plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
-  where the derivation cannot be described under the Description field, it will
-  be necessary to include this subsection.}
 
 \subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
 
@@ -882,8 +955,6 @@ provides an estimate of the confidence with which the physical quantities can be
 measured.  This information would be part of the input if one were performing an
 uncertainty quantification exercise.
 
-The specification parameters in Table~\ref{TblInputVar} are listed in
-Table~\ref{TblSpecParams}.
 
 \begin{table}[!h]
   \caption{Input Variables} \label{TblInputVar}
@@ -893,38 +964,27 @@ Table~\ref{TblSpecParams}.
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
+  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 0.12 \si[per-mode=symbol] {\metre} & -
   \\
+  $C_w$ & $C_w > 0$ & $C_w^\text{min} \leq C_w \leq C_w^\text{max}$ & 4186 \si[per-mode=symbol] {\joule\per\ (kg \celsius})    & - 
+  \\
+  $\tau_g$ & $0 \leq \tau_g \leq 1$ & - & 0.48 \si[per-mode=symbol] {\metre} & - 
+  \\
+  $A_g$ & $A_g > 0$ & $A_g \leq A_g^\text{max}$ & 0.24 \si[per-mode=symbol] {\square\metre}   & - 
+  \\
+  $n$ & $n > 0$ & $n_\text{min} \leq n \leq n_\text{max} $ & 1  & - 
+  \\
+  $T_\text{init}$ & $0 < T_\text{init} < 100$ & - & 40 \si[per-mode=symbol] {\celsius} & - 
+  \\
+  $G$ & $G > 0$ & $G_{\text{min}} \leq L \leq G_{\text{max}}$ & 476 \si[per-mode=symbol] {\watt\per\square\metre} & - 
+  \\
+  $T_\text{f}$ & $0 < T_\text{f} < 100$ & - & 40 \si[per-mode=symbol] {\celsius} & - 
+  \\
+  
   \bottomrule
 \end{longtable*}
 \end{table}
 
-\noindent 
-\begin{description}
-\item[(*)] \plt{you might need to add some notes or clarifications}
-\end{description}
-
-\begin{table}[!h]
-\caption{Specification Parameter Values} \label{TblSpecParams}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Value} \\
-  \midrule 
-  $L_\text{min}$ & 0.1 \si{\metre}\\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
-
-\noindent
-A correct solution must exhibit \plt{fill in the details}.  \plt{These
-  properties are in addition to the stated requirements.  There is no need to
-  repeat the requirements here.  These additional properties may not exist for
-  every problem.  Examples include conservation laws (like conservation of
-  energy or mass) and known constraints on outputs, which are usually summarized
-  in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
 
 \begin{table}[!h]
 \caption{Output Variables} \label{TblOutputVar}
@@ -933,20 +993,16 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   \toprule
   \textbf{Var} & \textbf{Physical Constraints} \\
   \midrule 
-  $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
+  $T_r$ & $T_\text{init} \leq T_r $
   \\
+  $E_w$ & $E_w > 0$ \\
   \bottomrule
 \end{longtable*}
 \end{table}
 
-\plt{This section is not for test cases or techniques for verification and
-  validation.  Those topics will be addressed in the Verification and Validation
-  plan.}
 
 \section{Requirements}
 
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
 
 This section provides the functional requirements, the business tasks that the
 software is expected to complete, and the nonfunctional requirements, the
@@ -956,89 +1012,36 @@ qualities that the software is expected to exhibit.
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] Provide the inputs specific to Solar Box (Area of glass, Current Temperature of reflector/fluid/glass, Area of reflector ) and other parameters (Incidental Solar Radiation, Reflectors angle, and number of reflectors)
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
+  Verify the given inputs are in correct form and satify the required physical constraints given in the table~\ref{TblInputVar}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] Calculate and output the balance of energy on recipient $T_W(t)$ over the simulation time(from \iref{ewat})
+
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] Calculate and output the energy in the water (fluid - recipient) $E_W(t)$ over the simulation time(from \iref{I_HETR})
 
 \end{itemize}
 
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
 
 \subsection{Nonfunctional Requirements}
 
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
 
-\noindent \begin{itemize}
+\noindent 
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
+This problem is small in size and relatively simple, so performance is not a priority. Any reasonable implementation will be very quick and use minimal storage. Rather than performance, the non-functional requirement priorities are correctness, verifiability, understandability, reusability, and maintainability. 
+ 
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
-
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
-
-\end{itemize}
 
 \section{Likely Changes}    
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_1}:] \aref{A_radiation_impact_a_7} 
+The other form of energy such as Mechanical energy may apply as a part og energy consideration.
+
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_2}:] \aref{A_radiation_impact_a_8} 
+The temperature of the reflector will change over the different time during the day which is totally based on the sun rays. 
 
 \end{itemize}
 
@@ -1046,9 +1049,9 @@ be covered in the Verification and Validation document.}
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_3}:] 
+\aref{A_int_temp_formula} 
+The given calculation for the inner temperature for the box(int2) in the assumption will not change throughout the whole process. 
 
 \end{itemize}
 
@@ -1065,151 +1068,87 @@ other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
 general definitions, data definitions, instance models, and likely changes on
 the assumptions.
 
-\plt{You will have to modify these tables for your problem.}
-
-\plt{The traceability matrix is not generally symmetric.  If GD1 uses A1, that
-  means that GD1's derivation or presentation requires invocation of A1.  A1
-  does not use GD1.  A1 is ``used by'' GD1.}
-
-\plt{The traceability matrix is challenging to maintain manually.  Please do
-  your best.  In the future tools (like Drasil) will make this much easier.}
-
-\afterpage{
-\begin{landscape}
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-	& \aref{A_OnlyThermalEnergy}& \aref{A_hcoeff}& \aref{A_mixed}& \aref{A_tpcm}& \aref{A_const_density}& \aref{A_const_C}& \aref{A_Newt_coil}& \aref{A_tcoil}& \aref{A_tlcoil}& \aref{A_Newt_pcm}& \aref{A_charge}& \aref{A_InitTemp}& \aref{A_OpRangePCM}& \aref{A_OpRange}& \aref{A_htank}& \aref{A_int_heat}& \aref{A_vpcm}& \aref{A_PCM_state}& \aref{A_Pressure} \\
-\hline
-\tref{T_COE}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_LHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\dref{NL}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ddref{FluxPCM}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\iref{ewat}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\iref{epcm}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\iref{I_HWAT}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\iref{I_HPCM}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\lcref{LC_tpcm}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\lcref{LC_tcoil}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\lcref{LC_tlcoil}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\lcref{LC_charge}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\lcref{LC_InitTemp} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\lcref{LC_htank}    & & & & & & & & & & & & & & & X& & & & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
-\label{Table:A_trace}
-\end{table}
-\end{landscape}
-}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline        
-	& \tref{T_COE}& \tref{T_SHE}& \tref{T_LHE}& \dref{NL}& \dref{ROCT} & \ddref{FluxCoil}& \ddref{FluxPCM} & \ddref{D_HOF}& \ddref{D_MF}& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM} \\
-\hline
-\tref{T_COE}     & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}     & & & X& & & & & & & & & & \\ \hline
-\tref{T_LHE}     & & & & & & & & & & & & & \\ \hline
-\dref{NL}        & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}      & X& & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil} & & & & X& & & & & & & & & \\ \hline
-\ddref{FluxPCM}  & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}    & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}     & & & & & & & & X& & & & & \\ \hline
-\iref{ewat}      & & & & & X& X& X& & & & X& & \\ \hline
-\iref{epcm}      & & & & & X& & X& & X& X& & & X \\ \hline
-\iref{I_HWAT}    & & X& & & & & & & & & & & \\ \hline
-\iref{I_HPCM}    & & X& X& & & & X& X& X& & X& & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
-\label{Table:trace}
-\end{table}
+~\newline
 
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
+	& \iref{ewat}& \iref{I_HETR}& \ref{sec_DataConstraints}& \rref{R_Inputs}& \rref{R_VerifyOutput} & \rref{R_Calculate} & \rref{R_Output} \\
 \hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
+\iref{ewat}            & & X& & & & X&  \\ \hline
+\iref{I_HETR}            & X& & & & & & X \\ \hline
+\rref{R_Inputs}     & & & & & & & \\ \hline
+\rref{R_VerifyOutput}  & & & X& & & & \\ \hline
+\rref{R_Calculate}    &X & & & & & & \\ \hline
+\rref{R_Output}  & & X& & & & &  \\ 
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
 \label{Table:R_trace}
 \end{table}
 
-The purpose of the traceability graphs is also to provide easy references on
-what has to be additionally modified if a certain component is changed.  The
-arrows in the graphs represent dependencies. The component at the tail of an
-arrow is depended on by the component at the head of that arrow. Therefore, if a
-component is changed, the components that it points to should also be
-changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, likely changes, and
-assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-instance models, requirements, and data constraints on each other.
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
 
 
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
-% 	\end{center}
-% \end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+	& \aref{A_common_constant_A_1}& \aref{A_common_constant_A_2}& \aref{A_common_constant_A_3}& \aref{A_fluid_type}& \aref{A_int_temp_formula}& \aref{A_radiation_impact}& \aref{A_radiation_impact_a_7}& \aref{A_radiation_impact_a_8} \\
 
-\section{Development Plan}
+ 
 
-\plt{This section is optional.  It is used to explain the plan for developing
-  the software.  In particular, this section gives a list of the order in which
-  the requirements will be implemented.  In the context of a course  this is
-  where you can indicate which requirements will be implemented as part of the
-  course, and which will be ``faked'' as future work.  This section can be
-  organized as a prioritized list of requirements, or it could should the
-  requirements that will be implemented for ``phase 1'', ``phase 2'', etc.}
+\hline
+\tref{TM_1}     & X& & & & & & &  \\ \hline
+\tref{TM_2}     & X& & & & & & & \\ \hline
+\dref{HFC}        & X& & & & & & &  \\ \hline
+\dref{HFR}      & X& & & & & & &  \\ \hline
+\ddref{dd_q_13} & X& & & & & & &  \\ \hline
+\ddref{dd_q_14}  & X& & & & & & &  \\ \hline
+\ddref{dd_q_15}    & X& & & & & & &  \\ \hline
+\ddref{dd_q_16}     & X& & & & & & & \\ \hline
+\ddref{dd_q_17}     & X& & & & & & &  \\ \hline
+\ddref{FluxCoil}     & X& & & & & & &  \\ \hline
+\iref{ewat}      & X& & & & & & &  \\ \hline
+\iref{I_HETR}      & X& & & & & & &  \\ \hline
+\lcref{LC_1}      & X& & & & & & &  \\ \hline
+\lcref{LC_2}      & X& & & & & & &  \\ 
 
-\section{Values of Auxiliary Constants}
+\hline
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
+\label{Table:A_trace}
+~\newline
+\end{table}
 
-\plt{Show the values of the symbolic parameters introduced in the report.}
 
-\plt{The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.}
 
-\plt{The value of FRACTION, for the Maintainability NFR would be given here.}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline        
+	& \tref{TM_1}& \tref{TM_2}& \dref{HFC}& \dref{HFR} & \ddref{dd_q_13}& \ddref{dd_q_14} & \ddref{dd_q_15}& \ddref{dd_q_16}& \ddref{dd_q_17}& \ddref{FluxCoil} &\iref{ewat}& \iref{I_HETR} \\
+\hline
+\tref{TM_1}     & & & X & & X& & & & & & X &  \\ \hline
+\tref{TM_2}     & & & & & & & & & & & & X \\ \hline
+\dref{HFC}        &X & & & & X& & & & X& & &  \\ \hline
+\dref{HFR}      & & & & & & & X& X& & & &  \\ \hline
+\ddref{dd_q_13} & X& & X& & & & & & & & X&  \\ \hline
+\ddref{dd_q_14}  & & & & & & & & & & & X&  \\ \hline
+\ddref{dd_q_15}    & & & &X & & & & & & & X&  \\ \hline
+\ddref{dd_q_16}     & & & &X & & & & & & &X & \\ \hline
+\ddref{dd_q_17}     &X & &X & & & & & & & & X&  \\ \hline
+\ddref{FluxCoil}     &X & & & & & & & & & & X&  \\ \hline
+\iref{ewat}      &X & & & &X &X &X &X &X &X & &  \\ \hline
+\iref{I_HETR}      & & X& & & & & & & & & &  \\ 
+\hline
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
+\label{Table:trace}
+\end{table} 
+
+~\newline
+
 
 \newpage
 
@@ -1217,65 +1156,5 @@ Their values are defined in this section for easy maintenance.}
 \bibliography {srs}
 
 \newpage
-
-\noindent \plt{The following is not part of the template, just some things to consider
-  when filing in the template.}
-
-\noindent \plt{Grammar, flow and \LaTeX advice:
-\begin{itemize}
-\item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
-\item \LaTeX{} and formatting rules
-\begin{itemize}
-\item Variables are italic, everything else not, includes subscripts (link to
-  document)
-\begin{itemize}
-\item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
-\item Watch out for implied multiplication
-\end{itemize}
-\item Use BibTeX
-\item Use cross-referencing
-\end{itemize}
-\item Grammar and writing rules
-\begin{itemize}
-\item Acronyms expanded on first usage (not just in table of acronyms)
-\item ``In order to'' should be ``to''
-\end{itemize}
-\end{itemize}}
-
-\noindent \plt{Advice on using the template:
-\begin{itemize}
-\item Difference between physical and software constraints
-\item Properties of a correct solution means \emph{additional} properties, not
-  a restating of the requirements (may be ``not applicable'' for your problem).
-  If you have a table of output constraints, then these are properties of a
-  correct solution.
-\item Assumptions have to be invoked somewhere
-\item ``Referenced by'' implies that there is an explicit reference
-\item Think of traceability matrix, list of assumption invocations and list of
-  reference by fields as automatically generatable
-\item If you say the format of the output (plot, table etc), then your
-  requirement could be more abstract
-\end{itemize}
-}
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete this capstone project?  Examples of possible knowledge
-  to acquire include domain specific knowledge from the domain of your
-  application, or software engineering knowledge, mechatronics knowledge or
-  computer science knowledge.  Skills may be related to technology, or writing,
-  or presentation, or team management, etc.  You should look to identify at
-  least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
 
 \end{document}
