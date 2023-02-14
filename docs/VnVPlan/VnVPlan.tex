@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{colortbl}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -12,13 +13,11 @@
 }
 \usepackage[round]{natbib}
 
-\input{../Comments}
-\input{../Common}
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
-\author{\authname}
+\title{System Verification and Validation Plan for \progname{Solar Cooker Energy Calculator}} 
+\author{Deesha Patel}
 \date{\today}
 	
 \maketitle
@@ -27,11 +26,12 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{5cm}p{1.5cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+February 14, 2023 & 1.0 & Add General Information section \\
+& 1.1 & Add further details in different section \\
+
 \bottomrule
 \end{tabularx}
 
@@ -40,7 +40,6 @@ Date 2 & 1.1 & Notes\\
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
 
 \listoffigures
 \wss{Remove this section if it isn't needed}
@@ -54,80 +53,95 @@ Date 2 & 1.1 & Notes\\
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  MG & Module Guide \\
+  MIS & Module Interface Specification \\
+  SRS & Software Requirement Specification\\
+  SCEC & Solar Cooker Energy Calculator \\ 
+  VnV & Verification and Validation \\ 
+  
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
+For complete symbols used within the system, please refer the section 1 in 
+  \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document.
 
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document provides the road-map of the Verification and Validation plan for Solar Cooker Energy Calculator for ensuring the requirements and goals of the program (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document). The organization of this document starts with the General Information about the Solar Cooker Energy Calculator in \autoref{GeneralInformation}. A verification plan is provided in \autoref{plan} and \autoref{systemtests} describes the system tests, including tests for functional and non-functional requirements.
+  
 
 \section{General Information}
+\label{GeneralInformation}
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+This document reviews the validation and verification plan for Solar Cooker Energy Calculator (SCEC), a program that calculate the balance temperature at recipient and cooking power in it using user inputs.  
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+The purpose of the validation plan is to define how system validation will perform at the end of the project - the strategy will use to assess whether the developed system accomplishes the designed goals. Also, the verification plan includes test strategies, definitions of what will be tested, and a test matrix with detailed mapping connecting the testing performed to the system requirements. This verification plan ensures that all requirements specified in the System Requirements Specification(\href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS}) document have been met and reviewed. The specific goal of this document is to demonstrate the adequate usability of the system.
+
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.}
+The relevant documentation for the SCEC includes \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement}, \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{System Requirements Specifications}, VnV Report, MG and MIS (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/docs}{Github Repository})  
 
-\citet{SRS}
 
 \section{Plan}
+\label{plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+This section describes the plan for the Solar Cooker Energy Calculator system. The planning starts with the Verification and Validation team, followed by the SRS verification plan, Design verification plan, Implementation verification plan, Automated testing and verification tools, and Software validation plan.  
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You shoud do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+This section describes the members of Verification and Validation plan. 
+
+\begin{center}
+\begin{table}[h!]
+\begin{tabular}{ |l|l|p{2cm}|p{5cm}| } 
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Name} & \textbf{Document} & \textbf{Role} & \textbf{Description} \\
+\hline
+ Dr. Spencer Smith & all & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
+ \hline
+ Deesha Patel & all & Author & Create all the documents, provide the VnV plan, test case and test execution, verify the implementation. \\  
+ \hline
+ Mina Mahdipour & all & Domain Expert Reviewer & Review all the documents and review the VnV plan. \\  
+ \hline
+ Karen Wang & SRS & Secondary Reviewer & Review the SRS document \\
+ \hline
+Lesley  Wheat & VnV Plan & Secondary Reviewer & Review the VnV plan. \\ 
+\hline 
+Sam Joseph Crawford & MG + MIS & Secondary Reviewer & Review the MG and MIS document. \\
+
+\hline
+\end{tabular}
+\caption{Verification and Validation team} 
+\end{table}
+\end{center}
 
 \subsection{SRS Verification Plan}
 
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
+The SCEC SRS document shall be verified in the following way: 
 
-\wss{Maybe create an SRS checklist?}
+\begin{enumerate}
+
+\item Initial review from the assigned members (Dr. Spencer Smith, Mina Mahdipour, Karen Wang, and Deesha Patel) will be performed. For this, the manual review will perform using the given \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/SRS-Checklist.pdf}{SRS Checklist}, designed by Dr. Smith. 
+
+\item Reviewer can give feedback to the author by creating the issue in Github. 
+
+\item Author (Deesha Patel) is responsible to address the issues created by the primary and secondary reviewers. Also, need to address the suggestions given by the instructor (Dr. Spencer Smith).  
+
+\end{enumerate}
+
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
-\subsection{Verification and Validation Plan Verification Plan}
-
-\wss{The verification and validation plan is an artifact that should also be verified.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+The design documents, Module Guide (MG), and Module Interface Specification (MIS) will be verified through the static technic of document inspection by the Domain/ Primary expert (Mina Mahdipour) and Secondary Reviewer (Sam Joseph Crawford). Also, the class instructor (Dr. Spencer Smith) will review both documents. Reviewers can give feedback to the author by creating the issue in Github. The author is responsible to solve the issues and address the suggestions. The reviewer will assess this document with the help of \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG Checklist} and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS Checklist} designed by Dr. Smith.      
 
 \subsection{Implementation Verification Plan}
 
@@ -168,6 +182,7 @@ inspection?}
 \wss{This section might reference back to the SRS verification section.}
 
 \section{System Test Description}
+\label{systemtests}
 	
 \subsection{Tests for Functional Requirements}
 
