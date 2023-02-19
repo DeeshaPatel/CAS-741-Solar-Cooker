@@ -128,7 +128,7 @@
 \begin{document}
 
 
-\title{Software Requirements Specification for Solar Cooker Energy Calculation: A Software for calculating heat loss and observed heat} 
+\title{Software Requirements Specification for Solar Cooker Energy Calculator: A Software for calculating heat loss and observed heat} 
 \author{Deesha Patel}
 \date{\today}
 	
@@ -206,6 +206,8 @@ $A_\text{m}$ & \si[per-mode=symbol] {\square\metre} & Wet surface area over whic
 $A_r$ & \si[per-mode=symbol] {\square\metre} & Area of Reflector
 \\
 
+$A_t$ & \si[per-mode=symbol] {\square\metre} & Area of Lid 
+\\
 
 
 $A_\text{ref}$ & $\si[per-mode=symbol] {\square\metre} $ & Reflector area with respect to different reflectors \\
@@ -220,7 +222,9 @@ $f$ & - & Fluid \\
 
 $G$ & \si[per-mode=symbol]{\watt\per\square\metre} & Incidental solar radiation \\
 
-$g2$ & - & Glass 2 \\
+$g_1$ & - & Glass 1\\
+
+$g_2$ & - & Glass 2 \\
 
 $h$ & \si[per-mode=symbol]{\watt\per\square\metre K} & Heat transfer convection coefficient \\
 
@@ -228,7 +232,7 @@ $int1$ & - & Inner part between glass 1 and glass 2 \\
 
 $int2$ & - & Inner part of the solar cooker box \\
 
-$int3$ & - & Inner part of recipient \\
+$int3$ & - & Inner part of container \\
 
 $L$ & \si{\metre} & Length of box \\
 
@@ -238,9 +242,11 @@ $n$ & - & Number of Reflector \\
 
 $q$ & \si{\watt\per\square\metre} & Thermal flux vector \\
 
-$Q$ & - & Quantity of heat transfer to or from the object \\
+$Q$ & \si{\watt} & Quantity of heat transfer to or from the object \\
 
-$r$ & - & Reflector \\
+$r$ & - & Recipient \\
+
+$ref$ & - & Reflector \\
 
 $T$ & \si{\celsius} & Temperature\\
 
@@ -287,22 +293,22 @@ $\rho$ & \si{\kilogram\per\metre^3} & Reflectivity \\
 
 \section{Introduction}
 
-As fossil fuels adversely affect the environment, many countries like India, where they have good Solar rays throughout the year, have started to implement devices for utilizing solar energy and transforming it into valuable energy. It includes Solar Water heaters, Solar panels, and Solar Cookers. It is indeed a fact that the demand for renewable energy has increased to deal with the problem of limited non-renewable resources. Focusing on Solar Cooker, several design such as Solar Panel Cooker, Solar Parabolic Cooker, and Solar Box Cooker has been proposed to utilize more Solar energy. Using internal reflectors, we would like to improve the utilization of Solar energy during cooking a food.   
+As fossil fuels adversely affect the environment, many countries like India, where they have good solar rays throughout the year, have started to implement devices for utilizing solar energy and transforming it into valuable energy. It includes solar water heaters, solar panels, and solar cookers. It is indeed a fact that the demand for renewable energy has increased to deal with the problem of limited non-renewable resources. Focusing on the Solar Cooker, several designs such as the Solar Panel Cooker, Solar Parabolic Cooker, and Solar Box Cooker have been proposed to utilize more solar energy. Using internal reflectors, we would like to improve the utilization of solar energy during cooking food.   
 
-The following section provides an overview of Software Requirement Specification (SRS) for a box-type Solar Cooker. This section explains the purpose of the document, the scope of requirements, the characteristic of the intended reader, and the organization of a document.   
+The following section provides an overview of the Software Requirement Specification (SRS) for a box-type Solar Cooker. This section explains the purpose of the document, the scope of requirements, the characteristics of the intended reader, and the organization of the document.   
 
 
 \subsection{Purpose of Document}
 
-We are going to use the Solar Box Cooker in this software. The main purpose of this document is to describe a mathematical model of a Solar Cooker which can provide a calculation for internal reflector in solar box that can help to improve the temperature in the box with a variety of parameters that attempts to define the intended functionality required. Thus, this document provides detailed requirements of the software which will be used in planing for design stage. Therefore, this document is intended to be used as a reference to provide ad hoc access to all information necessary to understand and verify the model. This document describes goals, assumptions, theoretical models, and important definitions to understand the problem. The SRS is abstract because the content here says \emph{what} the problem is. But it does not say anything related to \emph{how} to solve it.
+We are going to use the Solar Box Cooker in this software. The main purpose of this document is to describe a mathematical model of a Solar Cooker~\cite{MathsModel} which can provide a calculation for internal reflector in solar box that can help to improve the temperature in the box with a variety of parameters that attempts to define the intended functionality required. Thus, this document provides detailed requirements of the software which will be used in planing for design stage. Therefore, this document is intended to be used as a reference to provide ad hoc access to all information necessary to understand and verify the model. This document describes goals, assumptions, theoretical models, and important definitions to understand the problem. The SRS is abstract because the content here says \emph{what} the problem is. But it does not say anything related to \emph{how} to solve it.
 
 \subsection{Scope of Requirements} 
 
-Numerous algorithms have been proposed to improve the efficiency of Solar Cooker. The scope of the requirement includes a mathematical model to determine the thermal function of a box-type solar cooker with an internal reflectors. With the help of different inputs, this system calculates the achieved temperature by implementing the proposed solution. However, this project not focusing on more than one iteration for the reflections. In other words, this project focuses on the reflection from glass 2 to recipient.   
+Numerous algorithms have been analyzed for the efficiency of a Solar Cooker. The scope of the requirement includes a mathematical model to determine the thermal function of a box-type solar cooker with an internal reflectors. With the help of different inputs, this system calculates the achieved temperature by implementing the proposed solution. However, this project not focusing on more than one iteration for the reflections. In other words, this project focuses on the reflection from glass 2 to recipient.   
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-Firstly, Intended Reader or Reviewer should have knowledge of heat transfer theory and radiant solar energy. A person should have completed a Heat Transfer course during their bachelor of engineering (Mechanical Engineering and Chemical Engineering expected). A reader should have knowledge about the differential equation; offered in the first year Calculus course.        
+Firstly, Intended Reader or Reviewer should have knowledge of heat transfer theory and radiant solar energy. A person should have completed a Heat Transfer course during their bachelor of engineering (Mechanical Engineering and Chemical Engineering expected). A reader should have knowledge about the differential equation; offered in the second year Calculus course.        
 
 \subsection{Organization of Document}
 
@@ -344,7 +350,7 @@ The system context is shown in Figure \ref{Fig_SystemContext} below. The circles
 \begin{itemize}
 \item Detect data type mismatch, such as a string of characters instead of a
   floating point number
-\item Determine if the inputs satisfy the required physical and software constraints such as thickness of the glass can not be a negative value
+\item Determine if the inputs satisfy the required physical and software constraints such as thickness of the glass is not negative value
 \item Calculate and plot the required outputs of temperature
 \end{itemize}
 \end{itemize}
@@ -402,15 +408,17 @@ includes the following elements:
 
 \item[PS1:] A cover with two flat glasses (glass 1 and glass 2) 
 
-\item[PS2:] Lead of the recipient and recipient itself
+\item[PS2:] Lead of the recipient 
 
-\item[PS3:] Fluid inside the recipient
+\item[PS3:] Recipient itself
+
+\item[PS4:] Fluid inside the recipient
 
 \end{itemize}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.45\textwidth]{HeatFlow}
+\includegraphics[width=0.90\textwidth]{HeatFlow}
 \caption{Heat Flows in Solar Cooker}
 \label{Fig_HeatFlows} 
 \end{center}
@@ -429,11 +437,13 @@ includes the following elements:
 
 \subsubsection{Goal Statements}
 
-\noindent Given the thermal attributes and solar box characteristics the goal statements are:
+\noindent Given the thermal attributes, solar box characteristics and initial conditions the goal statements are:
 
 \begin{itemize}
 
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] predicts the Balance of temperature on the recipient.
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] predicts the temperature over the recipient (a cooking container).
+
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] predicts the temperature of the fluid (a water inside the container).
 
 \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] predicts the cooking energy in the recipient over time.
 
@@ -442,7 +452,7 @@ includes the following elements:
 \subsection{Solution Characteristics Specification}
 
 The instance model (ODE) that governs Solar Cooker
-Energy Calculation is presented in
+Energy Calculator is presented in
 Subsection~\ref{sec_instance}.  The information to understand the meaning of the
 instance model and its derivation is also presented, so that the instance
 model can be verified.
@@ -458,27 +468,26 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant_A_1}:] The emissivity(\si{\epsilon}) have been considered constant [\dref{HFC}, \ddref{dd_q_15}, \ddref{dd_q_16}, \iref{ewat}] 
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_1}:] The emissivity(\si{\epsilon}) is constant. [\dref{HFC}, \ddref{dd_q_12} , \ddref{dd_q_15}, \ddref{dd_q_16}, \iref{ewat}] 
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant_A_2}:] The reflectivity (\si{\rho}) have been considered constant [\ddref{dd_q_14}]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_2}:] The reflectivity (\si{\rho}) is constant. [\ddref{dd_q_14}]
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_common_constant_A_3}:] The Transmisivity (\si{\tau}) have been considered constant [\ddref{dd_q_14}]
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_3}:] The Transmisivity (\si{\tau}) is constant. [\ddref{dd_q_14}]
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_fluid_type}:] The material in the recipient (Container) is water. This implies that the  temperature will not drop below melting point and not rise above the boiling point [\iref{ewat}, \tref{TM_2}]   
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_4}:] The material in the recipient (Container) is water. [\iref{ewat}, \tref{TM_2}] 
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_int_temp_formula}:] The temperature $T_\text{int2}$ are obtained in function of others temperatures by means of the following supposition: [\iref{ewat}, \ddref{dd_q_13}] 
-~\newline
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_5}:]The  temperature of water will not drop below melting point. [\iref{ewat}, \tref{TM_2}]  
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_6}:]The temperature of water will not rise above the boiling point. [\iref{ewat}, \tref{TM_2}]   
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_7}:] The temperature $T_\text{int2}$ (temperature inside the box) are obtained by calculating mean of temperature value of inner glass ($g_2$), lid of the recipient, and reflector. [\iref{ewat}, \ddref{dd_q_13}] 
+
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_8}:] The temperature $T_\text{int3}$ (temperature inside the container) are obtained by calculating mean of temperature of lid and fluid. [\iref{im2}, \ddref{dd_q_11}]
 
 
-\begin{center}  
-$T_\text{int2} = \frac{T_\text{g2} + T_t + T_r}{3} $ 
-\end{center}
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_9}:] The solar radiation impact over the solar cooker occurs in perpendicular way. [\iref{ewat}, \ddref{dd_q_14}] 
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact}:] The solar radiation impact over the solar cooker occurs in perpendicular way. [\iref{ewat}, \ddref{dd_q_14}] 
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact_a_7}:] The only form of energy considered in this problem is thermal energy. Other energy such as mechanical energy are assumed to be a negligible. [\iref{ewat}, \lcref{LC_1}] 
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_radiation_impact_a_8}:] The temperature of the reflector is constant over the different time. [\ddref{FluxCoil}, \lcref{LC_2}] 
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_10}:] The only form of energy considered in this problem is thermal energy. Other energy such as mechanical energy are assumed to be a negligible. [\iref{ewat}, \lcref{LC_1}] 
 
 
 \end{itemize}
@@ -488,7 +497,7 @@ $T_\text{int2} = \frac{T_\text{g2} + T_t + T_r}{3} $
 \subsubsection{Theoretical Models}\label{sec_theoretical}
 
 This section focuses on the general equations and laws that Solar Cooker
-Energy Calculation is based
+Energy Calculator is based
 on.
 
 ~\newline
@@ -504,7 +513,7 @@ on.
   Label& \bf Convective Heat Transfer Coefficient\\
   \hline
   Equation &
-    h = $\frac{q}{\triangle T}$ \\ 
+    $h = \frac{q}{\triangle T}$ \\ 
   \hline
   Description
     & The above equation is used to calculate the heat transfer typically by convection or phase transition.  \\
@@ -536,14 +545,14 @@ on.
   Label& \bf Sensible Heat energy Calculation\\
   \hline
   Equation &
-    Q = $Cm \triangle T$ \\ 
+    $Q = Cm \triangle T$ \\ 
   \hline
   Description
-    & This calculation occurs until the highest or lowest temperature reach, as assumed in [\aref{A_fluid_type}] \\
-  & $Q$ is the quantity of heat transferred to or from the object \\ 
+    & This calculation occurs until the highest or lowest temperature reach, as assumed in [\aref{A_4}] \\
+  & $Q$ is the quantity of heat in the object \\ 
   & $m$ is the mass of the object \\ 
  & $C$ is the specific heat capacity of the material the object is composed of \\ 
-  & $\si{\triangle} T$ is the resulting temperature change of the object   \\
+  & $\si{\triangle} T$ is the temperature change of the object   \\
   
   \hline
   Notes & none. \\
@@ -558,6 +567,41 @@ on.
 
 ~\newline
 
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& TM\refstepcounter{theorynum}\thetheorynum \label{TM_3}\\
+  \hline
+  Label& \bf Conservation of thermal energy\\
+  \hline
+  Equation &
+      $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$ \\ 
+  \hline
+  Description
+    & The above equation gives the conservation
+  of energy for time varying heat transfer in a material of specific heat
+  capacity $C$ and density $\rho$, where $\bf q$ is the thermal flux vector,
+  $g$ is the volumetric heat generation, $T$ is the temperature, $t$ is time, 
+  and $\nabla$  is the degree of steepness of a graph at any point.  For this equation to apply, other
+  forms of energy, such as mechanical energy, as assumed to be negligible in the
+  system. \\
+  
+  \hline
+  Notes & none. \\
+  \hline
+  Sources& \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm} \\
+  \hline
+  Ref.\ By &  \iref{im2}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+
+~\newline
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
@@ -581,7 +625,7 @@ Label &\bf Heat Flow Convection \\
 % \hline
 SI Units&\si{\watt}\\
 \hline
-Equation&$ Q(t) = hA \Delta T(t)$  \\
+Equation& $ Q(t) = hA \Delta T(t)$  \\
 \hline
 Description &
 Heat Flow Convection is related to Newton's law of cooling describes convective cooling from a surface.  The law is
@@ -622,12 +666,12 @@ SI Units&\si{\joule}\\
 Equation&$ Q(t) = \sigma eA \triangle T^4$  \\
 \hline
 Description &
-An object emits radiant energy in all directions unless its temperature is absolute zero. If this energy strikes a receiver, part of it may be absorbed, part may be transmitted, and part may be reﬂected. Heat transfer from a hot to a cold object in this manner is known as radiation heat transfer . The higher the temperature, the greater is the amount of energy radiated.
+An object emits radiant energy in all directions unless its temperature is absolute zero. If this energy strikes a receiver, part of it may be absorbed, part may be transmitted, and part may be reﬂected. Heat transfer from a hot to a cold object in this manner is known as radiation heat transfer. The higher the temperature, the greater is the amount of energy radiated.
 \\
 & $Q(t)$ is the heat flow radiation (\si{\watt\per\square\metre}).\\
 & $\sigma$ is the Steffan-Boltzman constant
 	$(5.669 X 10^{-8} W / m^2 K^4)$.\\
- & $e$ is the emissivity of object(\si[per-mode=symbol] {\watt\per\metre}). \\  
+ & $e$ is the emissivity of object (\si[per-mode=symbol] {\watt\per\metre}). \\  
  & $A$ is the exposed surface area (\si[per-mode=symbol] {\square\metre}) \\
 &$\triangle T(t)$ is the temperature difference (\si{\celsius}).
 \\
@@ -651,6 +695,78 @@ models. The dimension of each quantity is also given.
 
 ~\newline
 
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_11}\\
+\hline
+Label& \bf Data Definition of Q11\\
+\hline
+Symbol &$Q11$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q11} = A_t h_\text{t-int3}(T_\text{t} - T_f)$ \\
+  \hline
+  Description & Q11 calculates the Heat flow convection of the lid toward the inner 3 \\
+  
+  &$A_t$ is the Area of lid (\si{\square\metre}).  \\
+               &$h_\text{t-int3}$ is the thermal flux difference between lid and Inner area inside the container \\ 
+                &$T_\text{t} - T_f$ is the temperature difference between lid and fluid (\si{\celsius}). 
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{im2}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+~\newline
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{dd_q_12}\\
+\hline
+Label& \bf Data Definition of Q12\\
+\hline
+Symbol &$Q12$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\watt\per\square\metre}\\
+  \hline
+  Equation&$\textbf{Q12} = A_t \sigma \epsilon_t (T_\text{t}^4 - T_f^4)$ \\
+  \hline
+  Description & Q12 calculates the Heat flow radiation of the lid of the recipient toward the fluid \\
+  
+  &$A_t$ is the Area of lid  (\si{\square\metre}).  \\
+  & $\sigma$ is the Steffan-Boltzman constant $(5.669 X 10^{-8} W / m^2 K^4)$ \\ 
+                &$\epsilon_t$ is the Emittance of lid (\si[per-mode=symbol] {\watt\per\metre})  \\ 
+                &$T_t^4 - T_\text{f}^4$ is the temperature difference of lid and fluid (\si{\celsius}).  
+\\
+  \hline
+  Sources& ~\cite{MathsModel} \\
+  \hline
+  Ref.\ By & \iref{im2}\\
+  \hline
+\end{tabular} \\
+\end{minipage}\\
+
+~\newline
+
+
 \noindent
 \begin{minipage}{\textwidth}
 \renewcommand*{\arraystretch}{1.5}
@@ -667,13 +783,13 @@ Symbol &$Q13$\\
 % \hline
   SI Units & \si{\watt\per\square\metre}\\
   \hline
-  Equation&$\textbf{Q13} = A_r h_\text{r-int2}(T_\text{int2} - T_r)$ \\
+  Equation&$\textbf{Q13} = A_\text{ref} h_\text{ref-int2}(T_\text{int2} - T_\text{ref})$ \\
   \hline
   Description & Q13 calculates the Heat flow convection of recipient to inner 2 \\
   
-  &$A_r$ is the Area of Reflector (\si{\square\metre}).  \\
-               &$h_\text{r-int2}$ is the thermal flux difference between Reflector and Inner area inside the box \\ 
-                &$T_\text{int2} - T_r$ is the temperature difference between inner area and reflector (\si{\celsius}). 
+  &$A_\text{ref}$ is the Area of Reflector (\si{\square\metre}).  \\
+               &$h_\text{ref-int2}$ is the thermal flux difference between Reflector and Inner area inside the box \\ 
+                &$(T_\text{int2} - T_\text{ref})$ is the temperature difference between inner area and reflector (\si{\celsius}). 
 \\
   \hline
   Sources& ~\cite{MathsModel} \\
@@ -739,14 +855,14 @@ Symbol &$Q15$\\
 % \hline
   SI Units & \si{\watt\per\square\metre}\\
   \hline
-  Equation&$\textbf{Q15} = A_r \sigma \epsilon_r (T^4_r - T^4_\text{g2})$ \\
+  Equation&$\textbf{Q15} = A_\text{ref} \sigma \epsilon_\text{ref} (T^4_\text{ref} - T^4_\text{g2})$ \\
   \hline
   Description & Q15 calculates the Heat flow radiation of recipient toward glass 2 \\
   
-  &$A_r$ is the Area of Reflector (\si{\square\metre}).  \\
+  &$A_\text{ref}$ is the Area of Reflector (\si{\square\metre}).  \\
                &$\sigma$ is the Steffan-Boltzman constant $(5.669 X 10^{-8} W / m^2 K^4)$ \\ 
-               &$\epsilon_r$ is the Emittance of Reflector (\si[per-mode=symbol] {\watt\per\metre})  \\ 
-                &$T_r - T_\text{g2}$ is the temperature difference of reflectors and glass 2 (\si{\celsius}). 
+               &$\epsilon_\text{ref}$ is the Emittance of Reflector (\si[per-mode=symbol] {\watt\per\metre})  \\ 
+                &$T^4_\text{ref} - T^4_\text{g2}$ is the temperature difference of reflectors and glass 2 (\si{\celsius}). 
 \\
   \hline
   Sources& ~\cite{MathsModel} \\
@@ -775,19 +891,19 @@ Symbol &$Q16$\\
 % \hline
   SI Units & \si{\watt\per\square\metre}\\
   \hline
-  Equation&$\textbf{Q16} = A_r \sigma \epsilon_r (T^4_r - T^4_f)$ \\
+  Equation&$\textbf{Q16} = A_\text{ref} \sigma \epsilon_\text{ref} (T^4_\text{ref} - T^4_f)$ \\
   \hline
   Description & Q16 calculates the Heat flow radiation of recipient toward the fluid \\
   
-  &$A_r$ is the Area of Reflector (\si{\square\metre}).  \\
+  &$A_\text{ref}$ is the Area of Reflector (\si{\square\metre}).  \\
                &$\sigma$ is the Steffan-Boltzman constant $(5.669 X 10^{-8} W / m^2 K^4)$ \\ 
-               &$\epsilon_r$ is the Emittance of Reflector (\si[per-mode=symbol] {\watt\per\metre})  \\ 
-                &$T_r - T_f$ is the temperature difference of reflectors and fluid(\si{\celsius}). 
+               &$\epsilon_\text{ref}$ is the Emittance of Reflector (\si[per-mode=symbol] {\watt\per\metre})  \\ 
+                &$T_\text{ref} - T_f$ is the temperature difference of reflectors and fluid(\si{\celsius}). 
 \\
   \hline
   Sources& ~\cite{MathsModel} \\
   \hline
-  Ref.\ By & \iref{ewat}\\
+  Ref.\ By & \iref{ewat}, \iref{im2}\\
   \hline
 \end{tabular} \\
 \end{minipage}\\
@@ -810,18 +926,18 @@ Symbol &$Q17$\\
 % \hline
   SI Units & \si{\watt\per\square\metre}\\
   \hline
-  Equation&$\textbf{Q17} = A_m h_\text{r-f}(T_r - T_f)$ \\
+  Equation&$\textbf{Q17} = A_m h_\text{\text{ref}-f}(T_\text{ref} - T_f)$ \\
   \hline
   Description & Q17 calculates the Heat flow convection of recipient toward the fluid \\
   
   &$A_m$ is the wet inside the container (\si{\square\metre}).  \\
-               &$h_\text{r-f}$ is the thermal flux difference between Reflector and fluid inside the container \\ 
-                &$T_r - T_f$ is the temperature difference between reflector and fluid (\si{\celsius}). 
+               &$h_\text{\text{ref}-f}$ is the thermal flux difference between Reflector and fluid inside the container \\ 
+                &$T_\text{ref} - T_f$ is the temperature difference between reflector and fluid (\si{\celsius}). 
 \\
   \hline
   Sources& ~\cite{MathsModel} \\
   \hline
-  Ref.\ By & \iref{ewat}\\
+  Ref.\ By & \iref{ewat}, \iref{im2}\\
   \hline
 \end{tabular} \\
 \end{minipage}\\
@@ -846,13 +962,13 @@ Symbol &$q$\\
 % \hline
   SI Units & \si{\watt\per\square\metre}\\
   \hline
-  Equation&$q (t) = h_r (T_r - T_W (t) )$, over area $A_r$ \\
+  Equation&$q (t) = h_\text{ref} (T_\text{ref} - T_W (t) )$, over area $A_\text{ref}$ \\
   \hline
   Description & It is necessary to know the thermal conductivity of a material if you want to calculate the heat energy transferred through it \\
   
   &$q$ is the heat flux  \\
-               &$h_r$ is the convective heat transfer coefficient between reflector and water \\ 
-                &$T_r$ is the temperature of reflector \si{\celsius} \\
+               &$h_\text{ref}$ is the convective heat transfer coefficient between reflector and water \\ 
+                &$T_\text{ref}$ is the temperature of reflector \si{\celsius} \\
                 &$T_W(t)$ is the temperature of water \si{\celsius} \\
                 &$t$ is the time (s) 
 \\
@@ -885,27 +1001,32 @@ identified in Sections~\ref{sec_theoretical}.
   \rowcolor[gray]{0.9}
   Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
   \hline
-  Label& \bf Balance of energy on the recipient to find $T_W$\\
+  Label& \bf Temperature on the recipient to find $T_r$\\
   \hline
-  Input&$A_r$, $\epsilon_r$, $T_r$, $T_f$, $T_\text{int2}$, $A_m$, $T_f$, $G$\\
-  & The input is constrained so that $\epsilon_r \leq 0 $ \\
+  Input&$A_m$, $A_\text{ref}$, $\epsilon_\text{ref}$, $T_\text{ref}$, $T_f$, $T_\text{g2}$, $n$, $G$, $\theta_\text{ref}$\\
+  
+  
+  & The input is constrained so that $\epsilon_\text{ref} \leq 0 $ \\
   \hline
-  Output&$T_f(t)$, $t \geq 0 $, such that\\
+  Output&$T_r(t)$, $t \geq 0 $, such that\\
 
-  & $ \bf m_W c_W  \frac{dT_W}{dt}  = Q13 + 4Q14 - Q15 - Q16 - Q17 $\\
+  & $  \frac{dT_r}{dt}  = \frac{Q13 + 4Q14 - Q15 - Q16 - Q17}{m_r c_r}  $\\
   \hline
   Description
-  &$A_r$ is the Area of Reflector (\si{\square\metre}).\\
-  &$\epsilon_r$ is the Emittance of recipient (\si[per-mode=symbol] {\watt\per\metre}).\\
-  &$T_r$ is the Reflector temperature (\si{\celsius}).\\
-  &$T_\text{int2}$ is a temperature inside the box (\si{\celsius}).\\
-  &$G$ is the Incidental solar radiation (\si[per-mode=symbol] {\watt\per\square\metre}).\\
+  &$A_\text{ref}$ is the Area of Reflector (\si{\square\metre}).\\
+  &$A_m$ is the Area of wet mass (\si{\square\metre}).\\
+  &$\epsilon_\text{ref}$ is the Emittance of recipient (\si[per-mode=symbol] {\watt\per\metre}).\\
+  &$T_\text{ref}$ is the Reflector temperature (\si{\celsius}).\\
+  &$T_\text{g2}$ is a temperature inside the box (\si{\celsius}).\\
   &$T_f$ is a current temperature of Fluid at the time of t (\si{\celsius}).\\
+  &$n$ is a number of reflectors. \\
+  &$G$ is the Incidental solar radiation (\si[per-mode=symbol] {\watt\per\square\metre}).\\
+  &$\theta_\text{ref}$ is a reflection angle. \\
   
 
   & The above equation applies as long as the fluid is in liquid form,
   $0<T_f<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-  and boiling points of water(as we are using water for testing), respectively.
+  and boiling points of water (as we are using water for testing), respectively.
   \\
   \hline
   Sources& \cite{MathsModel} \\
@@ -923,21 +1044,59 @@ identified in Sections~\ref{sec_theoretical}.
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
   \hline
   \rowcolor[gray]{0.9}
+  Number& IM\refstepcounter{instnum}\theinstnum \label{im2}\\
+  \hline
+  Label& \bf Temperature of fluid to find $T_f$\\
+  \hline
+  Input&$A_t$, $A_m$, $A_\text{ref}$, $\epsilon_\text{ref}$, $\epsilon_t$, $T_\text{ref}$, $T_f$, $T_t$\\
+  & The input is constrained so that $\epsilon_\text{ref}, \epsilon_t \leq 0 $ \\
+  \hline
+  Output&$T_f(t)$, $t \geq 0 $, such that\\
+
+  & $  \frac{dT_f}{dt}  = \frac{Q11 + Q12 + Q16 + Q17}{m_f c_f}  $\\
+  \hline
+  Description
+  &$A_\text{ref}$ is the Area of Reflector (\si{\square\metre}).\\
+  &$A_m$ is the Area of wet mass (\si{\square\metre}).\\
+  &$A_t$ is the Area of lid of container (\si{\square\metre}).\\
+  &$\epsilon_\text{ref}$ is the Emittance of recipient (\si[per-mode=symbol] {\watt\per\metre}).\\
+  &$\epsilon_t$ is the Emittance of lid (\si[per-mode=symbol] {\watt\per\metre}).\\
+  &$T_\text{ref}$ is the Reflector temperature (\si{\celsius}).\\
+  &$T_t$ is a temperature over lid of container (\si{\celsius}).\\
+  &$T_f$ is a current temperature of Fluid at the time of t (\si{\celsius}).\\
+
+  \hline
+  Sources& \cite{MathsModel} \\
+  \hline
+  Ref.\ By & None\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
   Number& IM\refstepcounter{instnum}\theinstnum \label{I_HETR}\\
   \hline
   Label& \bf Heat energy in the recipient\\
   \hline
-  Input&$C_W$, $m_W$, $T_\text{init}$, $T_W(t)$\\
+  Input&$C_f$, $m_f$, $T_\text{init}$, $T_f(t)$\\
   \hline
-  Output&$E_W(t)$, $0 \leq t \leq t_\text{final}$, such that\\
-  &$E_W(t)$ = $C_W m_W (T_W(t) - T_\text{init})$\\
+  Output&$E_f(t)$, $0 \leq t \leq t_\text{final}$, such that\\
+  &$E_f(t)$ = $C_f m_f (T_f(t) - T_\text{init})$\\
   \hline
-  Description & The above equation is derived using \tref{TM_2}.  $E_W$ is the 
+  Description & The above equation is derived using \tref{TM_2}.  $E_f$ is the 
   change in thermal energy of the liquid water relative to the energy at the initial 
-  temperature ($T_\text{init}$).  $C_W$ is the specific heat capacity of liquid water and $m_W$ is 
+  temperature ($T_\text{init}$).  $C_f$ is the specific heat capacity of liquid water and $m_f$ is 
   the mass of the water.  The change in temperature is the difference between 
-  the temperature at time t, $T_W$, and the initial temperature, $T_\text{init}$, this
-  equation applies as long as $0 < T_W < 100^o\text{C}$ (\aref{A_fluid_type}).\\
+  the temperature at time t, $T_f$, and the initial temperature, $T_\text{init}$, this
+  equation applies as long as $0 < T_f < 100^o\text{C}$ (\aref{A_4}).\\
   \hline
   Sources&~\cite{cookingpower}\ \\
   \hline
@@ -972,22 +1131,23 @@ uncertainty quantification exercise.
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 0.12 \si[per-mode=symbol] {\metre} & -
+
+ $A_\text{ref}$ & $A_\text{ref} > 0$ & $A_\text{ref} \leq A_\text{ref}^\text{max}$ & 0.0058 \si[per-mode=symbol] {\square\metre}   & - 
   \\
-  $C_w$ & $C_w > 0$ & $C_w^\text{min} \leq C_w \leq C_w^\text{max}$ & 4186 \si[per-mode=symbol] {\joule\per\ (kg \celsius})    & - 
+  $A_m$ & $A_m > 0$ & $A_m \leq A_m^\text{max}$ & 0.24 \si[per-mode=symbol] {\square\metre}   & - 
   \\
-  $\tau_g$ & $0 \leq \tau_g \leq 1$ & - & 0.48 \si[per-mode=symbol] {\metre} & - 
+  $A_t$ & $A_t > 0$ & $A_t \leq A_t^\text{max}$ & 0.0201 \si[per-mode=symbol] {\square\metre}   & - 
   \\
-  $A_g$ & $A_g > 0$ & $A_g \leq A_g^\text{max}$ & 0.24 \si[per-mode=symbol] {\square\metre}   & - 
+  $T_\text{f}$ & $0 < T_\text{f} < 100$ & - & 30 \si[per-mode=symbol] {\celsius} & - 
   \\
-  $r$ & $r > 0$ & $r_\text{min} \leq r \leq r_\text{max} $ & 1  & - 
+  $T_\text{ref}$ & $0 < T_\text{ref} < 100$ & - & 30 \si[per-mode=symbol] {\celsius} & - 
   \\
-  $T_\text{init}$ & $0 < T_\text{init} < 100$ & - & 40 \si[per-mode=symbol] {\celsius} & - 
+  $T_\text{g2}$ & $0 < T_\text{g2} < 100$ & - & 30 \si[per-mode=symbol] {\celsius} & - 
   \\
-  $G$ & $G > 0$ & $G_{\text{min}} \leq L \leq G_{\text{max}}$ & 476 \si[per-mode=symbol] {\watt\per\square\metre} & - 
+  $T_\text{t}$ & $0 < T_\text{t} < 100$ & - & 30 \si[per-mode=symbol] {\celsius} & - 
   \\
-  $T_\text{f}$ & $0 < T_\text{f} < 100$ & - & 40 \si[per-mode=symbol] {\celsius} & - 
-  \\
+  $\epsilon_\text{ref}$ & $0 < \epsilon_\text{ref} < 1$ & - & 1 & -\\
+   $\epsilon_\text{t}$ & $0 < \epsilon_\text{t} < 1$ & - & 0.97 & -\\
   
   \bottomrule
 \end{longtable*}
@@ -1001,7 +1161,8 @@ uncertainty quantification exercise.
   \toprule
   \textbf{Var} & \textbf{Physical Constraints} \\
   \midrule 
-  $T_r$ & $T_\text{init} \leq T_r $
+  $T_r$ & $T_\text{init} \leq T_r $ \\
+  $T_f$ & $T_\text{init} \leq T_f $
   \\
   $E_w$ & $E_w > 0$ \\
   \bottomrule
@@ -1025,9 +1186,11 @@ qualities that the software is expected to exhibit.
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
   Verify the given inputs are in correct form and satify the required physical constraints given in the table~\ref{TblInputVar}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] Calculate and output the balance of energy on recipient $T_W(t)$ over the simulation time(from \iref{ewat})
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] Calculate and output the temperature over recipient $T_r(t)$ over the simulation time (from \iref{ewat})
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] Calculate and output the energy in the water (fluid - recipient) $E_W(t)$ over the simulation time(from \iref{I_HETR})
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate_im2}:] Calculate and output the balance of energy on fluid $T_f(t)$ over the simulation time (from \iref{im2})
+
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] Calculate and output the energy in the water (fluid - recipient) $E_W(t)$ over the simulation time (from \iref{I_HETR})
 
 \end{itemize}
 
@@ -1040,16 +1203,16 @@ qualities that the software is expected to exhibit.
 This problem is small in size and relatively simple, so performance is not a priority. Any reasonable implementation will be very quick and use minimal storage. Rather than performance, the non-functional requirement priorities are 
 \begin{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Correctness: The calculated temperature should be correct and behave the same in all different use-cases.
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Understandability: The source code and design of the system should be understandable by a new developer. 
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Maintainability: The software should be easy to modify.   
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Usability: The system should easy to use and have very few errors. 
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Portability: The software should able to run on different environments, such as Windows, Linux and MacOs.  
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Verifiability: The result will be verifiable using the VnV plan.  
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Understandability: The system accepts the simple inputs from the user and then user will gets the temperature value as a output. So, this will be easy for any new user to understand the system. 
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Reusability: The system only focuses on the temperature inside the box. But we can extend it to calculate the temperature at different points in Solar cooker where we can reuse this system.  
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_accuracy}:] Maintainability: The traceability between requirements, assumptions, theoretical models, general definitions, data definitions, instance models,
-likely changes, and unlikely changes is completely recorded in traceability matrices. 
  
 \end{itemize}
 
@@ -1057,10 +1220,7 @@ likely changes, and unlikely changes is completely recorded in traceability matr
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_1}:] \aref{A_radiation_impact_a_7} 
-The other form of energy such as Mechanical energy may apply as a part of energy consideration.
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_2}:] \aref{A_radiation_impact_a_8} 
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_1}:] \aref{A_10} 
 The temperature of the reflector will change over the different time during the day which is totally based on the sun rays. 
 
 \end{itemize}
@@ -1069,9 +1229,12 @@ The temperature of the reflector will change over the different time during the 
 
 \noindent \begin{itemize}
 
-\item[UC\refstepcounter{ucnum}\theucnum\label{LC_3}:] 
-\aref{A_int_temp_formula} 
-The given calculation for the inner temperature for the box(int2) in the assumption will not change throughout the whole process. 
+\item[UC\refstepcounter{ucnum}\theucnum\label{LC_2}:] 
+\aref{A_7} 
+The given calculation for the inner temperature for the box(int2) in the assumption will not change throughout the whole process.
+
+\item[UC\refstepcounter{ucnum}\theucnum\label{LC_3}:] \aref{A_10} 
+The other form of energy such as Mechanical energy may apply as a part of energy consideration.
 
 \end{itemize}
 
@@ -1092,16 +1255,18 @@ the assumptions.
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	& \iref{ewat}& \iref{I_HETR}& \ref{sec_DataConstraints}& \rref{R_Inputs}& \rref{R_VerifyOutput} & \rref{R_Calculate} & \rref{R_Output} \\
+	& \iref{ewat}& \iref{im2} & \iref{I_HETR}& \ref{sec_DataConstraints}& \rref{R_Inputs}& \rref{R_VerifyOutput} & \rref{R_Calculate} & \rref{R_Calculate_im2} & \rref{R_Output} \\
 \hline
-\iref{ewat}            & & X& & & & X&  \\ \hline
-\iref{I_HETR}            & X& & & & & & X \\ \hline
-\rref{R_Inputs}     & & & & & & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& & & & \\ \hline
-\rref{R_Calculate}    &X & & & & & & \\ \hline
-\rref{R_Output}  & & X& & & & &  \\ 
+\iref{ewat}            & & X& X& & & &X & &  \\ \hline
+\iref{im2}             &X &  & & & &  & &X &\\ \hline
+\iref{I_HETR}            & X& & & & & & & &X\\ \hline
+\rref{R_Inputs}     & & & & & & & & &\\ \hline
+\rref{R_VerifyOutput}  & & & &X & & & & & \\ \hline
+\rref{R_Calculate}    &X & & & & & & & &\\ \hline
+\rref{R_Calculate_im2} & & X& & & & & & & \\ \hline
+\rref{R_Output}  & & &X & & & &  & &\\ 
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
@@ -1112,27 +1277,30 @@ the assumptions.
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	& \aref{A_common_constant_A_1}& \aref{A_common_constant_A_2}& \aref{A_common_constant_A_3}& \aref{A_fluid_type}& \aref{A_int_temp_formula}& \aref{A_radiation_impact}& \aref{A_radiation_impact_a_7}& \aref{A_radiation_impact_a_8} \\
+	& \aref{A_1}& \aref{A_2}& \aref{A_3}& \aref{A_4}& \aref{A_5}& \aref{A_6}& \aref{A_7}& \aref{A_8} &\aref{A_9} & \aref{A_10} \\
 
  
 
 \hline
-\tref{TM_1}     & & & & & & & &  \\ \hline
-\tref{TM_2}     & & & & X& & & & \\ \hline
-\dref{HFC}        & X& & & & & & &  \\ \hline
-\dref{HFR}      & & X& X& & & & &  \\ \hline
-\ddref{dd_q_13} & & & & & X& & &  \\ \hline
-\ddref{dd_q_14}  & & & & & &X & &  \\ \hline
-\ddref{dd_q_15}    & X& & & & & & &  \\ \hline
-\ddref{dd_q_16}     & X& & & & & & & \\ \hline
-\ddref{dd_q_17}     & & & & & & & &  \\ \hline
-\ddref{FluxCoil}     & & & & & & & &X  \\ \hline
-\iref{ewat}      & X& & &X &X &X &X &  \\ \hline
-\iref{I_HETR}      & & & & & & & &  \\ \hline
-\lcref{LC_1}      & & & & & & & X&  \\ \hline
-\lcref{LC_2}      & & & & & & & & X \\ 
+\tref{TM_1}     & & & & & & & & & &  \\ \hline
+\tref{TM_2}     & & & & X&X &X & & & & \\ \hline
+\dref{HFC}        & X& & & & & & &  & & \\ \hline
+\dref{HFR}      & & X& X& & & & & & & \\ \hline
+\ddref{dd_q_11} & & & & & & & & X & & \\ \hline
+\ddref{dd_q_12} &X & & & & & & &  & & \\ \hline
+\ddref{dd_q_13} & & & & & & &X &  & & \\ \hline
+\ddref{dd_q_14}  & &X &X & & & & & &X & \\ \hline
+\ddref{dd_q_15}    & X& & & & & & &  & & \\ \hline
+\ddref{dd_q_16}     & X& & & & & & & & & \\ \hline
+\ddref{dd_q_17}     & & & & & & & &  & & \\ \hline
+\ddref{FluxCoil}     & & & & & & & &  & & \\ \hline
+\iref{ewat}      & X& & &X &X &X &X &  & X &X \\ \hline
+\iref{im2}      & & & & & & & &X  & & \\ \hline
+\iref{I_HETR}      & & & & & & & &  & & \\ \hline
+\lcref{LC_1}      & & & & & & & X&  & & X  \\ \hline
+\lcref{LC_2}      & & & & & & & & X & & \\
 
 \hline
 \end{tabular}
@@ -1142,31 +1310,33 @@ the assumptions.
 \end{table}
 
 
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{table}[!h]
+\resizebox{1 \textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline        
-	& \tref{TM_1}& \tref{TM_2}& \dref{HFC}& \dref{HFR} & \ddref{dd_q_13}& \ddref{dd_q_14} & \ddref{dd_q_15}& \ddref{dd_q_16}& \ddref{dd_q_17}& \ddref{FluxCoil} &\iref{ewat}& \iref{I_HETR} \\
+	& \tref{TM_1}& \tref{TM_2}& \dref{HFC}& \dref{HFR} & \ddref{dd_q_11}&  \ddref{dd_q_12}& \ddref{dd_q_13}& \ddref{dd_q_14} & \ddref{dd_q_15}& \ddref{dd_q_16}& \ddref{dd_q_17}& \ddref{FluxCoil} &\iref{ewat}& \iref{im2}& \iref{I_HETR} \\
 \hline
-\tref{TM_1}     & & & X & & X& & & & & & X &  \\ \hline
-\tref{TM_2}     & & & & & & & & & & & & X \\ \hline
-\dref{HFC}        &X & & & & X& & & & X& & &  \\ \hline
-\dref{HFR}      & & & & & & & X& X& & & &  \\ \hline
-\ddref{dd_q_13} & X& & X& & & & & & & & X&  \\ \hline
-\ddref{dd_q_14}  & & & & & & & & & & & X&  \\ \hline
-\ddref{dd_q_15}    & & & &X & & & & & & & X&  \\ \hline
-\ddref{dd_q_16}     & & & &X & & & & & & &X & \\ \hline
-\ddref{dd_q_17}     &X & &X & & & & & & & & X&  \\ \hline
-\ddref{FluxCoil}     &X & & & & & & & & & & X&  \\ \hline
-\iref{ewat}      &X & & & &X &X &X &X &X &X & &  \\ \hline
-\iref{I_HETR}      & & X& & & & & & & & & &  \\ 
+\tref{TM_1}     & & & X & & X& & & & & & X & & & & \\ \hline
+\tref{TM_2}     & & & & & & & & & & & & X & & & \\ \hline
+\dref{HFC}        &X & & & & X& & & & X& & & & & &  \\ \hline
+\dref{HFR}      & & & & & & & X& X& & & &  & & & \\ \hline
+\ddref{dd_q_11} & X& & X& & & & & & & & X& & & X &  \\ \hline
+\ddref{dd_q_12} & X& & X& & & & & & & & X& & & X &  \\ \hline
+\ddref{dd_q_13} & X& & X& & & & & & & & X& & & &  \\ \hline
+\ddref{dd_q_14}  & & & & & & & & & & & X&  & & & \\ \hline
+\ddref{dd_q_15}    & & & &X & & & & & & & X& & & &  \\ \hline
+\ddref{dd_q_16}     & & & &X & & & & & & &X & & & & \\ \hline
+\ddref{dd_q_17}     &X & &X & & & & & & & & X& & & &  \\ \hline
+\ddref{FluxCoil}     &X & & & & & & & & & & X& & & & X \\ \hline
+\iref{ewat}      &X & & & &X &X &X &X &X &X & & & X & X &  \\ \hline
+\iref{im2}      &X & & & &X &X &X &X &X &X & & & X & X &  \\ \hline
+\iref{I_HETR}      & & X& & & & & & & & & & & & &  \\ 
 \hline
 \end{tabular}
+}
 \caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
 \label{Table:trace}
 \end{table} 
-
 ~\newline
 
 \newpage
