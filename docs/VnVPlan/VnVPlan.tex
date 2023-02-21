@@ -31,7 +31,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 February 14, 2023 & 0.1.0 & Add General Information section \\
-& 0.2 & Add further details in different section \\
+& 0.2 & Add further details in different sections \\
 
 February 18, 2023 & 1.0 & First Draft of VnV \\
 
@@ -72,7 +72,7 @@ For complete symbols used within the system, please refer the section 1 in
 
 \pagenumbering{arabic}
 
-This document provides the road-map of the Verification and Validation plan for Solar Cooker Energy Calculator for ensuring the requirements and goals of the program (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document). The organization of this document starts with the General Information about the Solar Cooker Energy Calculator in \autoref{GeneralInformation}. A verification plan is provided in \autoref{plan} and \autoref{systemtests} describes the system tests, including tests for functional and non-functional requirements.
+This document provides the road-map of the verification and validation plan for Solar Cooker Energy Calculator for ensuring the requirements and goals of the program (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document). The organization of this document starts with the General Information about the Solar Cooker Energy Calculator in \autoref{GeneralInformation}. A verification plan is provided in \autoref{plan} and \autoref{systemtests} describes the system tests, including tests for functional and non-functional requirements.
   
 
 \section{General Information}
@@ -84,7 +84,7 @@ This document reviews the validation and verification plan for Solar Cooker Ener
 
 \subsection{Objectives}
 
-The purpose of the validation plan is to define how system validation will perform at the end of the project - the strategy will use to assess whether the developed system accomplishes the designed goals. Also, the verification plan includes test strategies, definitions of what will be tested, and a test matrix with detailed mapping connecting the testing performed to the system requirements. This verification plan ensures that all requirements specified in the System Requirements Specification(\href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS}) document have been met and reviewed. The specific goal of this document is to demonstrate the adequate usability of the system.
+The purpose of the validation plan is to define how system validation will perform at the end of the project. The strategy will use to assess whether the developed system accomplishes the designed goals. Also, the verification plan includes test strategies, definitions of what will be tested, and a test matrix with detailed mapping connecting the tests performed to the system requirements. This verification plan ensures that all requirements specified in the System Requirements Specification(\href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS}) document have been met and reviewed.
 
 
 \subsection{Relevant Documentation}
@@ -95,7 +95,7 @@ The relevant documentation for the SCEC includes \href{https://github.com/Deesha
 \section{Plan}
 \label{plan}
 
-This section describes the plan for the Solar Cooker Energy Calculator system. The planning starts with the Verification and Validation team, followed by the SRS verification plan, Design verification plan, Implementation verification plan, Automated testing and verification tools, and Software validation plan.  
+This section describes the testing plan for the Solar Cooker Energy Calculator system. The planning starts with the Verification and Validation team, followed by the SRS verification plan, design verification plan, implementation verification plan, Automated testing and verification tools, and Software validation plan.  
 
 \subsection{Verification and Validation Team}
 
@@ -108,11 +108,11 @@ This section describes the members of Verification and Validation plan.
 \rowcolor[gray]{0.9}
 \textbf{Name} & \textbf{Document} & \textbf{Role} & \textbf{Description} \\
 \hline
- Dr. Spencer Smith & all & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
+ Dr.\ Spencer Smith & all & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
  \hline
- Deesha Patel & all & Author & Create all the documents, provide the VnV plan, test case and test execution, verify the implementation. \\  
+ Deesha Patel & all & Author & Create and manage all the documents, provide the VnV plan, test case and test execution, verify the implementation. \\  
  \hline
- Mina Mahdipour & all & Domain Expert Reviewer & Review all the documents and review the VnV plan. \\  
+ Mina Mahdipour & all & Domain Expert Reviewer & Review all the documents. \\  
  \hline
  Karen Wang & SRS & Secondary Reviewer & Review the SRS document \\
  \hline
@@ -124,6 +124,7 @@ Sam Joseph Crawford & MG + MIS & Secondary Reviewer & Review the MG and MIS docu
 \hline
 \end{tabular}
 \caption{Verification and Validation team} 
+\label{verification_validation}
 \end{table}
 \end{center}
 
@@ -133,18 +134,18 @@ The SCEC SRS document shall be verified in the following way:
 
 \begin{enumerate}
 
-\item Initial review from the assigned members (Dr. Spencer Smith, Mina Mahdipour, Karen Wang, and Deesha Patel) will be performed. For this, the manual review will perform using the given \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/SRS-Checklist.pdf}{SRS Checklist}, designed by Dr. Smith. 
+\item Initial review from the assigned members (Dr.\ Spencer Smith, Mina Mahdipour, Karen Wang, and Deesha Patel) will be performed. For this, the manual review will perform using the given \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/SRS-Checklist.pdf}{SRS Checklist}, designed by Dr.\ Smith. 
 
-\item Reviewer can give feedback to the author by creating the issue in Github. 
+\item Reviewer can give feedback to the author by creating an issue in Github. 
 
-\item Author (Deesha Patel) is responsible to address the issues created by the primary and secondary reviewers. Also, need to address the suggestions given by the instructor (Dr. Spencer Smith).  
+\item Author (Deesha Patel) is responsible to address the issues created by the primary and secondary reviewers. Also, need to address the suggestions given by the instructor (Dr.\ Spencer Smith).  
 
 \end{enumerate}
 
 
 \subsection{Design Verification Plan}
 
-The design documents, Module Guide (MG), and Module Interface Specification (MIS) will be verified through the static technic of document inspection by the Domain/ Primary expert (Mina Mahdipour) and Secondary Reviewer (Sam Joseph Crawford). Also, the class instructor (Dr. Spencer Smith) will review both documents. Reviewers can give feedback to the author by creating the issue in Github. The author is responsible to solve the issues and address the suggestions. The reviewer will assess this document with the help of \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG Checklist} and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS Checklist} designed by Dr. Smith.      
+The design documents, Module Guide (MG), and Module Interface Specification (MIS) will be verified through the static technic of document inspection by the domain/ primary expert (Mina Mahdipour) and secondary reviewer (Sam Joseph Crawford). Also, the class instructor (Dr.\ Spencer Smith) will review both documents. Reviewers can give feedback to the author by creating the issue in Github. The author is responsible to solve the issues and address the suggestions. The reviewer will assess this document with the help of \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG Checklist} and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS Checklist} designed by Dr. Smith.      
 
 \subsection{Implementation Verification Plan}
 
@@ -169,7 +170,7 @@ The implementation of SCEC shall be verified in the following ways:
 \begin{itemize}
 
 
-\item Test cases: Test cases for all the mentioned tests in \autoref{systemtests} will be carried out. These tests target functional and non-functional requirements listed in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document. All the test cases are manual or automatic.  
+\item Test cases: Test cases for all the mentioned tests in \autoref{systemtests} will be carried out. These tests target functional and non-functional requirements listed in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document (section 5.1 and 5.2). All the test cases are manual or automatic.  
 
 \end{itemize}
 \end{itemize}
@@ -178,9 +179,7 @@ The implementation of SCEC shall be verified in the following ways:
 
 \subsection{Automated Testing and Verification Tools}
 
-\begin{itemize}
-    \item System and Unit tests: Automated testing of SCEC is conducted using Pytest library in Python. These tests are performed by predetermining user inputs and comparing it with expected values. 
-\end{itemize}
+System and Unit tests: Automated testing of SCEC is conducted using Pytest library in Python. These tests are performed by predetermining user inputs and comparing it with expected values. 
 
 \subsection{Software Validation Plan}
 
@@ -191,7 +190,7 @@ Software validation plan is beyond the scope for SCEC System.
 	
 \subsection{Tests for Functional Requirements}
 
-Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.1. Some input values are taken from the paper~\cite{MathsModel}. There are 5 functional requirements for SCEC, R1 and R2 are related to the inputs, while R3 to R5 are corresponding to outputs. \autoref{input_functional_tests} describes the input tests related to R1 and R2; and \autoref{output_functional_tests} describes the output tests for R3 to R5.        
+Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.1. Some input values are taken from the paper~\cite{MathsModel}. There are five functional requirements for SCEC, R1 and R2 are related to the inputs, while R3 to R5 are corresponding to outputs. \autoref{input_functional_tests} describes the input tests related to R1 and R2; and \autoref{output_functional_tests} describes the output tests for R3 to R5.        
 
 \subsubsection{Input tests}
 \label{input_functional_tests}
@@ -218,6 +217,7 @@ TC-SCEC-1-6   &   0.025  & -0.279 & 0.763    &  N  & Positive value required    
 TC-SCEC-1-7   &   0.025  & 0.279  & -0.763   &  N  & Positive value required      \\
 TC-SCEC-1-8   &   1000   & 0.245  & 0.562    &  N  & Too long area input          \\
 TC-SCEC-1-9   &   0.562  & 0.285  & 0.13f    &  N  & Alphabet not allowed         \\ 
+TC-SCEC-1-10   &    & 0.285  & 0.13f    &  N  & Empty value not accepted         \\ 
 
 \hline
 
@@ -239,7 +239,7 @@ Initial State: Pending input
 					
 Input: Set of input values for area of particular object given in the \autoref{tab:tc-SCEC-1}. 
 					
-Output: Give an appropriate error message defined in the \autoref{tab:tc-SCEC-1}. 
+Output: Either give an appropriate error message for TC-SCEC-1-2 to TC-SCEC-1-10, or produces calculated temperature values as an output defined in the \autoref{tab:tc-SCEC-1}. 
 
 Test Case Derivation: This test case is to test the behaviour of the system when the system is supplied with inputs for area that are the physical constraints of Solar cooker box. In test cases TC-SCEC-1-2 to TC-SCEC-1-9, the system produces the error message, as those are invalid inputs.     
 					
@@ -288,7 +288,7 @@ Input: Pass the value of temperature specified input column in the \autoref{tab:
 					
 Output: verify the output of the software matches the output column specified in \autoref{tab:tc-SCEC-2}. 
 
-Test Case Derivation: This test case is to test the behaviour of the system when the system is supplied with inputs for temperature. In test cases TC-SCEC-1-2 to TC-SCEC-1-5, the system produces the error message, as those are invalid inputs. 
+Test Case Derivation: This test case is to test the behaviour of the system when the system is supplied with inputs for temperature. In test cases TC-SCEC-2-2 to TC-SCEC-2-5, the system produces the error message, as those are invalid inputs. 
 					
 How test will be performed: The automatic test is performed using PyTest.  
 
@@ -334,11 +334,11 @@ Control: Automatic
 					
 Initial State: Pending input 
 					
-Input: Pass the value of temperature specified input column in the \autoref{tab:tc-SCEC-3}.
+Input: Pass the value of emittance specified input column in the \autoref{tab:tc-SCEC-3}.
 					
 Output: verify the output of the software matches the output column specified in \autoref{tab:tc-SCEC-3}. 
 
-Test Case Derivation: This test case is to test the behaviour of the system when the system is supplied with inputs for temperature. In test cases TC-SCEC-1-2 to TC-SCEC-1-5, the system produces the error message, as those are invalid inputs. 
+Test Case Derivation: This test case is to test the behaviour of the system when the system is supplied with inputs for emittance. In test cases TC-SCEC-3-3 to TC-SCEC-3-4, the system produces the error message, as those are invalid inputs. 
 					
 How test will be performed: The automatic test is performed using PyTest.  
 
@@ -351,7 +351,7 @@ How test will be performed: The automatic test is performed using PyTest.
 
 \item{test-id1: Validate the output of the fluid temperature in recipient  \\}
 
-Control: Combination of manual and automatic 
+Control: Automatic 
 					
 Initial State: N/A
 					
@@ -381,7 +381,7 @@ How test will be performed: The automatic test is performed using PyTest.
 
 \item{test-id2: Validate the output of the energy temperature in fluid  \\}
 
-Control: Combination of manual and automatic 
+Control: Automatic 
 					
 Initial State: N/A
 					
@@ -398,7 +398,7 @@ How test will be performed: The automatic test is performed using PyTest.
 
 \subsection{Tests for Nonfunctional Requirements}
 
-Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.2. There are 5 functional requirements for SCEC. 
+Non-Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.2. There are five non-functional requirements for SCEC. 
 
 
 %\wss{Tests related to usability could include conducting a usability test and survey.  The survey will be in the Appendix.}
@@ -419,7 +419,7 @@ Initial State: None
 					
 Input/Condition: None
 					
-Output/Result: None 
+Output/Result: By comments over the code quality, more quality is achieved. 
 					
 How test will be performed: Domain Expert (Mina Mahdipour) will review the shared code and complete the survey mentioned in the \autoref{tab:tc-SCEC-4}.   
 
@@ -459,9 +459,9 @@ Initial State: None
 					
 Input: None 
 					
-Output: None
+Output: Walkthrough Meeting helps to improve the maintainability of the system and all documentations. 
 					
-How test will be performed: During code walkthrough meeting all the details related to the software lifespan, coupling of the software architecture, documentation of the software will discussed among team members.
+How test will be performed: During code walkthrough meeting all the details related to the software lifespan, coupling of the software architecture, documentation of the software will discussed among team members listed in \autoref{verification_validation}.
 
 \end{enumerate}
 
@@ -480,9 +480,9 @@ Initial State: None
 					
 Input: None 
 					
-Output: None
+Output: Survey can help to know about the user perspective towards the system. 
 					
-How test will be performed: The user group will be asked to install the software on their system and give input on their own. Then user need to fill out the short answer survey given in the \autoref{tab:tc-SCEC-5}
+How test will be performed: The user group will be asked to install the software on their system and give input on their own. Then user need to fill out the short answer survey given in the \autoref{tab:tc-SCEC-5}.
 
 \end{enumerate}
 
@@ -490,7 +490,7 @@ How test will be performed: The user group will be asked to install the software
 \begin{center}
 \begin{tabular}{ p{0.5cm}|p{10cm}|c }
 \hline
-No. &  Question   & Answer ) \\
+No. &  Question   & Answer \\
 \hline
 1. & Which operating system are you using?  & \\
 2. & Is system running smoothly on your computer?  & \\
@@ -522,9 +522,9 @@ Initial State: None
 					
 Input: None 
 					
-Output: None
+Output: Successful running system over all platform give confidence about portability of the software. 
 					
-How test will be performed: Code developer (Deesha Patel) will try to install and run whole software in different operating system. Also, need to ensure that all the given test cases pass in all different operating system.  
+How test will be performed: Code developer (Deesha Patel) will try to install and run whole software in different operating systems. Also, need to ensure that all the given test cases pass in all different operating system.  
 
 \end{enumerate}
 
