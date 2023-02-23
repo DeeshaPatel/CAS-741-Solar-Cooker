@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{colortbl}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -89,7 +90,7 @@ The purpose of the validation plan is to define how system validation will perfo
 
 \subsection{Relevant Documentation}
 
-The relevant documentation for the SCEC includes \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement}, \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{System Requirements Specifications}, VnV Report, MG and MIS (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/docs}{Github Repository})  
+The relevant documentation for the SCEC includes \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement}, \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{System Requirements Specifications}, VnV Report, MG and MIS (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/docs}{Github Repository}).  
 
 
 \section{Plan}
@@ -103,16 +104,17 @@ This section describes the members of Verification and Validation plan.
 
 \begin{center}
 \begin{table}[h!]
+\resizebox{1\textwidth}{!}{
 \begin{tabular}{ |l|l|p{2cm}|p{5cm}| } 
 \hline
 \rowcolor[gray]{0.9}
 \textbf{Name} & \textbf{Document} & \textbf{Role} & \textbf{Description} \\
 \hline
- Dr.\ Spencer Smith & all & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
+ Dr.\ Spencer Smith & All & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
  \hline
- Deesha Patel & all & Author & Create and manage all the documents, provide the VnV plan, test case and test execution, verify the implementation. \\  
+ Deesha Patel & All & Author & Create and manage all the documents, create the VnV plan, perform the VnV testing, verify the implementation. \\  
  \hline
- Mina Mahdipour & all & Domain Expert Reviewer & Review all the documents. \\  
+ Mina Mahdipour & All & Domain Expert Reviewer & Review all the documents. \\  
  \hline
  Karen Wang & SRS & Secondary Reviewer & Review the SRS document \\
  \hline
@@ -123,6 +125,7 @@ Sam Joseph Crawford & MG + MIS & Secondary Reviewer & Review the MG and MIS docu
 
 \hline
 \end{tabular}
+}
 \caption{Verification and Validation team} 
 \label{verification_validation}
 \end{table}
@@ -145,7 +148,11 @@ The SCEC SRS document shall be verified in the following way:
 
 \subsection{Design Verification Plan}
 
-The design documents, Module Guide (MG), and Module Interface Specification (MIS) will be verified through the static technic of document inspection by the domain/ primary expert (Mina Mahdipour) and secondary reviewer (Sam Joseph Crawford). Also, the class instructor (Dr.\ Spencer Smith) will review both documents. Reviewers can give feedback to the author by creating the issue in Github. The author is responsible to solve the issues and address the suggestions. The reviewer will assess this document with the help of \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG Checklist} and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS Checklist} designed by Dr. Smith.      
+The design documents, Module Guide (MG), and Module Interface Specification (MIS) will be verified through the static technic of document inspection by the domain/ primary expert (Mina Mahdipour) and secondary reviewer (Sam Joseph Crawford). Also, the class instructor (Dr.\ Spencer Smith) will review both documents. Reviewers can give feedback to the author by creating the issue in Github. The author is responsible to solve the issues and address the suggestions. The reviewer will assess this document with the help of \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG Checklist} and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS Checklist} designed by Dr. Smith. 
+
+\subsection{Verification and Validation Plan Verification Plan}
+
+By following the table \ref{verification_validation}, the verification and validation plan will be written and validated by Author (Deesha Patel), then Domain expert (Mina Mahdipour) and Secondary reviewer (Lesley Wheat) will review it and give suggestion by creating an issue on GitHub. Once done, Instructor will do final review of the VnV plan. The reviewer will assess this document by  \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/VnV-Checklist.pdf}{VnV Checklist} defined by Dr.\ Smith.     
 
 \subsection{Implementation Verification Plan}
 
@@ -158,7 +165,7 @@ The implementation of SCEC shall be verified in the following ways:
 \begin{itemize}
 
 
-\item Code Walkthrough: This process will be performed by the author (Deesha Patel) and Domain expert (Mina Mahdipour). An author will share the copy of the original code with Domain expert and then domain expert will manually test the code with different test cases. The domain expert will raise the issue in GitHub if finds any issue with the code.
+\item Code Walkthrough: This process will be performed by the author (Deesha Patel) and Domain expert (Mina Mahdipour). An author will share the copy of the original code with Domain expert and then Domain expert will manually test the code with different test cases. The Domain expert will raise the issue in GitHub if they finds any issue with the code.
 
 \end{itemize}
 \end{itemize}
@@ -179,18 +186,18 @@ The implementation of SCEC shall be verified in the following ways:
 
 \subsection{Automated Testing and Verification Tools}
 
-System and Unit tests: Automated testing of SCEC is conducted using Pytest library in Python. These tests are performed by predetermining user inputs and comparing it with expected values. 
+System and Unit tests: Automated testing of SCEC is conducted using the Pytest library in Python. These tests are performed by predetermining user inputs and comparing them with expected values. 
 
 \subsection{Software Validation Plan}
 
-Software validation plan is beyond the scope for SCEC System.
+Software validation plan is beyond the scope for SCEC System as this is not the whole system which can perform checking the temperature of whole solar box.
 
 \section{System Test Description}
 \label{systemtests}
 	
 \subsection{Tests for Functional Requirements}
 
-Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.1. Some input values are taken from the paper~\cite{MathsModel}. There are five functional requirements for SCEC, R1 and R2 are related to the inputs, while R3 to R5 are corresponding to outputs. \autoref{input_functional_tests} describes the input tests related to R1 and R2; and \autoref{output_functional_tests} describes the output tests for R3 to R5.        
+Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.1. Some input values are taken from the paper~\cite{MathsModel}. There are five functional requirements for SCEC, R1 and R2 are related to the inputs, while R3 to R5 are corresponding to outputs. section \ref{input_functional_tests} describes the input tests related to R1 and R2; and section \ref{output_functional_tests} describes the output tests for R3 to R5.        
 
 \subsubsection{Input tests}
 \label{input_functional_tests}
@@ -198,8 +205,9 @@ Functional requirements for SCEC are given in \href{https://github.com/DeeshaPat
 \paragraph{Functional tests - Input tests - Area of object}
 
 
-\begin{table}[h!]
 \begin{center}
+\begin{table}[h!]
+\resizebox{1\textwidth}{!}{
 \begin{tabular}{ lccccc }
 \hline
 \multicolumn{1}{l|}{}   & \multicolumn{3}{c|}{Input}                            & \multicolumn{2}{c}{Output} \\ 
@@ -216,17 +224,18 @@ TC-SCEC-1-5   &   -0.063 & 0.728  & 0.572    &  N  & Positive value required    
 TC-SCEC-1-6   &   0.025  & -0.279 & 0.763    &  N  & Positive value required      \\
 TC-SCEC-1-7   &   0.025  & 0.279  & -0.763   &  N  & Positive value required      \\
 TC-SCEC-1-8   &   1000   & 0.245  & 0.562    &  N  & Too long area input          \\
-TC-SCEC-1-9   &   0.562  & 0.285  & 0.13f    &  N  & Alphabet not allowed         \\ 
+TC-SCEC-1-9   &   0.562  & 0.285  & 0.13f    &  N  & Numeric values only         \\ 
 TC-SCEC-1-10   &    & 0.285  & 0.13f    &  N  & Empty value not accepted         \\ 
 
 \hline
 
 
 \end{tabular}
+}
 \caption{TC-SCEC-1 - Area input constraints tests}
 \label{tab:tc-SCEC-1}
-\end{center}
 \end{table}
+\end{center}
 
 
 \begin{enumerate}
@@ -249,9 +258,9 @@ How test will be performed: The automatic test is performed using PyTest.
 
 \paragraph{Functional tests - Input tests - Temperature value}
 
-
-\begin{table}[h!]
 \begin{center}
+\begin{table}[h!]
+\resizebox{1\textwidth}{!}{
 \begin{tabular}{ lccccccc }
 \hline
 \multicolumn{1}{l|}{}   & \multicolumn{5}{c|}{Input}                            & \multicolumn{2}{c}{Output} \\ 
@@ -271,10 +280,11 @@ TC-SCEC-2-5   &  24.5 & 26.8 & 210.3 & 25.7 & 29.4 & N & Exceed temperature valu
 
 
 \end{tabular}
+}
 \caption{TC-SCEC-2 - Temperature input constraints tests}
 \label{tab:tc-SCEC-2}
-\end{center}
 \end{table}
+\end{center}
 
 \begin{enumerate}   
 
@@ -359,7 +369,7 @@ Input: Pass the input values: \\
        $A_m$ = 1.5 \\
        $A_t$ = 0.0201 \\
        $A_{\text{ref}}$ = 0.0058 \\
-       $T_g2$ = 30 \\
+       $T_{g2}$ = 30 \\
        $T_t$ = 30 \\
        $T_f$ = 30 \\
        $T_\text{ref}$ = 30 \\ 
@@ -419,29 +429,31 @@ Initial State: None
 					
 Input/Condition: None
 					
-Output/Result: By comments over the code quality, more quality is achieved. 
+Output/Result: By review over the code quality, more quality is achieved. 
 					
 How test will be performed: Domain Expert (Mina Mahdipour) will review the shared code and complete the survey mentioned in the \autoref{tab:tc-SCEC-4}.   
 
-\begin{table}[h!]
 \begin{center}
+\begin{table}[h!]
+\resizebox{1\textwidth}{!}{
 \begin{tabular}{ p{0.5cm}|p{10cm}|c }
 \hline
 No. &  Question   & Score(0-10) \\
 \hline
-1. & The whole code indented properly to understand the flow. & \\
-2. & The name of the variables and method is meaningful. & \\
+1. & The whole code indented properly to understand the code. & \\
+2. & The names of the variables and methods is meaningful. & \\
 3. & Different comments is useful to understand the importance of code. &  \\
-4. & Task are well broken into function. & \\
+4. & Particular function perform single and understandable tasks. & \\
 5. & Overall quality. & \\
 
 \hline
 
 \end{tabular}
+}
 \caption{TC-SCEC-4 - Understandability test survey}
 \label{tab:tc-SCEC-4}
-\end{center}
 \end{table}
+\end{center}
 
 \end{enumerate}
 
