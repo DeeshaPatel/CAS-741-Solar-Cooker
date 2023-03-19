@@ -37,7 +37,7 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{Module Interface Specification for SCEC }
+\title{Module Interface Specification for SCEC (Solar Cooker Energy Calculator)}
 
 \author{Deesha Patel}
 
@@ -52,7 +52,8 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-March 17, 2023 & 1.0 & Initial Release\\
+March 17, 2023 & 0.1 & Initial Release\\
+March 19, 2023 & 0.2 & Updates according to the comments \\ 
 \bottomrule
 \end{tabularx}
 
@@ -150,8 +151,8 @@ The following table is taken directly from the Module Guide document for this pr
 & Input Format Module\\
 & Input Parameter Module\\
 & Output Format Module\\
-& SCEC Control Module\\
-& Temperature ODEs Module\\
+& Control Module\\
+& Temperature ODE Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
@@ -183,53 +184,6 @@ ConstValueParams
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-None
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-ConstValueParams & - & - & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-params: An object of ConstValueParams contains real values. 
-\begin{itemize}
- \item params.stefan\_constt $\in \mathbb{R}$
- \item params.h\_t\_int3 $\in \mathbb{R}$
- \item params.h\_ref\_int2 $\in \mathbb{R}$
- \item params.h\_ref\_f $\in \mathbb{R}$
- \item params.c\_ref $\in \mathbb{R}$
- \item params.c\_f $\in \mathbb{R}$
- \item params.m\_ref $\in \mathbb{R}$
- \item params.m\_f $\in \mathbb{R}$
- \item params.t\_g $\in \mathbb{R}$
- \item params.p $\in \mathbb{R}$
- 
-\end{itemize}
-
-
-\subsubsection{Environment Variables}
-
-None
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-It is storing different constant variables with their values as indicated in SRS. 
-\subsubsection*{ConstValueParams:}
-\begin{itemize}
-\item transition: Initialize ConstValueParams object and storing constant values.  
 \begin{center}
 \begin{tabular}{p{3.3cm} p{0.2cm} p{3cm} p{7cm}}
 params.stefan\_const & := & 5.670374419e-08 & \#Stefan-Boltzman constant\\
@@ -244,18 +198,59 @@ params.t\_g & := & 0.48 & \#Transmittivity of glass \\
 params.p & := & 0.89 & \#Reflectivity of glass \\ 
 \end{tabular}
 \end{center}
-\item input: None
-\item output: None
-\item exception: None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+ConstValueParams & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+params: An object of ConstValueParams contains real values. 
+\begin{itemize}
+ \item params.stefan\_const : $ \mathbb{R}$
+ \item params.h\_t\_int3 : $ \mathbb{R}$
+ \item params.h\_ref\_int2 : $ \mathbb{R}$
+ \item params.h\_ref\_f : $ \mathbb{R}$
+ \item params.c\_ref : $ \mathbb{R}$
+ \item params.c\_f : $ \mathbb{R}$
+ \item params.m\_ref : $ \mathbb{R}$
+ \item params.m\_f : $ \mathbb{R}$
+ \item params.t\_g : $ \mathbb{R}$
+ \item params.p : $ \mathbb{R}$
+ 
 \end{itemize}
+
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+None
 
 \subsubsection{Local Functions}
 
 None
 
 \subsubsection{Considerations}
-Note: These constants are as per the SRS document. So, constant parameters and values may change according to the implementation if required.  
+Note: These constants are as per the SRS document, so constant parameters and values may change according to the implementation if required.  
 
+\newpage
 
 \section{MIS of Energy Equation Module} \label{Energy_Equation_Module} 
 
@@ -282,7 +277,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-energyWat & temp: sequence of $\mathbb{R}$ & en: sequence of $\mathbb{R}$ & MissingParamError, TempValueError, EnergyValueError, EnergySeqError, TempSeqError \\ 
+energyWat & sequence of $\mathbb{R}$ & sequence of $\mathbb{R}$ & MissingParamError, TempValueError, EnergyValueError, EnergySeqError, TempSeqError \\   
 \hline
 \end{tabular}
 \end{center}
@@ -299,42 +294,16 @@ None
 
 \subsubsection{Assumptions}
 
-The Energy Equation Module is called through the SCEC Control Module, ensuring that Temperature ODE Module has been called before Energy Equation Module and fluid temperature values are calculated to give input to the Energy Equation Module.
+The Energy Equation Module is called through the Control Module, ensuring that Temperature ODE Module has been called before Energy Equation Module and fluid temperature values are calculated to give input to the Energy Equation Module.
 
 \subsubsection{Access Routine Semantics}
 This module satisfies R5 from the SRS. \\ \\
 \noindent \textbf{energyWat(temp):}
 \begin{itemize}
-\item transition: The following procedure is performed:  
- \begin{enumerate}
-    \item Load constant values of mass and capacity of fluid.  
-        \begin{center}
-            $m_f$ = getConstValue(m\_f) \\ 
-            $c_f$ = getConstValue(c\_f)
-        \end{center}
-    \item For each $\mathbb{R}$ in $temp$ sequence, step 3 to 5 performed. 
-    \begin{center}
-        $\forall \{i \in \mathbb{N}, 0 < i < |s-1|\}$
-    \end{center}
-    \item Calculate time difference between the calculated temperature and initial temperature. 
-        \begin{center} 
-            $\triangle T = temp - T_\text{init}$ 
-        \end{center}
-    \item Calculate fluid energy $E_f$. 
-        \begin{center} 
-            $E_f = m_f c_f \triangle T$
-        \end{center}
-     \item Calculated fluid energy $E_f$ is stored in the sequence. 
-        \begin{center}
-            $en$ = $ en + E_f$ 
-        \end{center}
-     
- \end{enumerate}
-\item input: The temperature sequence of fluid. \\ 
-in := $temp$ 
-\item output: The energy equation module returns the sequence of energy: \\ out := $ en$
+\item transition: None
+\item output: The energy equation module returns the sequence of energy: \\ out := \{ $i \in \mathbb{N}, 0 \le i < |s-1|$ $ | $ $m_f c_f (temp[i] - T_\text{init})$   \}, where $m_f = getConstantValue(m\_f) $, $c_f = getConstantValue(c\_f)$
 
-\item exception:  \\ \\
+\item exception: exc := \\ \\
  \begin{tabular}{p{5cm} p{3.5cm} p{5.5cm}}
  \hline
  \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
@@ -343,7 +312,7 @@ in := $temp$
   \hline
     ($E_f = 0 \vee E_f \notin \mathbb{R}$) & EnergyValueError & Energy of fluid should be real and non zero number.   \\
     \hline 
-        ($en = \emptyset $) & EnergySeqError & Energy sequence needs to have at least one value, not an empty sequence. \\ 
+        ($en = \emptyset $) & EnergySeqError & Energy sequence should have at least one value, not an empty sequence. \\ 
     \hline
     ($temp = \emptyset $) & TempSeqError & Temperature sequence should not be empty. \\ 
     \hline
@@ -353,21 +322,22 @@ in := $temp$
 
 \subsubsection{Local Functions}
 
+getConstValue : String  \\ 
 \textbf{getConstValue(param)}:  A function to fetch the mass and capacity of fluid from the Constant Value Module. 
 \begin{itemize}
-    \item  input: Name of the parameter
-    \item  output: \\ $m_f$ := $\mathbb{R}$ \\ $c_f$ := $\mathbb{R}$
-    \item  exception: \\
+    \item  output: out:= \\ $m_f$ : $\mathbb{R}$,  \\ $c_f$ : $\mathbb{R}$
+    \item  exception: exc:= \\
 
  \begin{tabular}{p{5cm} p{3.5cm} p{5.5cm}}
  \hline
  \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
   \hline
-    ($m_f = \nexists \vee c_f = \nexists $) & MissingParamError & Can access only those variables defined in the Constant Value Module.  \\
+    ($m_f = \nexists \vee c_f = \nexists $) & MissingParamError & Valid string should be available in the Constant Value Module.  \\
     \hline
  \end{tabular}
 \end{itemize}
 
+\newpage
 
 \section{MIS of Input Format Module} \label{Input_Format_Module} 
 
@@ -393,7 +363,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-load\_params & fileName: String & params: sequence of $\mathbb{R}$ & various (See table \ref{verify_input}) \\
+load\_params & String & sequence of $\mathbb{R}$ & various (See table \ref{verify_input}) \\
 \hline
 \end{tabular}
 \end{center}
@@ -414,7 +384,7 @@ None
 \subsubsection{Assumptions}
 
 \begin{itemize}
-    \item The SCEC Control Module call this module for formating input parameters. 
+    \item The Control Module call this module for formating input parameters. 
     \item The paramFile contains input starts with '\#' in new line. The order of the inputs should be as below: \\ 
     Line 1: Area of lid \\
     Line 2: Temperature of lid \\
@@ -438,7 +408,6 @@ This module is a function to load, verify and store input data. (R1 and R2 from 
     \item Verify all inputs, verifyInput(param)
     \item Store inputs to the data structure 
 \end{enumerate}
-\item input: Give filename as an input. \\  in:= fileName 
 \item output: Give sequence of inputs contains all inputted data under appropriate field names. \\ 
 out := params 
 \item exception: Data input which does not comply with the data constraints specified in SRS for this project will yield one of the potential exceptions or warning as listed in the appendix of this document. 
@@ -446,16 +415,16 @@ out := params
 
 \subsubsection{Local Functions}
 
+verifyInputs : $\mathbb{R}$ \\ 
 \textbf{verifyInputs(param)}: A function to verify the inputs for SCEC. 
-\begin{itemize}
-    \item input: all input values one by one from file. 
-    \item output: None
-    \item exception: See appendix (Table \ref{verify_input}) for all constraints and error message.  
+\begin{itemize} 
+    \item output: out:= param
+    \item exception: exc:= See appendix (Table \ref{verify_input}) for all constraints and error message.  
     
 \end{itemize}
 
 
-
+\newpage
 \section{MIS of Input Parameter Module} \label{Input_Parameter_Module} 
 
 \subsection{Module}
@@ -518,7 +487,7 @@ None
 \begin{itemize}
 \item transition: This module is a simple data structure for storing the input values formatted by Input Format Module. 
 \item output: None
-\item exception: None
+\item exception: exc:= None
 \end{itemize}
 
 
@@ -526,7 +495,7 @@ None
 
 None
 
-
+\newpage
 \section{MIS of Output Format Module} \label{Output_Format_Module}
 
 \subsection{Module}
@@ -550,7 +519,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-output & \makecell[l]{fileName: String, \\ tempSeq: sequence of $\mathbb{R}$, \\ energySeq: sequence of $\mathbb{R}$, \\ t: time vector } & Output File & \makecell[l]{MissingValueError, \\ FileAlreadyExistError,  \\ OverflowError} \\
+output & \makecell[l]{String, \\ sequence of $\mathbb{R}$, \\ sequence of $\mathbb{R}$, \\ sequence of $\mathbb{N}$ } & Output File & \makecell[l]{MissingValueError, \\ FileAlreadyExistError} \\
 \hline
 \end{tabular}
 
@@ -563,53 +532,31 @@ None
 \subsubsection{Environment Variables}
 
 \begin{enumerate}
-    \item fileName: fileName is name of the file in which the output is saved. 
+    \item file: The file in which the output is saved. 
     \item Window screen: Output Format Module prints the result in the graph, which is shown to the screen. 
 \end{enumerate}
 
 
 \subsubsection{Assumptions}
 
-The SCEC Control Module properly verified values against the constraint.   
+The Control Module properly verified values against the constraint.   
 
 \subsubsection{Access Routine Semantics}
 
 \noindent \textbf{output(fileName, tempSeq, energySeq, t):}
 \begin{itemize}
 \item transition: None 
-\item input: Given fileName, 2D sequence of temperatures, and energy sequence of fluid. \\
-in := 
-fileName,  
-tempSeq,  
-energySeq,
-t 
 \item output: This module is able to output the file which contains output of the temperature and energy sequence.\\  
 out := file
-\item exception: The Output Format Module gives the appropriate error message using local function. 
+\item exception: exc:= None 
 \end{itemize}
 
 \subsubsection{Local Functions}
 
-\textbf{verifyParameters()}: A function to verify all the parameters. 
-\begin{itemize}
-    \item input: fileName
-    \item output: None
-    \item exception: \\ \\
-     \begin{tabular}{p{5.5cm} p{4cm} p{4.6cm}}
-    \hline
- \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
-  \hline
-    If given fileName already exist in the location & FileAlreadyExistError & Change the name of the file or require permission to override the content. \\
-    \hline
-    If any of the input is missing  & MissingValueError & Module requires 3 input values: fileName, temperatureSeq, and energySeq \\
-    \hline 
-    If result of calculated temperature and energy is too large & OverflowError & Occurs when size of result is too large for computer's memory   \\
-    \hline
- \end{tabular}
-\end{itemize}
+None
 
-
-\section{MIS of SCEC Control Module} \label{SCEC_Control_Module} 
+\newpage
+\section{MIS of Control Module} \label{SCEC_Control_Module} 
 
 \subsection{Module}
 
@@ -623,7 +570,7 @@ main
     \item Hardware Hiding Module
     \item Input Format Module 
     \item Output Format Module 
-    \item Temperature ODEs Module
+    \item Temperature ODE Module
     \item ODE Solver Module
     \item Sequence Data Structure Module
 \end{itemize}
@@ -648,10 +595,10 @@ main & - & Modifies output file & Various \\
 
 \subsubsection{State Variables}
 \begin{itemize}
-    \item init\_temp := [init\_reflector\_temp $\in \mathbb{R}$, init\_fluid\_temp $\in \mathbb{R}$] \# initial temperature values 
-    \item t := vector \# vector of time
-    \item temp := [sequence of reflector\_temp $\in \mathbb{R}$, sequence of fluid\_temp $\in \mathbb{R}$] \# sequence 2D for temperatures
-    \item e\_f := [sequence of fluid\_energy $\in \mathbb{R}$]
+    \item init\_temp : sequence of [T1: $\mathbb{R}$, T2: $ \mathbb{R}$]            \# initial temperature values.  
+    \item t : vector        \# vector of time. 
+    \item temp : sequence of [T1: $\mathbb{R}$, T2: $\mathbb{R}$]   \# sequence 2D for temperatures. 
+    \item e\_f : sequence of [E1: $ \mathbb{R}$] \# sequence 1D for energy of fluid. 
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -671,13 +618,13 @@ None
     \item Set constant value using Constant Value Module (M2, Section \ref{Constant_Module}). 
     \item Set inputted values to the appropriate variables using Input Format Module (M4, Section \ref{Input_Format_Module}). 
     \item Set the time vector using Sequence Data Structure Module (M11, Section \ref{Time_Vector_Module}).
-    \item Temperature values for reflector and fluid is calculated using initial conditions by Temperature ODEs Module (M8, Section \ref{Temperature_ODEs_Module}). 
+    \item Temperature values for reflector and fluid is calculated using initial conditions by Temperature ODE Module (M8, Section \ref{Temperature_ODEs_Module}). 
     \item Using the previous step output, energy of fluid is calculated in Energy Equation Module (M3, Section \ref{Energy_Equation_Module}).
     \item Output is transferred to the output file with the help of Output Format Module and internally it also called Plotting Result Module for plotting result on graphs (M6, Section \ref{Output_Format_Module} and M10, Section \ref{Plotting_Result_Module}). 
      
 \end{itemize}
 \item output: Main program request the Output Format Module at the end for producing file with plotted result. 
-\item exception: Potential exceptions occurs are from different sub-modules only.   
+\item exception: exc:= Potential exceptions occurs are from different sub-modules only.   
 \end{itemize}
 
 
@@ -686,8 +633,8 @@ None
 None
 
 
-
-\section{MIS of Temperature ODEs Module} \label{Temperature_ODEs_Module} 
+\newpage
+\section{MIS of Temperature ODE Module} \label{Temperature_ODEs_Module} 
 
 \subsection{Module}
 
@@ -711,7 +658,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-calculateOde & initial\_condition sequence: [$T1 \in \mathbb{R}$, $T2 \in \mathbb{R}$], params: sequence of $\mathbb{R}$ & temperature: sequence of [$T1 \in \mathbb{R}$, $T2 \in \mathbb{R}$] & TypeError, NameError, MissingValueError, EmptyArrayError, ValueError \\
+calculateOde & sequence of [$T1: \mathbb{R}$, $T2: \mathbb{R}$], sequence of $\mathbb{R}$ & sequence of [$T1: \mathbb{R}$, $T2: \mathbb{R}$] & TypeError, NameError, MissingValueError, EmptyArrayError, ValueError \\
 \hline
 \end{tabular}
 
@@ -719,16 +666,16 @@ calculateOde & initial\_condition sequence: [$T1 \in \mathbb{R}$, $T2 \in \mathb
 
 \subsubsection{State Variables}
 \begin{itemize}
-    \item $in\_t$ $\in \mathbb{R}$   \# Calculate and store inner temperature of the box. 
-    \item $q11$ $\in \mathbb{R}$ \# Heat flow convection of the lid toward the inner box. 
-    \item $q12$ $\in \mathbb{R}$ \# Heat flow radiation of the lid of the recipient toward the fluid.
-    \item $q13$ $\in \mathbb{R}$ \# Heat flow convection of recipient to the inner box.
-    \item $q14$ $\in \mathbb{R}$ \# Heat flow reflection of incident radiation on the reflector. 
-    \item $q15$ $\in \mathbb{R}$ \# Heat flow radiation of recipient toward glass2. 
-    \item $q16$ $\in \mathbb{R}$ \# Heat flow radiation of recipient toward the fluid. 
-    \item $q17$ $\in \mathbb{R}$ \# Heat flow convection of recipient toward the fluid. 
-    \item $dr$ $\in \mathbb{R}$ \# Temperature of reflector. 
-    \item $df$ $\in \mathbb{R}$ \# Temperature of fluid. 
+    \item $in\_t$: $\mathbb{R}$   \# Calculate and store inner temperature of the box. 
+    \item $q11$: $\mathbb{R}$ \# Heat flow convection of the lid toward the inner box. 
+    \item $q12$: $ \mathbb{R}$ \# Heat flow radiation of the lid of the recipient toward the fluid.
+    \item $q13$: $ \mathbb{R}$ \# Heat flow convection of recipient to the inner box.
+    \item $q14$: $ \mathbb{R}$ \# Heat flow reflection of incident radiation on the reflector. 
+    \item $q15$: $ \mathbb{R}$ \# Heat flow radiation of recipient toward glass2. 
+    \item $q16$: $ \mathbb{R}$ \# Heat flow radiation of recipient toward the fluid. 
+    \item $q17$: $ \mathbb{R}$ \# Heat flow convection of recipient toward the fluid. 
+    \item $dr$: $ \mathbb{R}$ \# Temperature of reflector. 
+    \item $df$: $ \mathbb{R}$ \# Temperature of fluid. 
 \end{itemize}
 
 
@@ -767,25 +714,17 @@ None
         $df = \frac{q11 + q12 + q16 + q17}{m_f  c_f}$
         \item Return calculated $dr$ and $df$ as a sequence. 
     \end{itemize}
-\item input:  \\
-in := $initial\_condition$, $params$
-\begin{itemize}
-    \item $initial\_condition$  used for initial temperature values. 
-    \item $params$ is a sequence of inputted parameters. 
-\end{itemize}
 \item output: 
-    Temperature ODEs Module give an output of 2D sequence which stores temperature of reflector and fluid. \\  
-    out := $s$
-    \begin{itemize}
-        \item sequence $s$ = [$\mathbb{R}, \mathbb{R}$] \# temperature of reflector and fluid 
-    \end{itemize}
+    Temperature ODE Module give an output of 2D sequence which stores temperature of reflector and fluid. \\  
+    out := $s$ \# temperature of reflector and fluid respectively  
+
     
-\item exception: \\ \\ 
+\item exception: exc:= \\ \\ 
  \begin{tabular}{p{7cm} p{3.5cm} p{4cm}}
  \hline
  \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
  \hline
-     ($\forall i \in [0..|s|-1]$)($initial\_condition[i] \notin \mathbb{R}$) & TypeError & Valid initial input for the temperature sequence are real numbers. \\
+     ($\forall i \in [0..|s|-1]$)($\text{initial\_condition}[i] \notin \mathbb{R}$) & TypeError & Valid initial input for the temperature sequence are real numbers. \\
   \hline
       If any of the input is missing  & MissingValueError & Module requires 3 input values: fileName, temperatureSeq, and energySeq \\
     \hline
@@ -796,9 +735,9 @@ in := $initial\_condition$, $params$
 
 \subsubsection{Local Functions}
 
-\textbf{verifytemp()}:  A function to verify the temperature sequence. 
+verifyTemp : $\mathbb{R}$ \\ 
+\textbf{verifyTemp(temp)}:  A function to verify the temperature sequence. 
 \begin{itemize}
-    \item  input: temp
     \item  output: None 
     \item  exception: \\
 
@@ -813,7 +752,7 @@ in := $initial\_condition$, $params$
  \end{tabular}
 \end{itemize}
 
-
+\newpage
 \section{MIS of ODE Solver Module} \label{ODE_Solver_Module} 
 
 \subsection{Module}
@@ -823,7 +762,7 @@ solver
 \subsection{Uses}
 
 \begin{itemize}
-    \item Temperature ODEs Module
+    \item Temperature ODE Module
     \item Sequence Data Structure Module
 \end{itemize}
 
@@ -838,7 +777,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-solveOde & funcName: String, init\_cond: sequence of $\mathbb{R}$, t: vector, args: sequence of $\mathbb{R}$ & temperature: sequence of \{$\mathbb{R}, \mathbb{R}$\} & ValueError, TypeError, OverflowError, RuntimeError \\
+solveOde & String, sequence of $\mathbb{R}$, vector, sequence of $\mathbb{R}$ & sequence of [$T1: \mathbb{R}, T2: \mathbb{R}$] & ValueError, TypeError, OverflowError, RuntimeError \\
 \hline
 \end{tabular}
 
@@ -854,11 +793,11 @@ None
 
 \subsubsection{Assumptions}
 
-All input parameters to the $solveOde()$ are correct and verified by the SCEC Control Module. 
+All input parameters to the $solveOde()$ are correct and verified by the Control Module. 
 
 \subsubsection{Access Routine Semantics}
 
-\noindent solveOde():
+\noindent solveOde($funcName, init\_cond, t, args$):
 \begin{itemize}
 \item transition: ODE is calculated as follows: 
 \begin{itemize}
@@ -867,28 +806,20 @@ All input parameters to the $solveOde()$ are correct and verified by the SCEC Co
     \item Output is store in the local variable. 
 \end{itemize}
 
-\item input: \\ 
-in := $funcName$, $init\_cond$, $t$, $args$  
-\begin{itemize}
-    \item $funcName$ = String \# Name of the function (calculation, defined in section \ref{Temperature_ODEs_Module}).  
-    \item $init\_cond$ = sequence s of $[\mathbb{R}, \mathbb{R}]$ \# Initial temperature condition. 
-    \item $t$ = vector \# Time internal vector for calculate the temperature over time.  
-    \item $args$ = sequence s of $\mathbb{R}$ \# Different parameters used by the function. 
-\end{itemize}
 
-\item output: ODE Solver Module give an output of 2D sequence from Temperature ODEs Module using programming library. 
+\item output: ODE Solver Module give an output of 2D sequence from Temperature ODE Module using programming library. 
 \begin{itemize}
     \item out := sequence $s$ 
 \end{itemize}
 
-\item exception: \\ \\ 
+\item exception: exc:= \\ \\ 
 \begin{tabular}{p{7cm} p{3.5cm} p{4cm}}
  \hline
  \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
  \hline
-     ($\forall i \in [0..|s|-1]$)($initial\_condition[i] \notin \mathbb{R} \vee initial\_condition[i] \notin \mathbb{N} \vee initial\_condition[i] \notin \mathbb{Z}$) & ValueError & Valid initial input for the temperature sequence are real or natural numbers. \\
+     ($\forall i \in [0..|s|-1]$)($\text{initial\_condition}[i] \notin \mathbb{R} \vee \text{initial\_condition}[i] \notin \mathbb{N} \vee \text{initial\_condition}[i] \notin \mathbb{Z}$) & ValueError & Valid initial input for the temperature sequence are real or natural numbers. \\
   \hline
-      $solveOde(init\_cond, funcName, t, args)$  & TypeError & Module requires 4 input values in order of funcName, init\_cond, t and args.  \\
+      solveOde(init\_cond, funcName, t, args)  & TypeError & Module requires 4 input values in order of funcName, init\_cond, t and args.  \\
     \hline
     If solution of solveOde results larger value of temperature than range of double. & OverflowError & Limit of the temperature should be correct. \\
     \hline 
@@ -900,10 +831,9 @@ in := $funcName$, $init\_cond$, $t$, $args$
 \subsubsection{Local Functions}
 
 None
-
+\newpage
 \section{MIS of Plotting Result Module} \label{Plotting_Result_Module} 
 
-This module usually handle by the programming language. For SCEC system, we are using \href{https://matplotlib.org/stable/tutorials/introductory/pyplot.html}{matplotlib} to plot the result. So, exceptions are handled by the language itself. 
 \subsection{Module}
 
 plot
@@ -927,7 +857,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-plot & t: time vector, s: sequence of $\mathbb{R}$ & TypeError & -  \\
+plot & vector, sequence of $\mathbb{R}$ & graph & TypeError  \\
 \hline
 \end{tabular}
 \end{center}
@@ -948,20 +878,12 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent plot():
+\noindent plot(t, s):
 \begin{itemize}
-\item transition: Graph is plotted in following procedure: 
-\begin{itemize}
-    \item Takes valid inputs as an argument of the function. 
-    \item Plot the result in the graph. 
-    \item Give label to the graph. 
-    \item Show graph on user's screen. 
-\end{itemize}
-\item input: \\ 
-in := t, s 
+\item transition: None
 \item output: Plotting Result Module display the graph using the received input parameters. \\ 
 output := graph
-\item exception: 
+\item exception: exc:= 
 None
 \end{itemize}
 
@@ -970,10 +892,13 @@ None
 
 None
 
+\subsection{Considerations}
 
+This module usually handle by the programming language. For SCEC system, we are using \href{https://matplotlib.org/stable/tutorials/introductory/pyplot.html}{matplotlib} to plot the result. So, exceptions are handled by the language itself. 
+
+\newpage
 \section{MIS of Sequence Data Structure Module} \label{Sequence_Data_Structure_Module} 
-
-The Sequence Data Structure Module is handled by the programming language. For the purpose of sequences, SCEC is using \href{https://numpy.org}{NumPy}.  
+ 
 
 \subsection{Module}
 
@@ -1015,8 +940,9 @@ None
 
 None
 
+\subsection{Considerations}
 
-  
+The Sequence Data Structure Module is handled by the programming language. For the purpose of sequences, SCEC is using \href{https://numpy.org}{NumPy}.   
 
 \section{Appendix} \label{Appendix}
 
