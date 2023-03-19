@@ -31,7 +31,8 @@
 
 \begin{document}
 
-\title{Module Guide for SCEC } 
+\title{Module Guide for SCEC (Solar Cooker Energy Calculator)}
+ 
 \author{Deesha Patel}
 \date{\today}
 
@@ -45,6 +46,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 Mar 11, 2023 & 1.0 & Initial release\\
+March 19, 2023 & 0.2 & Updates according to the comments \\ 
 \bottomrule
 \end{tabularx}
 
@@ -65,12 +67,12 @@ This section records information for easy reference.
   DAG & Directed Acyclic Graph \\
   M & Module \\
   MG & Module Guide \\
-  ODEs & Ordinary Differential Equations \\ 
+  ODE & Ordinary Differential Equation \\ 
   OS & Operating System \\
   R & Requirement\\
   SC & Scientific Computing \\
-  SRS & Software Requirements Specification\\
   SCEC & Solar Cooker Energy Calculator\\
+  SRS & Software Requirements Specification\\
   UC & Unlikely Change \\
   \bottomrule
 \end{tabular}\\
@@ -157,7 +159,7 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{1_ac}:] The specific
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{2_ac}:] The format of the initial input data.
-\item[\refstepcounter{acnum} \actheacnum \label{3_ac}:] The constraint on the input parameters. 
+\item[\refstepcounter{acnum} \actheacnum \label{3_ac}:] The constraints on the input parameters. 
 \item[\refstepcounter{acnum} \actheacnum \label{4_ac}:] How ODEs are calculated using input parameters. 
 \item[\refstepcounter{acnum} \actheacnum \label{5_ac}:] How the energy equations are calculated using input parameters. 
 \item[\refstepcounter{acnum} \actheacnum \label{6_ac}:] The defined time vector for ODEs.
@@ -183,8 +185,7 @@ decisions will be changed.
   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput_2}:] The source of input is always external to the software. 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucOutput_3}:] The outputs are displayed on the output device. 
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal_4}:] The goal of the system is to calculate the temperature of fluid. 
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal_5}:] The another goal of the system is to calculate the energy of the fluid.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal_4}:] Goal of the system is to calculate the temperature and energy of the fluid.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucOde_6}:] The implemented ODEs are reading inputs from the file. 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucEnergy_7}:] The implemented energy equation is reading inputs from the file.  
 
@@ -205,7 +206,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{5_mHH}:] Input Parameter Module
 \item [\refstepcounter{mnum} \mthemnum \label{6_mHH}:] Output Format Module
 \item [\refstepcounter{mnum} \mthemnum \label{7_mHH}:] SCEC Control Module
-\item [\refstepcounter{mnum} \mthemnum \label{8_mHH}:] Temperature ODEs Module
+\item [\refstepcounter{mnum} \mthemnum \label{8_mHH}:] Temperature ODE Module
 \item [\refstepcounter{mnum} \mthemnum \label{9_mHH}:] ODE Solver Module
 \item [\refstepcounter{mnum} \mthemnum \label{10_mHH}:] Plotting Result Module
 \item [\refstepcounter{mnum} \mthemnum \label{12_mHH}:] Sequence Data Structure Module 
@@ -228,8 +229,8 @@ actually be implemented.
 & Input Format Module\\
 & Input Parameter Module\\
 & Output Format Module\\
-& SCEC Control Module\\
-& Temperature ODEs Module\\
+& Control Module\\
+& Temperature ODE Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} 
@@ -290,9 +291,9 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:] The constant values used in the system. 
-\item[Services:] Storing all the constant values in this module and using it accordingly when needed to perform the operations. 
+\item[Services:] Stores all the constant values in this module and responsible to provide them accordingly when needed to perform the operations in other modules. 
 \item[Implemented By:] SCEC
-\item[Type of Module:] Record
+\item[Type of Module:] Abstract Object 
 \end{description}
 
 \subsubsection{Energy Equation Module (\mref{3_mHH})}
@@ -318,8 +319,8 @@ to be implemented.
 \subsubsection{Input Parameter Module (\mref{5_mHH})}
 
 \begin{description}
-\item[Secrets:] The format and structure of the input parameters. 
-\item[Services:] Stores the parameters needed for the program, including properties, processing conditions and numerical parameters. The values can be read as needed. This module knows how many parameters it stores. 
+\item[Secrets:] The original value of the input parameters. 
+\item[Services:] Stores the parameters needed for the program, including properties, processing conditions and numerical parameters. The values can be read from the file. This module knows how many parameters it stores. 
 \item[Implemented By:] SCEC
 \item[Type of Module:] Record
 \end{description}
@@ -333,20 +334,20 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{SCEC Control Module (\mref{7_mHH})}
+\subsubsection{Control Module (\mref{7_mHH})}
 
 \begin{description}
 \item[Secrets:] The algorithm for coordinating the running of the program.
 \item[Services:] Provides the main program to call other modules. 
 \item[Implemented By:] SCEC
-\item[Type of Module:] Abstract Data Type
+\item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Temperature ODEs Module (\mref{8_mHH})}
+\subsubsection{Temperature ODE Module (\mref{8_mHH})}
 
 \begin{description}
-\item[Secrets:] The ODEs for solving the temperature using the input parameters.
-\item[Services:] Defines the System of ODEs for solving the temperature values using initial values and input parameters module. 
+\item[Secrets:] The ODE for solving the temperature using the input parameters.
+\item[Services:] Defines the system of ODE for solving the temperature values using initial values and input parameters module. 
 \item[Implemented By:] SCEC
 \item[Type of Module:] Abstract Object
 \end{description}
@@ -368,9 +369,9 @@ to be implemented.
 \subsubsection{ODE Solver Module(\mref{9_mHH})}
 
 \begin{description}
-\item[Secrets:]The algorithm to solve a system of first order ODEs. 
-\item[Services:] Provides solvers that can take different inputs like equation, initial conditions, time vector, numerical parameters, and solve it.  
-\item[Implemented By:] Python
+\item[Secrets:]The algorithm to solve a system of first order ODE. 
+\item[Services:] Provides solvers that can take different inputs like a function, its initial conditions, a time vector and numerical parameters, and use these to solve the given equation in function.  
+\item[Implemented By:] Scipy
 \item[Type of Module:] Library
 \end{description}
 
@@ -379,7 +380,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The data structure and algorithms for plotting data graphically. 
 \item[Services:] Provides plot function that can accept plotting data to plot the results using output module. 
-\item[Implemented By:] Python
+\item[Implemented By:] Matplotlib
 \item[Type of Module:] Library
 \end{description}
 
@@ -460,7 +461,7 @@ because they use modules from the lower levels.
 \end{figure}
 
 %\section*{References}
-
+\newpage
 \bibliographystyle {plainnat}
 \bibliography {srs}
 
