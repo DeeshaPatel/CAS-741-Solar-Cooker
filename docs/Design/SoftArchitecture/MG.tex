@@ -45,8 +45,9 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Mar 11, 2023 & 1.0 & Initial release\\
+March 11, 2023 & 0.1 & Initial release\\
 March 19, 2023 & 0.2 & Updates according to the comments \\ 
+March 19, 2023 & 0.3 & Updates according to the issues \\ 
 \bottomrule
 \end{tabularx}
 
@@ -160,9 +161,9 @@ change.
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{2_ac}:] The format of the initial input data.
 \item[\refstepcounter{acnum} \actheacnum \label{3_ac}:] The constraints on the input parameters. 
-\item[\refstepcounter{acnum} \actheacnum \label{4_ac}:] How ODEs are calculated using input parameters. 
+\item[\refstepcounter{acnum} \actheacnum \label{4_ac}:] How ODEs are defined using input parameters. 
 \item[\refstepcounter{acnum} \actheacnum \label{5_ac}:] How the energy equations are calculated using input parameters. 
-\item[\refstepcounter{acnum} \actheacnum \label{6_ac}:] The defined time vector for ODEs.
+\item[\refstepcounter{acnum} \actheacnum \label{6_ac}:] The choice of data structure for sequence.
 \item[\refstepcounter{acnum} \actheacnum \label{7_ac}:] The overall flow of the system. 
 \item[\refstepcounter{acnum} \actheacnum \label{8_ac}:] The format of output data. 
 \item[\refstepcounter{acnum} \actheacnum \label{9_ac}:] The algorithm to solve an ODE. 
@@ -204,7 +205,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{3_mHH}:] Energy Equation Module
 \item [\refstepcounter{mnum} \mthemnum \label{4_mHH}:] Input Format Module
 \item [\refstepcounter{mnum} \mthemnum \label{5_mHH}:] Input Parameter Module
-\item [\refstepcounter{mnum} \mthemnum \label{6_mHH}:] Output Format Module
+\item [\refstepcounter{mnum} \mthemnum \label{6_mHH}:] Output Module
 \item [\refstepcounter{mnum} \mthemnum \label{7_mHH}:] SCEC Control Module
 \item [\refstepcounter{mnum} \mthemnum \label{8_mHH}:] Temperature ODE Module
 \item [\refstepcounter{mnum} \mthemnum \label{9_mHH}:] ODE Solver Module
@@ -228,7 +229,7 @@ actually be implemented.
 & Energy Equation Module\\
 & Input Format Module\\
 & Input Parameter Module\\
-& Output Format Module\\
+& Output Module\\
 & Control Module\\
 & Temperature ODE Module\\
 \midrule
@@ -300,7 +301,7 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:] The equation for solving the fluid energy using given inputs. 
-\item[Services:] Calculate the energy equation using the parameters in the input parameters module.  
+\item[Services:] Calculate the energy equation using the parameters defined in the input parameters module.  
 \item[Implemented By:] SCEC
 \item[Type of Module:] Abstract Object
 \end{description}
@@ -310,7 +311,7 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
+\item[Services:]Converts the input data from .in file into the data structure used by the
   input parameters module.
 \item[Implemented By:] SCEC
 \item[Type of Module:] Abstract Object
@@ -325,7 +326,7 @@ to be implemented.
 \item[Type of Module:] Record
 \end{description}
 
-\subsubsection{Output Format Module (\mref{6_mHH})}
+\subsubsection{Output Module (\mref{6_mHH})}
 
 \begin{description}
 \item[Secrets:] The format and structure of the output data.
