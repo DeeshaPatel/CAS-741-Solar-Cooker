@@ -54,6 +54,7 @@ urlcolor=cyan          % color of external links
 \midrule
 March 17, 2023 & 0.1 & Initial Release\\
 March 19, 2023 & 0.2 & Updates according to the comments \\ 
+March 19, 2023 & 0.3 & Updates according to the issues \\ 
 \bottomrule
 \end{tabularx}
 
@@ -83,6 +84,8 @@ See \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/c7cc1be3611ca
 \newpage
 
 \tableofcontents
+
+\listoftables
 
 \newpage
 
@@ -150,7 +153,7 @@ The following table is taken directly from the Module Guide document for this pr
 & Energy Equation Module\\
 & Input Format Module\\
 & Input Parameter Module\\
-& Output Format Module\\
+& Output Module\\
 & Control Module\\
 & Temperature ODE Module\\
 \midrule
@@ -177,9 +180,7 @@ The following table is taken directly from the Module Guide document for this pr
 ConstValueParams
 
 \subsection{Uses}
-\begin{itemize}
-\item Hardware Hiding Module
-\end{itemize}
+None
 
 \subsection{Syntax}
 
@@ -201,34 +202,13 @@ params.p & := & 0.89 & \#Reflectivity of glass \\
 
 \subsubsection{Exported Access Programs}
 
-\begin{center}
-\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-ConstValueParams & - & - & - \\
-\hline
-\end{tabular}
-\end{center}
+None
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-params: An object of ConstValueParams contains real values. 
-\begin{itemize}
- \item params.stefan\_const : $ \mathbb{R}$
- \item params.h\_t\_int3 : $ \mathbb{R}$
- \item params.h\_ref\_int2 : $ \mathbb{R}$
- \item params.h\_ref\_f : $ \mathbb{R}$
- \item params.c\_ref : $ \mathbb{R}$
- \item params.c\_f : $ \mathbb{R}$
- \item params.m\_ref : $ \mathbb{R}$
- \item params.m\_f : $ \mathbb{R}$
- \item params.t\_g : $ \mathbb{R}$
- \item params.p : $ \mathbb{R}$
- 
-\end{itemize}
+None
 
 
 \subsubsection{Environment Variables}
@@ -377,7 +357,8 @@ None
 \subsubsection{Environment Variables}
 
 \begin{enumerate}
-    \item paramFile: A file containing sequence of strings that provides data related to temperature, Area and other properties. 
+    \item file: A file containing sequence of strings that provides data related to temperature, Area and other properties.
+        \item Windows keyboard: Input Format Module takes the input from the keyboard in the file. 
 \end{enumerate}
 
 
@@ -472,10 +453,7 @@ $A_m: \mathbb{R}$, Area of mass
 
 \subsubsection{Environment Variables}
 
-\begin{enumerate}
-    \item Windows screen: Input Format Module takes the input using showing it on screen.
-    \item Windows keyboard: Input Format Module takes the input from the keyboard in the file. 
-\end{enumerate}
+None
 
 \subsubsection{Assumptions}
 
@@ -496,7 +474,7 @@ None
 None
 
 \newpage
-\section{MIS of Output Format Module} \label{Output_Format_Module}
+\section{MIS of Output Module} \label{Output_Format_Module}
 
 \subsection{Module}
 output
@@ -533,7 +511,7 @@ None
 
 \begin{enumerate}
     \item file: The file in which the output is saved. 
-    \item Window screen: Output Format Module prints the result in the graph, which is shown to the screen. 
+    \item Window screen: Output Module prints the result in the graph, which is shown to the screen. 
 \end{enumerate}
 
 
@@ -569,7 +547,7 @@ main
     \item Energy Equation Module
     \item Hardware Hiding Module
     \item Input Format Module 
-    \item Output Format Module 
+    \item Output Module 
     \item Temperature ODE Module
     \item ODE Solver Module
     \item Sequence Data Structure Module
@@ -620,10 +598,10 @@ None
     \item Set the time vector using Sequence Data Structure Module (M11, Section \ref{Time_Vector_Module}).
     \item Temperature values for reflector and fluid is calculated using initial conditions by Temperature ODE Module (M8, Section \ref{Temperature_ODEs_Module}). 
     \item Using the previous step output, energy of fluid is calculated in Energy Equation Module (M3, Section \ref{Energy_Equation_Module}).
-    \item Output is transferred to the output file with the help of Output Format Module and internally it also called Plotting Result Module for plotting result on graphs (M6, Section \ref{Output_Format_Module} and M10, Section \ref{Plotting_Result_Module}). 
+    \item Output is transferred to the output file with the help of Output Module and internally it also called Plotting Result Module for plotting result on graphs (M6, Section \ref{Output_Format_Module} and M10, Section \ref{Plotting_Result_Module}). 
      
 \end{itemize}
-\item output: Main program request the Output Format Module at the end for producing file with plotted result. 
+\item output: out := None 
 \item exception: exc:= Potential exceptions occurs are from different sub-modules only.   
 \end{itemize}
 
@@ -857,7 +835,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-plot & vector, sequence of $\mathbb{R}$ & graph & TypeError  \\
+plot & vector, sequence of $\mathbb{R}$ & graph & -  \\
 \hline
 \end{tabular}
 \end{center}
@@ -904,46 +882,12 @@ This module usually handle by the programming language. For SCEC system, we are 
 
 sequential
 
-\subsection{Uses}
-
-None
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Access Programs}
-
-None
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-None
-
-\subsubsection{Environment Variables}
-
-None
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-None
-
-\subsubsection{Local Functions}
-
-None
 
 \subsection{Considerations}
 
 The Sequence Data Structure Module is handled by the programming language. For the purpose of sequences, SCEC is using \href{https://numpy.org}{NumPy}.   
 
+\newpage
 \section{Appendix} \label{Appendix}
 
 \begin{table}[!h]
@@ -968,6 +912,7 @@ The Sequence Data Structure Module is handled by the programming language. For t
 \end{longtable*}
 \end{table}
 
+\newpage
 \bibliographystyle {plainnat}
 \bibliography {srs}
 
