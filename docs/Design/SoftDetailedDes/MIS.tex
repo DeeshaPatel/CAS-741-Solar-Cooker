@@ -343,7 +343,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-load\_params & String & sequence of $\mathbb{R}$ & various (See table \ref{verify_input}) \\
+load\_params & String & sequence of $\mathbb{R}$ & InputError, FileFormatError \\
 \hline
 \end{tabular}
 \end{center}
@@ -396,11 +396,21 @@ out := params
 
 \subsubsection{Local Functions}
 
-verifyInputs : $\mathbb{R}$ \\ 
-\textbf{verifyInputs(param)}: A function to verify the inputs for SCEC. 
+verifyInputs : string, $\mathbb{R}$ \\ 
+\textbf{verifyInputs(file, param)}: A function to verify the inputs for SCEC.   
 \begin{itemize} 
-    \item output: out:= param
-    \item exception: exc:= See appendix (Table \ref{verify_input}) for all constraints and error message.  
+    \item output: out:= none
+    \item exception: exc:= \\ \\ 
+     \begin{tabular}{p{5cm} p{3.5cm} p{5.5cm}}
+ \hline
+ \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
+  \hline
+    If file is not in correct format & FileFormatError & Valid input file should be *.txt file only.  \\
+    $\neg $($|s|$ = 9) & InputError & Valid size of input sequence should be 9. \\ 
+    \hline
+ \end{tabular}
+ 
+    See appendix (Table \ref{verify_input}) for all constraints and error message.  
     
 \end{itemize}
 
@@ -898,15 +908,15 @@ The Sequence Data Structure Module is handled by the programming language. For t
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Error Message} \\
   \midrule 
 
- $A_\text{ref}$ & $0 < A_\text{ref} \le 1$ & InvalidInputError \\
-  $A_m$ & $0 < A_m \le 1 $ & InvalidInputError \\
-  $A_t$ & $0 < A_t \le 1 $ & InvalidInputError \\
-  $T_\text{f}$ & $20 < T_\text{f} < 100$ & InvalidInputError\\
-  $T_\text{ref}$ & $20 < T_\text{ref} < 100$ &InvalidInputError \\
-  $T_\text{g2}$ & $20 < T_\text{g2} < 100$ &InvalidInputError \\
-  $T_\text{t}$ & $20 < T_\text{t} < 100$ & InvalidInputError\\
-  $\epsilon_\text{ref}$ & $0 < \epsilon_\text{ref} < 1$ & InvalidInputError\\
-   $\epsilon_\text{t}$ & $0 < \epsilon_\text{t} < 1$ & InvalidInputError \\
+ $A_\text{ref}$ & $0 < A_\text{ref} \le 1$ & InvalidAreaOfReferenceInputError \\
+  $A_m$ & $0 < A_m \le 1 $ & InvalidAreaOfMassInputError \\
+  $A_t$ & $0 < A_t \le 1 $ & InvalidAreaOfLidInputError \\
+  $T_\text{f}$ & $20 < T_\text{f} < 100$ & InvalidTemperatureOfFluidInputError\\
+  $T_\text{ref}$ & $20 < T_\text{ref} < 100$ &InvalidTemperatureOfReferenceInputError \\
+  $T_\text{g2}$ & $20 < T_\text{g2} < 100$ &InvalidTemperatureOfGlassInputError \\
+  $T_\text{t}$ & $20 < T_\text{t} < 100$ & InvalidTemperatureOfLidInputError\\
+  $\epsilon_\text{ref}$ & $0 < \epsilon_\text{ref} < 1$ & InvalidEmittanceOfReferenceInputError\\
+   $\epsilon_\text{t}$ & $0 < \epsilon_\text{t} < 1$ & InvalidEmittanceOfLidInputError \\
   
   \bottomrule
 \end{longtable*}
