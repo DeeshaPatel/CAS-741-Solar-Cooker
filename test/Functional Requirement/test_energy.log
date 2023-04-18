@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+collecting ... collected 4 items
+
+test_energy.py::TestEnergy::test_energy_01 PASSED                        [ 25%]
+test_energy.py::TestEnergy::test_energy_02 PASSED                        [ 50%]
+test_energy.py::TestEnergy::test_energy_03 FAILED                        [ 75%]
+test_energy.py:38 (TestEnergy.test_energy_03)
+self = <test_energy.TestEnergy testMethod=test_energy_03>
+
+    def test_energy_03(self):
+        temp = [10, 11, 12, 13]
+        energy = energy_calculation.energywat(temp, self.params.T_f)
+        for e1 in energy:
+            if e1 < 0:
+>               pytest.fail("Energy value is negative")
+E               Failed: Energy value is negative
+
+test_energy.py:44: Failed
+
+
+
+test_energy.py::TestEnergy::test_energy_04 PASSED                        [100%]
+
+========================= 1 failed, 3 passed in 0.04s ==========================
+
+Process finished with exit code 1
