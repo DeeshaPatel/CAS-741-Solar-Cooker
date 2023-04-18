@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+collecting ... collected 20 items
+
+test_invalid_inputs.py::TestInvalidInput::test_area_glass_1 PASSED       [  5%]
+test_invalid_inputs.py::TestInvalidInput::test_area_glass_2 PASSED       [ 10%]
+test_invalid_inputs.py::TestInvalidInput::test_area_input PASSED         [ 15%]
+test_invalid_inputs.py::TestInvalidInput::test_area_m PASSED             [ 20%]
+test_invalid_inputs.py::TestInvalidInput::test_area_ref PASSED           [ 25%]
+test_invalid_inputs.py::TestInvalidInput::test_emissivity_lid PASSED     [ 30%]
+test_invalid_inputs.py::TestInvalidInput::test_emissivity_reflector PASSED [ 35%]
+test_invalid_inputs.py::TestInvalidInput::test_excess_temperature_fluid PASSED [ 40%]
+test_invalid_inputs.py::TestInvalidInput::test_excess_temperature_glass2 PASSED [ 45%]
+test_invalid_inputs.py::TestInvalidInput::test_excess_temperature_lid PASSED [ 50%]
+test_invalid_inputs.py::TestInvalidInput::test_excess_temperature_reflector PASSED [ 55%]
+test_invalid_inputs.py::TestInvalidInput::test_large_area_glass_1 PASSED [ 60%]
+test_invalid_inputs.py::TestInvalidInput::test_large_area_glass_2 PASSED [ 65%]
+test_invalid_inputs.py::TestInvalidInput::test_large_area_lid PASSED     [ 70%]
+test_invalid_inputs.py::TestInvalidInput::test_large_area_mass PASSED    [ 75%]
+test_invalid_inputs.py::TestInvalidInput::test_large_area_reflector PASSED [ 80%]
+test_invalid_inputs.py::TestInvalidInput::test_temperature_fluid PASSED  [ 85%]
+test_invalid_inputs.py::TestInvalidInput::test_temperature_glass2 PASSED [ 90%]
+test_invalid_inputs.py::TestInvalidInput::test_temperature_lid PASSED    [ 95%]
+test_invalid_inputs.py::TestInvalidInput::test_temperature_reflector PASSED [100%]
+
+============================== 20 passed in 0.03s ==============================
+
+Process finished with exit code 0
