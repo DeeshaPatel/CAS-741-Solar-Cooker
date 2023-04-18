@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+collecting ... collected 11 items
+
+test_load_params.py::TestLoadParams::test_parameter_area_glass1 PASSED   [  9%]
+test_load_params.py::TestLoadParams::test_parameter_area_glass2 PASSED   [ 18%]
+test_load_params.py::TestLoadParams::test_parameter_area_lid PASSED      [ 27%]
+test_load_params.py::TestLoadParams::test_parameter_area_mass PASSED     [ 36%]
+test_load_params.py::TestLoadParams::test_parameter_area_reflector PASSED [ 45%]
+test_load_params.py::TestLoadParams::test_parameter_emissivity_lid PASSED [ 54%]
+test_load_params.py::TestLoadParams::test_parameter_emissivity_reflector PASSED [ 63%]
+test_load_params.py::TestLoadParams::test_parameter_temperature_fluid PASSED [ 72%]
+test_load_params.py::TestLoadParams::test_parameter_temperature_glass PASSED [ 81%]
+test_load_params.py::TestLoadParams::test_parameter_temperature_lid PASSED [ 90%]
+test_load_params.py::TestLoadParams::test_parameter_temperature_reflector PASSED [100%]
+
+============================== 11 passed in 0.03s ==============================
+
+Process finished with exit code 0
