@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+collecting ... collected 4 items
+
+test_temperature_calculation.py::TestTemperature::test_negative_temperature_04 FAILED [ 25%]
+test_temperature_calculation.py:55 (TestTemperature.test_negative_temperature_04)
+self = <test_temperature_calculation.TestTemperature testMethod=test_negative_temperature_04>
+
+    def test_negative_temperature_04(self):
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'validInputForTestTemp', 'In04.in'))
+        params = load_params.load_params(file_path)
+        init_temp = [params.T_ref, params.T_f, params.T_g2, params.T_t, params.T_g2]
+        t = [10, 10, 10, 10, 10]
+        temp = calculation.calculate_temp(init_temp, t, params)
+        if temp[4] < 0:
+>           pytest.fail("Temperature of glass 1 should be > 0 \n")
+E           Failed: Temperature of glass 1 should be > 0
+
+test_temperature_calculation.py:63: Failed
+
+
+
+test_temperature_calculation.py::TestTemperature::test_temperature_01 PASSED [ 50%]
+test_temperature_calculation.py::TestTemperature::test_temperature_02 PASSED [ 75%]
+test_temperature_calculation.py::TestTemperature::test_temperature_03 PASSED [100%]
+
+========================= 1 failed, 3 passed in 0.05s ==========================
+
+Process finished with exit code 1
