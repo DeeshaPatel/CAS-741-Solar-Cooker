@@ -1,0 +1,8 @@
+src/calculation.py:40:61: E128 continuation line under-indented for visual indent
+src/calculation.py:64:61: E128 continuation line under-indented for visual indent
+src/calculation.py:69:66: E128 continuation line under-indented for visual indent
+src/calculation.py:70:66: E128 continuation line under-indented for visual indent
+src/calculation.py:74:66: E128 continuation line under-indented for visual indent
+src/calculation.py:75:66: E128 continuation line under-indented for visual indent
+src/calculation.py:84:80: E501 line too long (85 > 79 characters)
+src/calculation.py:90:80: E501 line too long (81 > 79 characters)
