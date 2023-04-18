@@ -1,4 +1,5 @@
-import parameters
+# from src import parameters
+import src.parameters as parameters
 
 
 def load_params(filename):
@@ -24,12 +25,10 @@ def load_params(filename):
     params.e_t = param[3]
     params.A_ref = param[4]
     params.T_ref = param[5]
-    params.theta_ref = param[6]
-    params.e_ref = param[7]
-    params.T_g2 = param[8]
-    params.A_m = param[9]
-
-    # Calculated parameter of temperature inside the box
-    params.T_int2 = (params.T_g2 + params.T_t + params.T_ref) / 3
+    params.e_ref = param[6]
+    params.T_g2 = param[7]
+    params.A_m = param[8]
+    params.A_g1 = param[9]
+    params.A_g2 = param[10]
 
     return params
