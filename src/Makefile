@@ -1,7 +1,9 @@
 ifeq ($(OS),Windows_NT)
+	PYTHON_VER = py
 	PYTHON = $(VENV_NAME)/Scripts
 	./$(VENV_NAME)/Scripts/activate
 else
+	PYTHON_VER = python3
 	PYTHON = $(VENV_NAME)/bin/python3
 endif
 
@@ -17,7 +19,7 @@ VENV_NAME := venv
 
 venv:
 	@echo "Creating virtual environment..."
-	python3 -m venv $(VENV_NAME)
+	$(PYTHON_VER) -m venv $(VENV_NAME)
 	$(PYTHON) -m pip install --upgrade pip
 
 install: venv
