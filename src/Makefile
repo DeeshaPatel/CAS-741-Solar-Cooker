@@ -4,7 +4,7 @@ SOURCE_DIR = src
 MAIN = main.py
 SEP=/
 TEST = testing
-REQUIREMENTS = ../requirements.txt
+REQUIREMENTS = requirements.txt
 VENV_NAME := venv
 
 .PHONY: venv install run test flake
@@ -24,7 +24,7 @@ run: venv install
 
 test:
 	@echo "Running test case..."
-	PYTHONPATH=$$PYTHONPATH:src $(PYTHON) -m pytest $(TEST) > test.log
+	PYTHONPATH=$$PYTHONPATH:testing $(PYTHON) -m pytest $(TEST)
 	#$(PYTHON) src/ -m pytest $(TEST)
 
 flake:

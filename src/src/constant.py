@@ -1,39 +1,43 @@
+"""
+This module provides the constants to other module.
+"""
+
 # Stefan boltzman constant
-stefan_const = 5.670374419e-08
+STEFAN_CONST = 5.670374419e-08
 
 # heat transfer convection coefficient from a to b.
-h_g1_int1 = 3.8
-h_g1_amb = 13.3
-h_t_int2 = 4.4
-h_g2_int1 = 4.4
-h_t_int3 = 4.0
-h_ref_int2 = 4.4
-h_ref_f = 4.0
+H_G1_INT1 = 3.8
+H_G1_AMB = 13.3
+H_T_INT2 = 4.4
+H_G2_INT1 = 4.4
+H_T_INT3 = 4.0
+H_REF_INT2 = 4.4
+H_REF_F = 4.0
 
 # Emittance of glass
-e_g = 0.35
+E_G = 0.35
 
 # Temperature of Ambient
-T_amb = 34.5
+T_AMB = 34.5
 
 # Absorptance value of glass and lid
-alpha_g1 = 0.17
-alpha_t = 0.9
+ALPHA_G1 = 0.17
+ALPHA_T = 0.9
 
 # Mass and Heat capacity of reflector(r) and fluid(f)
-c_r = 900
-c_f = 4190
-m_f = 0.2
-m_r = 0.2
+C_R = 900
+C_F = 4190
+M_F = 0.2
+M_R = 0.2
 
 # Incidental Solar Radiation
 G = 476
 
 # Reflectivity Constant
-p = 0.89
+P = 0.89
 
 # Transmittivity of Glass
-t_g = 0.48
+T_G = 0.48
 
 # SOLAR RADIATION ANGLE (as per the requirement)
-theta_ref = 90
+THETA_REF = 90

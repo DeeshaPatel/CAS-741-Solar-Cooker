@@ -15,7 +15,7 @@ class TestTemperature(unittest.TestCase):
     def test_temperature_01(self):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'validInputForTestTemp', 'In01.in'))
         params = load_params.load_params(file_path)
-        init_temp1 = [params.T_ref, params.T_f, params.T_g2, params.T_t, params.T_g2]
+        init_temp1 = [params.t_ref, params.t_f, params.t_g2, params.t_t, params.t_g2]
         t1 = [0, 10, 20, 30, 40]
         output = [0.17439055871999998, 0.0, 18.49248576, 1.983937536, 4912898.001264997]
         temp1 = calculation.calculate_temp(init_temp1, t1, params)
@@ -29,7 +29,7 @@ class TestTemperature(unittest.TestCase):
     def test_temperature_02(self):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'validInputForTestTemp', 'In02.in'))
         params = load_params.load_params(file_path)
-        init_temp = [params.T_ref, params.T_f, params.T_g2, params.T_t, params.T_g2]
+        init_temp = [params.t_ref, params.t_f, params.t_g2, params.t_t, params.t_g2]
         t = [0, 10, 20, 30, 40]
         output = [0.20800055105566442, 0.004468510260142362, 2012.6495254309657, 9.128765290349056, 4912898.001264997]
         temp = calculation.calculate_temp(init_temp, t, params)
@@ -43,7 +43,7 @@ class TestTemperature(unittest.TestCase):
     def test_temperature_03(self):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'validInputForTestTemp', 'In03.in'))
         params = load_params.load_params(file_path)
-        init_temp = [params.T_ref, params.T_f, params.T_g2, params.T_t, params.T_g2]
+        init_temp = [params.t_ref, params.t_f, params.t_g2, params.t_t, params.t_g2]
         t = [0, 10, 20, 30, 40]
         output = [0.26028441599999996, 0.0, 18.49248576, 8.78459904, 26747829.04330682]
         temp = calculation.calculate_temp(init_temp, t, params)
@@ -56,7 +56,7 @@ class TestTemperature(unittest.TestCase):
     def test_negative_temperature_04(self):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'validInputForTestTemp', 'In04.in'))
         params = load_params.load_params(file_path)
-        init_temp = [params.T_ref, params.T_f, params.T_g2, params.T_t, params.T_g2]
+        init_temp = [params.t_ref, params.t_f, params.t_g2, params.t_t, params.t_g2]
         t = [10, 10, 10, 10, 10]
         temp = calculation.calculate_temp(init_temp, t, params)
         if temp[4] < 0:

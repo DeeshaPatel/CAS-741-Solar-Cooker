@@ -89,7 +89,7 @@ class TestInvalidInput(unittest.TestCase):
         self.assertRaisesRegex(ValueError, 'Temperature of reflector must be > 0 \n',
                                verify_params.verify_input, params)
 
-    def test_temperature_glass2(self):
+    def test_temperaturE_Glass2(self):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'invalidInput', 'In14.txt'))
         params = load_params.load_params(file_path)
         self.assertRaisesRegex(ValueError, 'Temperature of glass 2 must be > 0 \n',
@@ -115,7 +115,7 @@ class TestInvalidInput(unittest.TestCase):
         self.assertRaisesRegex(ValueError, 'Excess temperature value of reflector \n',
                                verify_params.verify_input, params)
 
-    def test_excess_temperature_glass2(self):
+    def test_excess_temperaturE_Glass2(self):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'invalidInput', 'In18.txt'))
         params = load_params.load_params(file_path)
         self.assertRaisesRegex(ValueError, 'Excess temperature value of glass 2 \n',
