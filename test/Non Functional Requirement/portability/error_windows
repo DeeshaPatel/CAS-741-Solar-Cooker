@@ -1,0 +1,34 @@
+ Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [21 lines of output]
+      + meson setup --prefix=C:\Users\Administrator\AppData\Local\Programs\Python\Python310-32 C:\Users\Administrator\AppData\Local\Temp\2\pip-install-qmfxuz76\scipy_714c959a2b0c4f06a9569e8cb3b478f7 C:\Users\Administrator\AppData\Local\Temp\2\pip-install-qmfxuz76\scipy_714c959a2b0c4f06a9569e8cb3b478f7\.mesonpy-vot1i68v\build --native-file=C:\Users\Administrator\AppData\Local\Temp\2\pip-install-qmfxuz76\scipy_714c959a2b0c4f06a9569e8cb3b478f7\.mesonpy-native-file.ini -Ddebug=false -Doptimization=2
+      The Meson build system
+      Version: 1.1.0
+      Source dir: C:\Users\Administrator\AppData\Local\Temp\2\pip-install-qmfxuz76\scipy_714c959a2b0c4f06a9569e8cb3b478f7
+      Build dir: C:\Users\Administrator\AppData\Local\Temp\2\pip-install-qmfxuz76\scipy_714c959a2b0c4f06a9569e8cb3b478f7\.mesonpy-vot1i68v\build
+      Build type: native build
+      Project name: SciPy
+      Project version: 1.10.1
+      WARNING: Failed to activate VS environment: Could not find C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe
+
+      ..\..\meson.build:1:0: ERROR: Unknown compiler(s): [['icl'], ['cl'], ['cc'], ['gcc'], ['clang'], ['clang-cl'], ['pgcc']]
+      The following exception(s) were encountered:
+      Running `icl ""` gave "[WinError 2] The system cannot find the file specified"
+      Running `cl /?` gave "[WinError 2] The system cannot find the file specified"
+      Running `cc --version` gave "[WinError 2] The system cannot find the file specified"
+      Running `gcc --version` gave "[WinError 2] The system cannot find the file specified"
+      Running `clang --version` gave "[WinError 2] The system cannot find the file specified"
+      Running `clang-cl /?` gave "[WinError 2] The system cannot find the file specified"
+      Running `pgcc --version` gave "[WinError 2] The system cannot find the file specified"
+
+      A full log can be found at C:\Users\Administrator\AppData\Local\Temp\2\pip-install-qmfxuz76\scipy_714c959a2b0c4f06a9569e8cb3b478f7\.mesonpy-vot1i68v\build\meson-logs\meson-log.txt
+      [end of output]
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.
