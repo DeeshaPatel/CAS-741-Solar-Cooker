@@ -1,10 +1,13 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{amsmath, mathtools}
+\usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{colortbl}
 \usepackage{graphicx}
 \usepackage{hyperref}
+
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -14,11 +17,11 @@
 }
 \usepackage[round]{natbib}
 
-
+\usepackage{fullpage}
 
 \begin{document}
 
-\title{System Verification and Validation Plan for \progname{Solar Cooker Energy Calculator}} 
+\title{System Verification and Validation Plan for SCEC (Solar Cooker Energy Calculator)}
 \author{Deesha Patel}
 \date{\today}
 	
@@ -73,7 +76,7 @@ For complete symbols used within the system, please refer the section 1 in
 
 \pagenumbering{arabic}
 
-This document provides the road-map of the verification and validation plan for Solar Cooker Energy Calculator for ensuring the requirements and goals of the program (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document). The organization of this document starts with the General Information about the Solar Cooker Energy Calculator in \autoref{GeneralInformation}. A verification plan is provided in \autoref{plan} and \autoref{systemtests} describes the system tests, including tests for functional and non-functional requirements.
+This document provides the road-map of the verification and validation plan for Solar Cooker Energy Calculator (SCEC) for ensuring the requirements and goals of the program (found in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document). The organization of this document starts with the General Information about the Solar Cooker Energy Calculator in \autoref{GeneralInformation}. A verification plan is provided in \autoref{plan} and \autoref{systemtests} describes the system tests, including tests for functional and nonfunctional requirements.
   
 
 \section{General Information}
@@ -81,57 +84,59 @@ This document provides the road-map of the verification and validation plan for 
 
 \subsection{Summary}
 
-This document reviews the validation and verification plan for Solar Cooker Energy Calculator (SCEC), a program that calculate the balance temperature at recipient and cooking power in it using user inputs.  
+This document reviews the validation and verification plan for Solar Cooker Energy Calculator (SCEC). SCEC is a program that calculate the balance temperature of recipient and fluid. The cooking power is also calculated using user inputs.  
 
 \subsection{Objectives}
 
-The purpose of the validation plan is to define how system validation will perform at the end of the project. The strategy will use to assess whether the developed system accomplishes the designed goals. Also, the verification plan includes test strategies, definitions of what will be tested, and a test matrix with detailed mapping connecting the tests performed to the system requirements. This verification plan ensures that all requirements specified in the System Requirements Specification(\href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS}) document have been met and reviewed.
+The purpose of the validation plan is to define how system validation will perform at the end of the project. The strategy will use to assess whether the developed system accomplishes the design goals. Also, the verification plan includes test strategies, definitions of what will be tested, and a test matrix with detailed mapping connecting the tests performed to the system requirements. This verification plan ensures that all requirements specified in the System Requirements Specification (\href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS}) document have been met and reviewed.
 
 
 \subsection{Relevant Documentation}
 
-The relevant documentation for the SCEC includes \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement}, \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{System Requirements Specifications}, VnV Report, MG and MIS (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/docs}{Github Repository}).  
+The relevant documentation for the SCEC includes \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem Statement} which identifies the proposed idea, \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{System Requirements Specifications} which provides information about the requirement of the proposed system, VnV Report for validation and verification, MG and MIS design documents (found in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/docs}{Github Repository}).  
 
 
 \section{Plan}
 \label{plan}
 
-This section describes the testing plan for the Solar Cooker Energy Calculator system. The planning starts with the Verification and Validation team, followed by the SRS verification plan, design verification plan, implementation verification plan, Automated testing and verification tools, and Software validation plan.  
+This section describes the testing plan for the Solar Cooker Energy Calculator system. The planning starts with the verification and validation team in section \ref{verification_validation_team}, followed by the SRS verification plan (section \ref{srs_verification_plan}), design verification plan (section \ref{design_verification_plan}), implementation verification plan (section \ref{implementation_verification_plan}), Automated testing and verification tools (section \ref{automated_testing_verification_tools}), and Software validation plan (section \ref{software_validation_plan}).  
 
 \subsection{Verification and Validation Team}
+\label{verification_validation_team}
 
 This section describes the members of Verification and Validation plan. 
 
 \begin{center}
-\begin{table}[h!]
-\resizebox{1\textwidth}{!}{
-\begin{tabular}{ |l|l|p{2cm}|p{5cm}| } 
-\hline
-\rowcolor[gray]{0.9}
-\textbf{Name} & \textbf{Document} & \textbf{Role} & \textbf{Description} \\
-\hline
- Dr.\ Spencer Smith & All & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
- \hline
- Deesha Patel & All & Author & Create and manage all the documents, create the VnV plan, perform the VnV testing, verify the implementation. \\  
- \hline
- Mina Mahdipour & All & Domain Expert Reviewer & Review all the documents. \\  
- \hline
- Karen Wang & SRS & Secondary Reviewer & Review the SRS document \\
- \hline
-Lesley  Wheat & VnV Plan & Secondary Reviewer & Review the VnV plan. \\ 
-\hline 
-Sam Joseph Crawford & MG + MIS & Secondary Reviewer & Review the MG and MIS document. \\
-\hline 
-
-\hline
-\end{tabular}
+\begin{table}[h]
+\resizebox{\textwidth}{!}{ %
+    \begin{tabular}{ |l|l|p{2cm}|p{5cm}| } 
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Name} & \textbf{Document} & \textbf{Role} & \textbf{Description} \\
+    \hline
+     Dr.\ Spencer Smith & All & Instructor/ Reviewer & Review the documents, design and documentation style. \\ 
+     \hline
+     Deesha Patel & All & Author & Create and manage all the documents, create the VnV plan, perform the VnV testing, verify the implementation. \\  
+     \hline
+     Mina Mahdipour & All & Domain Expert Reviewer & Review all the documents. \\  
+     \hline
+     Karen Wang & SRS & Secondary Reviewer & Review the SRS document \\
+     \hline
+    Lesley  Wheat & VnV Plan & Secondary Reviewer & Review the VnV plan. \\ 
+    \hline 
+    Sam Joseph Crawford & MG + MIS & Secondary Reviewer & Review the MG and MIS document. \\
+    \hline 
+    
+    \hline
+    \end{tabular} %
 }
-\caption{Verification and Validation team} 
+\caption{Verification and validation team} 
 \label{verification_validation}
 \end{table}
 \end{center}
 
 \subsection{SRS Verification Plan}
+\label{srs_verification_plan}
 
 The SCEC SRS document shall be verified in the following way: 
 
@@ -147,14 +152,17 @@ The SCEC SRS document shall be verified in the following way:
 
 
 \subsection{Design Verification Plan}
+\label{design_verification_plan}
 
 The design documents, Module Guide (MG), and Module Interface Specification (MIS) will be verified through the static technic of document inspection by the domain/ primary expert (Mina Mahdipour) and secondary reviewer (Sam Joseph Crawford). Also, the class instructor (Dr.\ Spencer Smith) will review both documents. Reviewers can give feedback to the author by creating the issue in Github. The author is responsible to solve the issues and address the suggestions. The reviewer will assess this document with the help of \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MG-Checklist.pdf}{MG Checklist} and \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/MIS-Checklist.pdf}{MIS Checklist} designed by Dr. Smith. 
 
 \subsection{Verification and Validation Plan Verification Plan}
+\label{verification_validation_plan_verification_plan}
 
-By following the table \ref{verification_validation}, the verification and validation plan will be written and validated by Author (Deesha Patel), then Domain expert (Mina Mahdipour) and Secondary reviewer (Lesley Wheat) will review it and give suggestion by creating an issue on GitHub. Once done, Instructor will do final review of the VnV plan. The reviewer will assess this document by  \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/VnV-Checklist.pdf}{VnV Checklist} defined by Dr.\ Smith.     
+By following table \ref{verification_validation}, the verification and validation plan will be written and validated by Author (Deesha Patel), then Domain expert (Mina Mahdipour) and Secondary reviewer (Lesley Wheat) will review it and give suggestion by creating an issue on GitHub. Once done, Instructor will do final review of the VnV plan. The reviewer will assess this document by  \href{https://github.com/smiths/capTemplate/blob/9251702fdcb9800c59f6ed3d11d91e2bd62fca6d/docs/Checklists/VnV-Checklist.pdf}{VnV Checklist} defined by Dr.\ Smith.     
 
 \subsection{Implementation Verification Plan}
+\label{implementation_verification_plan}
 
 The implementation of SCEC shall be verified in the following ways:
 
@@ -165,7 +173,7 @@ The implementation of SCEC shall be verified in the following ways:
 \begin{itemize}
 
 
-\item Code Walkthrough: This process will be performed by the author (Deesha Patel) and Domain expert (Mina Mahdipour). An author will share the copy of the original code with Domain expert and then Domain expert will manually test the code with different test cases. The Domain expert will raise the issue in GitHub if they finds any issue with the code.
+\item Code Walkthrough: This process will be performed by the author (Deesha Patel) and Domain expert (Mina Mahdipour). An author will share the final copy of the original code with Domain expert before the meeting and then Domain expert will manually go through important test cases by hand in the meeting. The Domain expert will share and discuss her own findings. Also, she can ask any questions in meeting.
 
 \end{itemize}
 \end{itemize}
@@ -177,7 +185,7 @@ The implementation of SCEC shall be verified in the following ways:
 \begin{itemize}
 
 
-\item Test cases: Test cases for all the mentioned tests in \autoref{systemtests} will be carried out. These tests target functional and non-functional requirements listed in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document (section 5.1 and 5.2). All the test cases are manual or automatic.  
+\item Test cases: Test cases for all the mentioned tests in \autoref{systemtests} will be carried out. These tests target functional and nonfunctional requirements listed in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} document (section 5.1 and 5.2). 
 
 \end{itemize}
 \end{itemize}
@@ -185,12 +193,14 @@ The implementation of SCEC shall be verified in the following ways:
 
 
 \subsection{Automated Testing and Verification Tools}
+\label{automated_testing_verification_tools}
 
-System and Unit tests: Automated testing of SCEC is conducted using the Pytest library in Python. These tests are performed by predetermining user inputs and comparing them with expected values. 
+System and Unit tests: Automated testing of SCEC is conducted using the \href{https://docs.pytest.org/en/7.2.x/}{Pytest} library in Python. These tests are performed by predetermining user inputs and comparing them with expected values. Continuous Integration will not be used.  
 
 \subsection{Software Validation Plan}
+\label{software_validation_plan}
 
-Software validation plan is beyond the scope for SCEC System as this is not the whole system which can perform checking the temperature of whole solar box.
+Software validation plan is beyond the scope for SCEC system as we do not have enough experimental data for the validation of the system behavior.
 
 \section{System Test Description}
 \label{systemtests}
@@ -199,38 +209,40 @@ Software validation plan is beyond the scope for SCEC System as this is not the 
 
 Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.1. Some input values are taken from the paper~\cite{MathsModel}. There are five functional requirements for SCEC, R1 and R2 are related to the inputs, while R3 to R5 are corresponding to outputs. section \ref{input_functional_tests} describes the input tests related to R1 and R2; and section \ref{output_functional_tests} describes the output tests for R3 to R5.        
 
-\subsubsection{Input tests}
+
+\subsubsection{Input Tests - test\_invalid\_input}
 \label{input_functional_tests}
 
 \paragraph{Functional tests - Input tests - Area of object}
 
 
 \begin{center}
-\begin{table}[h!]
-\resizebox{1\textwidth}{!}{
-\begin{tabular}{ lccccc }
-\hline
-\multicolumn{1}{l|}{}   & \multicolumn{3}{c|}{Input}                            & \multicolumn{2}{c}{Output} \\ 
-
-\hline
-
-\multicolumn{1}{c|}{ID} &   ${A_t}$   &   $A_\text{ref}$   &   \multicolumn{1}{c|}{${A_{\text{m}}}$}   &   $valid?$   &   $Error Message$ \\ \hline
-
-TC-SCEC-1-1   &   0.039  & 0.046  & 0.064    &  Y  & NONE                         \\
-TC-SCEC-1-2   &   0      & 0.037  & 0.059    &  N  & Non-zero required            \\
-TC-SCEC-1-3   &   0.67   & 0.0942 & 0        &  N  & Non-zero required            \\ 
-TC-SCEC-1-4   &   0.741  & 0      & 0.0424   &  N  & Non-zero required            \\
-TC-SCEC-1-5   &   -0.063 & 0.728  & 0.572    &  N  & Positive value required      \\
-TC-SCEC-1-6   &   0.025  & -0.279 & 0.763    &  N  & Positive value required      \\
-TC-SCEC-1-7   &   0.025  & 0.279  & -0.763   &  N  & Positive value required      \\
-TC-SCEC-1-8   &   1000   & 0.245  & 0.562    &  N  & Too long area input          \\
-TC-SCEC-1-9   &   0.562  & 0.285  & 0.13f    &  N  & Numeric values only         \\ 
-TC-SCEC-1-10   &    & 0.285  & 0.13f    &  N  & Empty value not accepted         \\ 
-
-\hline
-
-
-\end{tabular}
+\begin{table}[h]
+\resizebox{\textwidth}{!}
+{ %
+    \begin{tabular}{ lccccc }
+    \hline
+    \multicolumn{1}{l|}{}   & \multicolumn{3}{c|}{Input (\si[per-mode=symbol] {\square\metre}) }                            & \multicolumn{2}{c}{Output} \\ 
+    
+    \hline
+    
+    \multicolumn{1}{c|}{ID} &   ${A_t}$   &   $A_\text{ref}$   &   \multicolumn{1}{c|}{${A_{\text{m}}}$}   &   valid?   &   Error Message \\ \hline
+    
+    TC-SCEC-1-1   &   0.039  & 0.046  & 0.064    &  Y  & NONE                         \\
+    TC-SCEC-1-2   &   0      & 0.037  & 0.059    &  N  & Non-zero required            \\
+    TC-SCEC-1-3   &   0.67   & 0.0942 & 0        &  N  & Non-zero required            \\ 
+    TC-SCEC-1-4   &   0.741  & 0      & 0.0424   &  N  & Non-zero required            \\
+    TC-SCEC-1-5   &   -0.063 & 0.728  & 0.572    &  N  & Positive value required      \\
+    TC-SCEC-1-6   &   0.025  & -0.279 & 0.763    &  N  & Positive value required      \\
+    TC-SCEC-1-7   &   0.025  & 0.279  & -0.763   &  N  & Positive value required      \\
+    TC-SCEC-1-8   &   1000   & 0.245  & 0.562    &  N  & Too large area input          \\
+    TC-SCEC-1-9   &   0.562  & 0.285  & 0.13f    &  N  & Numeric values only         \\ 
+    TC-SCEC-1-10   &    & 0.285  & 0.13f    &  N  & Empty value not accepted         \\ 
+    
+    \hline
+    
+    
+    \end{tabular} %
 }
 \caption{TC-SCEC-1 - Area input constraints tests}
 \label{tab:tc-SCEC-1}
@@ -240,7 +252,8 @@ TC-SCEC-1-10   &    & 0.285  & 0.13f    &  N  & Empty value not accepted        
 
 \begin{enumerate}
 
-\item{test-id1: Valid Area inputs  \\}
+\item{test-input-area-id1: Valid Area inputs  \\}
+\label{test-id-1}
 
 Control: Automatic
 					
@@ -260,26 +273,24 @@ How test will be performed: The automatic test is performed using PyTest.
 
 \begin{center}
 \begin{table}[h!]
-\resizebox{1\textwidth}{!}{
-\begin{tabular}{ lccccccc }
-\hline
-\multicolumn{1}{l|}{}   & \multicolumn{5}{c|}{Input}                            & \multicolumn{2}{c}{Output} \\ 
-
-\hline
-
-\multicolumn{1}{c|}{ID} &   ${T_t}$   &   ${T_\text{g_2}}$  &  $T_f$ & ${T_\text{init}}$ &   \multicolumn{1}{c|}{${T_{\text{ref}}}$}   &   {valid?}   &   Error Message    \\ \hline
-
-TC-SCEC-2-1   &   30  & 30.2 & 32.5   & 40.1  &  41.3    &  Y  & NONE                       \\
-TC-SCEC-2-2   &   0  & 24.5  &  41.3  & 24.1  & 51.3     &  N  & Non-zero required           \\
-TC-SCEC-2-3   &   12.1 & 24.6 & 56.2  & 43.2  & -13.4    &  N  & Positive temperature required      \\
-TC-SCEC-2-4   &  23.5 & 26.4 & 26.6 & 36.2 & & N & Empty temperature value \\ 
-TC-SCEC-2-5   &  24.5 & 26.8 & 210.3 & 25.7 & 29.4 & N & Exceed temperature value \\ 
-
-
-\hline
-
-
-\end{tabular}
+\resizebox{1\textwidth}{!}{ %
+    \begin{tabular}{ lcccccc }
+    \hline
+    \multicolumn{1}{l|}{}   &  \multicolumn{4}{c|}{Input (\si[per-mode=symbol] {\celsius})}  & \multicolumn{2}{c}{Output} \\ 
+    
+    \hline
+    
+    \multicolumn{1}{c|}{ID} &   ${T_t}$   &   ${T_\text{$g_2$}}$  &  $T_f$  &   \multicolumn{1}{c|}{${T_{\text{ref}}}$}   &   valid?   &   Error Message    \\ \hline
+    
+    TC-SCEC-2-1   &   30   & 30.2  & 32.5   &  41.3    &  Y  & NONE                       \\
+    TC-SCEC-2-2   &   0    & 24.5  & 41.3   & 51.3     &  N  & Non-zero required           \\
+    TC-SCEC-2-3   &   12.1 & 24.6  & 56.2  & -13.4    &  N  & Positive temperature required      \\
+    TC-SCEC-2-4   &  23.5  & 26.4  & 26.6  &          &  N  & Empty temperature value \\ 
+    TC-SCEC-2-5   &  24.5  & 26.8  & 210.3 & 29.4     &  N  & Excessive temperature value \\
+    
+    \hline
+    
+    \end{tabular}  %
 }
 \caption{TC-SCEC-2 - Temperature input constraints tests}
 \label{tab:tc-SCEC-2}
@@ -288,7 +299,7 @@ TC-SCEC-2-5   &  24.5 & 26.8 & 210.3 & 25.7 & 29.4 & N & Exceed temperature valu
 
 \begin{enumerate}   
 
-\item{test-id1: Valid/Invalid Temperature value  \\}
+\item{test-input-temperature-id2: Valid/Invalid Temperature value  \\}
 
 Control: Automatic
 					
@@ -338,7 +349,7 @@ TC-SCEC-3-4   &   -0.75  & 0.86   & N   & Not in range  \\
 
 
 
-\item{test-id1: Valid/Invalid Emittance value of object  \\}
+\item{test-input-emittance-id3: Valid/Invalid Emittance value of object  \\}
 
 Control: Automatic
 					
@@ -352,36 +363,55 @@ Test Case Derivation: This test case is to test the behaviour of the system when
 					
 How test will be performed: The automatic test is performed using PyTest.  
 
+
 \end{enumerate}
 
+\subsubsection{Loading Tests - test\_load\_params} 
+\label{load_input_test}
+\begin{enumerate}
+    \item {test-load-id4: Validate the input are read correctly for further process. \\}
 
-\subsubsection{Output tests}
-\label{output_functional_tests}
+    Control: Automatic
+    
+    Initial State: N/A
+    
+    Input: Name of the file. Sample input file is shown in \autoref{tab:sample-input} .  
+    
+    Output: verify all the inputs are there. If not it will give an appropriate missing value message. 
+    
+    Test Case Derivation: This test case is to test the behaviour of the system to fetch the inputs from the input file. 
+    
+    How test will be performed: The automatic test is performed using PyTest.
+\end{enumerate}
+
+\subsubsection{Intermediate Tests - test\_temperature\_calculation and test\_energy}
+\label{intermediate_functional_tests}
 \begin{enumerate}
 
-\item{test-id1: Validate the output of the fluid temperature in recipient  \\}
+\item{test-fluid-temp-id5: Validate the output of the fluid temperature in recipient  \\}
 
 Control: Automatic 
 					
 Initial State: N/A
 					
 Input: Pass the input values: \\ 
-       $A_m$ = 1.5 \\
-       $A_t$ = 0.0201 \\
-       $A_{\text{ref}}$ = 0.0058 \\
-       $T_{g2}$ = 30 \\
-       $T_t$ = 30 \\
-       $T_f$ = 30 \\
-       $T_\text{ref}$ = 30 \\ 
+       $A_m$ = 1.5 \si[per-mode=symbol] {\square\metre}\\
+       $A_t$ = 0.0201 \si[per-mode=symbol] {\square\metre}\\
+       $A_{\text{ref}}$ = 0.0058 \si[per-mode=symbol] {\square\metre}\\
+       $T_{g2}$ = 30 \si{\celsius}\\
+       $T_t$ = 30 \si{\celsius}\\
+       $T_f$ = 30 \si{\celsius}\\
+       $T_\text{ref}$ = 30 \si{\celsius}\\ 
        $\epsilon_r$ = 1 \\
        $\epsilon_t$ = 0.85 \\
        
 					
 Output: Below output should be generated for each of the valid and real inputs. 
 \begin{itemize}
-    \item $T_r$ $\approx$ 95.9. 
-    \item For other inputs, it should calculate the temperature value of the fluid 
+    \item $T_r$ $\approx$ 100.7 \si{\celsius}. 
+    \item For other inputs, it should calculate the temperature value of the fluid. 
     \item Graph should be generated with the temperature of the fluid and recipient.  
+    \item The relative error will be calculate to match the expected solution of the system.   
 \end{itemize} 
 
 Test Case Derivation: This test case is to test the output of the system when the system is supplied with all valid inputs. This test case is derived from 3rd and 4th requirement in SRS document.  
@@ -389,15 +419,15 @@ Test Case Derivation: This test case is to test the output of the system when th
 How test will be performed: The automatic test is performed using PyTest.  
 
 
-\item{test-id2: Validate the output of the energy temperature in fluid  \\}
+\item{test-fluid-energy-id6: Validate the output of the energy temperature in fluid  \\}
 
 Control: Automatic 
 					
 Initial State: N/A
 					
-Input: Pass the input value: $T_\text{init}$ = 30 
+Input: Pass the input value: $T_\text{init}$ = 30 \si[per-mode=symbol]{\celsius} 
 					
-Output: As an output, algorithm should calculate the non-negative and non-zero temperature energy value of the fluid.  
+Output: As an output, algorithm should calculate the non-negative and non-zero temperature energy value of the fluid. Tentative output of the fluid energy is 1000 watt.   
 
 Test Case Derivation: This test case is to test the output of the system when the system is supplied with initial temperature of the fluid. This test case is derived from 5th requirement in SRS document.  
 					
@@ -405,25 +435,60 @@ How test will be performed: The automatic test is performed using PyTest.
 
 \end{enumerate}   
 
+\subsubsection{Output Tests}
+\label{output_functional_tests}
+\begin{enumerate}
+
+\item{test-output-temp-id7: Validate the final result is not negative value of temperature \\}
+
+Control: Automatic 
+
+Initial State: N/A 
+
+Input: Calculated temperate
+
+Output: If the input temperature is negative, it will generate an error message about negative temperature value. 
+
+Test Case Derivation: This test case is to test the final output of the system when the system have calculated temperature values of the fluid.
+
+How test will be performed: The automatic test is performed using PyTest. 
+
+\item{test-output-file-id8: Validate the final result is stored in the outputfile. \\}
+
+Control: Manual 
+
+Initial State: N/A 
+
+Input: None
+
+Output: Test case will be pass if the output file is generated, otherwise it will be failed
+
+Test Case Derivation: This test case is to test the final output of the system is stored in the output file or not.
+
+How test will be performed: Manually check the file exist or not. 
+
+\end{enumerate}
+
+
 
 \subsection{Tests for Nonfunctional Requirements}
 
-Non-Functional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.2. There are five non-functional requirements for SCEC. 
+NonFunctional requirements for SCEC are given in \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7c53c8d9a19ca2f94dfba6ba9208eae0bf03b8cc/docs/SRS/SRS.pdf}{SRS} section 5.2. There are five nonfunctional requirements for SCEC. 
 
 
 %\wss{Tests related to usability could include conducting a usability test and survey.  The survey will be in the Appendix.}
 
 %\wss{Static tests, review, inspections, and walkthroughs, will not follow the format for the tests given below.}
 
-\subsubsection{Non-functional: Understandability}
+\subsubsection{Nonfunctional: Understandability}
 \label{non_functional_understandability}		
 \paragraph{Understandability}
 
 \begin{enumerate}
 
-\item{test-id1: Understandability test\\}
+\item{test-id9: Understandability test\\}
 
-Type: Manual
+Type: Automatic
 					
 Initial State: None
 					
@@ -431,39 +496,18 @@ Input/Condition: None
 					
 Output/Result: By review over the code quality, more quality is achieved. 
 					
-How test will be performed: Domain Expert (Mina Mahdipour) will review the shared code and complete the survey mentioned in the \autoref{tab:tc-SCEC-4}.   
+How test will be performed: \href{https://pypi.org/project/flake8/}{Flake8} will be used to check the code quality. This library can check the quality of code against different coding styles such as unused libraries and undefined variable. 
 
-\begin{center}
-\begin{table}[h!]
-\resizebox{1\textwidth}{!}{
-\begin{tabular}{ p{0.5cm}|p{10cm}|c }
-\hline
-No. &  Question   & Score(0-10) \\
-\hline
-1. & The whole code indented properly to understand the code. & \\
-2. & The names of the variables and methods is meaningful. & \\
-3. & Different comments is useful to understand the importance of code. &  \\
-4. & Particular function perform single and understandable tasks. & \\
-5. & Overall quality. & \\
-
-\hline
-
-\end{tabular}
-}
-\caption{TC-SCEC-4 - Understandability test survey}
-\label{tab:tc-SCEC-4}
-\end{table}
-\end{center}
 
 \end{enumerate}
 
-\subsubsection{Non-functional: Maintainability}
+\subsubsection{Nonfunctional: Maintainability}
 \label{non_functional_maintainability}	
 \paragraph{Maintainability}
 
 \begin{enumerate}
 					
-\item{test-id1: Maintainability\\}
+\item{test-id10: Maintainability\\}
 
 Type: Code walkthrough
 					
@@ -478,13 +522,13 @@ How test will be performed: During code walkthrough meeting all the details rela
 \end{enumerate}
 
 
-\subsubsection{Non-functional: Usability}
+\subsubsection{Nonfunctional: Usability}
 \label{non_functional_usability}	
 \paragraph{Usability}
 
 \begin{enumerate}
 					
-\item{test-id1: Usability\\}
+\item{test-id11: Usability\\}
 
 Type: Manual with group of people
 					
@@ -494,7 +538,7 @@ Input: None
 					
 Output: Survey can help to know about the user perspective towards the system. 
 					
-How test will be performed: The user group will be asked to install the software on their system and give input on their own. Then user need to fill out the short answer survey given in the \autoref{tab:tc-SCEC-5}.
+How test will be performed: The user group will be asked to install the software on their system and give input on their own. Then user need to fill out the scale of the question given in the survey \autoref{tab:tc-SCEC-5}.
 
 \end{enumerate}
 
@@ -520,13 +564,13 @@ No. &  Question   & Answer \\
 \end{center}
 \end{table}
 
-\subsubsection{Non-functional: Portability}
+\subsubsection{Nonfunctional: Portability}
 \label{non_functional_portability}		
 \paragraph{Portability}
 
 \begin{enumerate}
 					
-\item{test-id1: Portability\\}
+\item{test-id12: Portability\\}
 
 Type: Manual
 					
@@ -536,7 +580,7 @@ Input: None
 					
 Output: Successful running system over all platform give confidence about portability of the software. 
 					
-How test will be performed: Code developer (Deesha Patel) will try to install and run whole software in different operating systems. Also, need to ensure that all the given test cases pass in all different operating system.  
+How test will be performed: Code developer (Deesha Patel) will try to install and run whole software in different operating systems. Also, need to ensure regression testing that means all the given test cases pass in all different operating system.  
 
 \end{enumerate}
 
@@ -556,6 +600,10 @@ A traceability between test cases and requirements is shown in \autoref{tab:tc-t
 \hline
 \ref{input_functional_tests} & X & X & & & & & & \\
 \hline
+\ref{load_input_test} & X & & & & & & & \\
+\hline
+\ref{intermediate_functional_tests} & & X & & & & & & \\
+\hline
 \ref{output_functional_tests} &  &  & X & X & X & & & \\
 \hline
 \ref{non_functional_understandability} & & & & & & X & & & \\
@@ -568,16 +616,164 @@ A traceability between test cases and requirements is shown in \autoref{tab:tc-t
 
 \hline
 \end{tabular}
-\caption{Tracebility between Test cases and Requirements}
+\caption{Tracebility between test cases and requirements}
 \label{tab:tc-traceability}
 \end{center}
 \end{table}
 
 \section{Unit Test Description}
-This section is intensionally blank until MIS complete.
+The source code for the SCEC software has following modules, 
+\begin{itemize}
+    \item Calculation.py - Provides function to calculate temperature of fluid, reflector, glass 1, glass 2, and lid. 
+    \item Constant.py - Provides all the constant values to the other modules. 
+    \item Energy\_Calculation.py - Calculate the energy of fluid. 
+    \item load\_params.py - Module for load the input parameters from the input file. 
+    \item main.py - Main module to control all other modules.
+    \item parameters.py - A data structure for input parameters.
+    \item plot.py - A module for plotting the result in a graph and export result in file. 
+    \item verify\_params.py - A module to verify input values.
+    
+\end{itemize}
 
+\subsection{Unit Testing Scope}
+Unit testing is performed for the following modules: 
+
+\begin{itemize}
+    \item Energy 
+    \item Inputs
+    \item Load Parameters
+    \item Temperature Calculation
+\end{itemize}
+These modules are high priority modules that can affect the whole system if not work properly. Other modules like Constant and Parameters modules are tested in the system as those have low priority static modules. Also, the plotting library plot the result with the given inputs. So, our system do not perform unit test on that module. \\  
+ Intermediate results for calculating energy and temperature can be tested. However, ODE is calculated using the Scipy library. So, our system is not validating the result of the calculated ODEs. \\
+The whole system follows the paper \cite{MathsModel}. This paper do not contains all the information about inputs and outputs. So, our system is not able to compare the final result of the system with original outputs and can not calculate relative error. However, unit test is able to check that the output module is working properly and provide appropriate output.   
+
+\subsection{Tests for Functional Requirements} 
+These section follows the functional tests those are not performed using the PyTest automated testing. The main target is to address the modules given in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/f238dbff9720fb98d3323fd5832d04ab9ce7597f/docs/Design/SoftArchitecture/MG.pdf}{MG} and \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/f238dbff9720fb98d3323fd5832d04ab9ce7597f/docs/Design/SoftDetailedDes/MIS.pdf}{MIS} document. 
+
+\subsubsection{Constant Value Module (M2)}
+A Constant Value Module is assigned to a object that stores the constant values used in the system, manual test is performed by checking all the values are present in this module.
+
+\begin{enumerate}
+
+\item{test-constant-id13\\}
+
+Type: Automatic
+					
+Initial State: N/A
+					
+Input/Condition: Constant value file called constant.py 
+					
+Output/Result: Pass, if all the values are present in the module and Fail, otherwise.  
+					
+How test will be performed: Run the constant test file to check the all the missing parameter.  
+
+\end{enumerate}
+
+\subsubsection{Temperature ODE Module (M8)}
+A Temperature ODE Module is use to calculate the temperature of fluid, reflector, lid, glass 1 and glass 2 over time. 
+
+\begin{enumerate}
+
+\item{test-temp-ode-id14\\}
+
+Type: Manual/Automatic
+					
+Initial State: N/A
+					
+Input/Condition: Calculation file called calculation.py 
+					
+Output/Result: Pass, if this module is able to calculate different temperature values and Fail, otherwise.  
+					
+How test will be performed: Write print statement to print the result of different temperature values. To run this print statement, run main module to get the valid inputs and main call the calculation module which will print the temperature values.   
+
+\end{enumerate}
+
+\subsection{Tests for Nonfunctional Requirements}
+Unit testing the non-functional requirements is beyond the scope.
+
+\subsection{Traceability Between Test Cases and Modules}
+A traceability between test cases and modules is shown in \autoref{tab:tc-traceability-module} 
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ l|c|c|c|c|c|c|c }
+\hline
+ & M2   & M3 & M4 & M5 & M6 & M7 & M8 \\
+\hline
+test-input-area-id1 & & & & & & X & \\
+\hline
+test-input-temperature-id2 & & & & & & X &\\
+\hline
+test-input-emittance-id3 & & & & & & X &\\
+\hline
+test-load-id4 & & & X & X & & &\\
+\hline
+test-fluid-temp-id5 & & & & & & & X \\
+\hline
+test-fluid-energy-id6 & & X & & & & & \\
+\hline
+test-output-temp-id7 & & & & & X & & \\
+\hline
+test-output-file-id8 & & & & & X & & \\
+\hline
+test-constant-id13 & X & & & & & & \\
+\hline
+test-temp-ode-id14 & & & & & & & X \\
+
+\hline
+\end{tabular}
+\caption{Tracebility between test cases and module}
+\label{tab:tc-traceability-module}
+\end{center}
+\end{table}
+\pagebreak
+
+~\newline
+\newpage
+\section{Appendix}
+This section provides the sample input file for the test. 
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ l|c|c}
+
+\hline 
+Variable & Description & Value \\
+\hline
+A\_t &  AREA OF LID & 0.0201 \\
+\hline
+
+T\_t &  TEMPERATURE OF LID & 30 \\
+\hline
+T\_f & TEMPERATURE OF FLUID & 30 \\
+\hline
+e\_t & EMISSIVITY OF LID & 0.85 \\
+\hline
+A\_ref & AREA OF REFLECTOR & 0.0804 \\
+\hline
+T\_ref & TEMPERATURE OF REFLECTOR & 30 \\
+\hline
+e\_ref & EMISSIVITY OF REFLECTOR & 0.84\\
+\hline
+T\_g2 &  TEMPERATURE OF GLASS2 & 30 \\
+\hline
+A\_m & AREA OF MASS & 0.064 \\ 
+\hline
+A\_g1 & AREA OF GLASS1 & 0.4761 \\ 
+\hline
+A\_g2 & AREA OF GLASS2 & 0.4761 \\ 
+\hline
+\end{tabular}
+\caption{Sample Input}
+\label{tab:sample-input}
+\end{center}
+\end{table}
+
+~\newline
 \newpage
 \bibliographystyle {plain}
 \bibliography {srs}
+
 
 \end{document}
