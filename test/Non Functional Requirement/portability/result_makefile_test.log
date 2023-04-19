@@ -1,14 +1,15 @@
-[ec2-user@ip-172-31-6-79 src]$ make test 
+[ec2-user@ip-172-31-6-79 src]$ make test
 Running test case...
 PYTHONPATH=$PYTHONPATH:testing venv/bin/python3 -m pytest testing
 ============================= test session starts ==============================
 platform linux -- Python 3.9.16, pytest-7.2.2, pluggy-1.0.0
 rootdir: /home/ec2-user/CAS-741-Solar-Cooker/src
-collected 39 items                                                             
+collected 59 items                                                             
 
-testing/test_energy.py ..F.                                              [ 10%]
-testing/test_invalid_inputs.py ....................                      [ 61%]
-testing/test_load_params.py ...........                                  [ 89%]
+testing/test_constant.py ....................                            [ 33%]
+testing/test_energy.py ..F.                                              [ 40%]
+testing/test_invalid_inputs.py ....................                      [ 74%]
+testing/test_load_params.py ...........                                  [ 93%]
 testing/test_temperature_calculation.py F...                             [100%]
 
 =================================== FAILURES ===================================
@@ -40,8 +41,10 @@ self = <test_temperature_calculation.TestTemperature testMethod=test_negative_te
 E           Failed: Temperature of glass 1 should be > 0
 
 testing/test_temperature_calculation.py:63: Failed
+----------------------------- Captured stdout call -----------------------------
+g1 -27839498.6652624 g2 18.49248576 t 7.906139136 r 0.17439055871999998 f 0.0
 =========================== short test summary info ============================
 FAILED testing/test_energy.py::TestEnergy::test_energy_03 - Failed: Energy value is negative
 FAILED testing/test_temperature_calculation.py::TestTemperature::test_negative_temperature_04 - Failed: Temperature of glass 1 should be > 0
-========================= 2 failed, 37 passed in 0.20s =========================
+========================= 2 failed, 57 passed in 0.25s =========================
 make: *** [Makefile:27: test] Error 1
