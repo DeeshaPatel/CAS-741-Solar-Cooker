@@ -8,5 +8,5 @@ The folders and files for this project are as follows:
 5. main.py - This file is a heart of the SCEC which controls all the other module.
 6. parameters.py - This file provides the sample data structure for the input values.
 7. plot.py - This file is used for plotting the result as a graph. 
-8. text.in - This is input file. 
+8. test.in - This is input file. 
 
