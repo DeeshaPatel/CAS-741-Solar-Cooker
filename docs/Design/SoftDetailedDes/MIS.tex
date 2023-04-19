@@ -72,9 +72,12 @@ See \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/c7cc1be3611ca
   c & Condition\\
   en & Energy \\
   energySeq & Energy Sequence\\
+  $E_f$ & Energy of fluid \\
+  $ewat$ & Calculated Energy watt \\ 
   ODEs & Ordinary Differential Equations \\ 
   param & Parameters\\
   r & Rule  \\
+  s & Size of sequence \\
   SCEC & Solar Cooker Energy Calculator \\
   temp & Temperature value \\
   tempSeq & Temperature Sequence \\
@@ -186,17 +189,17 @@ None
 
 \subsubsection{Exported Constants}
 \begin{center}
-\begin{tabular}{p{3.3cm} p{0.2cm} p{3cm} p{7cm}}
-params.stefan\_const & := & 5.670374419e-08 & \#Stefan-Boltzman constant\\
-params.h\_t\_int3 & := & 4.0 & \#Heat flux from Lid to Inner area of container\\
-params.h\_ref\_int2 & := & 4.4 & \#Heat flux from reflector to Inner area of box \\ 
-params.h\_ref\_f & := & 4.0 & \#Heat flux from reflector to fluid \\
-params.c\_ref & := & 900 & \#Specific heat capacity of reflector \\
-params.c\_f & := & 4190 & \#Specific heat capacity of fluid \\
-params.m\_ref & := & 0.2 & \#Mass of reflector \\
-params.m\_f & := & 2.0 & \#Mass of fluid \\
-params.t\_g & := & 0.48 & \#Transmittivity of glass \\ 
-params.p & := & 0.89 & \#Reflectivity of glass \\ 
+\begin{tabular}{p{2.5cm} p{1cm} p{3cm} p{7cm}}
+stefan\_const & \si{\sigma} & 5.670374419e-08 & Stefan-Boltzman constant \\
+h\_t\_int3 & $h_\text{t\_int3}$ & 4.0 & Heat flux from Lid to Inner area of container\\
+h\_ref\_int2 & $h_\text{ref\_int2}$ & 4.4 & Heat flux from reflector to Inner area of box \\ 
+h\_ref\_f & $h_\text{ref\_f}$ & 4.0 & Heat flux from reflector to fluid \\
+c\_ref & $c_\text{ref}$ & 900 & Specific heat capacity of reflector \\
+c\_f & $c_\text{f}$ & 4190 & Specific heat capacity of fluid \\
+m\_ref & $m_\text{ref}$ & 0.2 & Mass of reflector \\
+m\_f & $m_\text{f}$ & 2.0 & Mass of fluid \\
+t\_g & $\tau_\text{g}$ & 0.48 & Transmittivity of glass \\ 
+p & $\rho$ & 0.89 & Reflectivity of glass \\ 
 \end{tabular}
 \end{center}
 
@@ -257,7 +260,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-energyWat & sequence of $\mathbb{R}$ & sequence of $\mathbb{R}$ & MissingParamError, TempValueError, EnergyValueError, EnergySeqError, TempSeqError \\   
+energyWat & sequence of $\mathbb{R}$ & sequence of $\mathbb{R}$ & ValueError \\   
 \hline
 \end{tabular}
 \end{center}
@@ -281,20 +284,20 @@ This module satisfies R5 from the SRS. \\ \\
 \noindent \textbf{energyWat(temp):}
 \begin{itemize}
 \item transition: None
-\item output: The energy equation module returns the sequence of energy: \\ out := \{ $i \in \mathbb{N}, 0 \le i < |s-1|$ $ | $ $m_f c_f (temp[i] - T_\text{init})$   \}, where $m_f = getConstantValue(m\_f) $, $c_f = getConstantValue(c\_f)$
+\item output: The energy equation module returns the sequence of energy: \\ out := $ < i \in \mathbb{N}, 0 \le i < |s-1|$ $ | $ $m_f c_f (temp[i] - T_\text{init}) > $  , where $m_f$ and $c_f$ are constant value for mass of fluid and capacity of fluid respectively, $s$ = size of sequence
 
 \item exception: exc := \\ \\
  \begin{tabular}{p{5cm} p{3.5cm} p{5.5cm}}
  \hline
  \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
   \hline
-  $\neg ( \triangle T > 0 ) $ & TempValueError & Valid temperature value should positive only. \\ 
+  $\neg ( \triangle T > 0 ) $ & ValueError & Valid temperature value should positive only. \\ 
   \hline
-    ($E_f = 0 \vee E_f \notin \mathbb{R}$) & EnergyValueError & Energy of fluid should be real and non zero number.   \\
+    ($E_f = 0 \vee E_f \notin \mathbb{R}$) & ValueError & Energy of fluid should be real and non zero number.   \\
     \hline 
-        ($en = \emptyset $) & EnergySeqError & Energy sequence should have at least one value, not an empty sequence. \\ 
+        ($ewat = \emptyset $) & ValueError & Energy sequence should have at least one value, not an empty sequence. \\ 
     \hline
-    ($temp = \emptyset $) & TempSeqError & Temperature sequence should not be empty. \\ 
+    ($temp = \emptyset $) & ValueError & Temperature sequence should not be empty. \\ 
     \hline
  \end{tabular}
  
@@ -302,20 +305,7 @@ This module satisfies R5 from the SRS. \\ \\
 
 \subsubsection{Local Functions}
 
-getConstValue : String  \\ 
-\textbf{getConstValue(param)}:  A function to fetch the mass and capacity of fluid from the Constant Value Module. 
-\begin{itemize}
-    \item  output: out:= \\ $m_f$ : $\mathbb{R}$,  \\ $c_f$ : $\mathbb{R}$
-    \item  exception: exc:= \\
-
- \begin{tabular}{p{5cm} p{3.5cm} p{5.5cm}}
- \hline
- \textbf{Expression} & \textbf{Exception} & \textbf{Description} \\
-  \hline
-    ($m_f = \nexists \vee c_f = \nexists $) & MissingParamError & Valid string should be available in the Constant Value Module.  \\
-    \hline
- \end{tabular}
-\end{itemize}
+None
 
 \newpage
 
@@ -440,7 +430,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\_\_init\_\_  & - & - & - \\
+Parameters  & - & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -533,9 +523,8 @@ The Control Module properly verified values against the constraint.
 
 \noindent \textbf{output(fileName, tempSeq, energySeq, t):}
 \begin{itemize}
-\item transition: None 
-\item output: This module is able to output the file which contains output of the temperature and energy sequence.\\  
-out := file
+\item transition: This module is able to print the output in the file which contains output of the temperature and energy sequence. This output file will be store in the machine and in the form of .out format.  
+\item output: out := file
 \item exception: exc:= None 
 \end{itemize}
 
@@ -653,20 +642,7 @@ calculateOde & sequence of [$T1: \mathbb{R}$, $T2: \mathbb{R}$], sequence of $\m
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-    \item $in\_t$: $\mathbb{R}$   \# Calculate and store inner temperature of the box. 
-    \item $q11$: $\mathbb{R}$ \# Heat flow convection of the lid toward the inner box. 
-    \item $q12$: $ \mathbb{R}$ \# Heat flow radiation of the lid of the recipient toward the fluid.
-    \item $q13$: $ \mathbb{R}$ \# Heat flow convection of recipient to the inner box.
-    \item $q14$: $ \mathbb{R}$ \# Heat flow reflection of incident radiation on the reflector. 
-    \item $q15$: $ \mathbb{R}$ \# Heat flow radiation of recipient toward glass2. 
-    \item $q16$: $ \mathbb{R}$ \# Heat flow radiation of recipient toward the fluid. 
-    \item $q17$: $ \mathbb{R}$ \# Heat flow convection of recipient toward the fluid. 
-    \item $dr$: $ \mathbb{R}$ \# Temperature of reflector. 
-    \item $df$: $ \mathbb{R}$ \# Temperature of fluid. 
-\end{itemize}
-
-
+None
  
 
 \subsubsection{Environment Variables}
@@ -868,9 +844,8 @@ None
 
 \noindent plot(t, s):
 \begin{itemize}
-\item transition: None
-\item output: Plotting Result Module display the graph using the received input parameters. \\ 
-output := graph
+\item transition: Plotting Result Module display the graph using the received input parameters.
+\item output: None
 \item exception: exc:= 
 None
 \end{itemize}
