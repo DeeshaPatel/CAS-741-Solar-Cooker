@@ -9,11 +9,11 @@ VENV_NAME := venv
 ifeq ($(OS),Windows_NT)
     PYTHON_VER = py
     PYTHON = $(VENV_NAME)/Scripts/python
-	set PYTHONPATH=%PYTHONPATH%;src
+	set PYTHONPATH=%PYTHONPATH%;src;testing
 else
 	PYTHON_VER = python3
 	PYTHON = $(VENV_NAME)/bin/python3
-	PYTHONPATH=$$PYTHONPATH:src
+	PYTHONPATH=$$PYTHONPATH:src:testing
 endif
 
 .PHONY: venv install run test flake
