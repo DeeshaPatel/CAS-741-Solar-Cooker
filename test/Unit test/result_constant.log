@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+collecting ... collected 20 items
+
+test_constant.py::TestConstParams::test_ALPHA_G1 PASSED                  [  5%]
+test_constant.py::TestConstParams::test_ALPHA_T PASSED                   [ 10%]
+test_constant.py::TestConstParams::test_C_F PASSED                       [ 15%]
+test_constant.py::TestConstParams::test_C_R PASSED                       [ 20%]
+test_constant.py::TestConstParams::test_E_G PASSED                       [ 25%]
+test_constant.py::TestConstParams::test_G PASSED                         [ 30%]
+test_constant.py::TestConstParams::test_H_G1_AMB PASSED                  [ 35%]
+test_constant.py::TestConstParams::test_H_G1_INT1 PASSED                 [ 40%]
+test_constant.py::TestConstParams::test_H_G2_INT1 PASSED                 [ 45%]
+test_constant.py::TestConstParams::test_H_REF_F PASSED                   [ 50%]
+test_constant.py::TestConstParams::test_H_REF_INT2 PASSED                [ 55%]
+test_constant.py::TestConstParams::test_H_T_INT2 PASSED                  [ 60%]
+test_constant.py::TestConstParams::test_H_T_INT3 PASSED                  [ 65%]
+test_constant.py::TestConstParams::test_M_F PASSED                       [ 70%]
+test_constant.py::TestConstParams::test_M_R PASSED                       [ 75%]
+test_constant.py::TestConstParams::test_P PASSED                         [ 80%]
+test_constant.py::TestConstParams::test_STEFAN_CONST PASSED              [ 85%]
+test_constant.py::TestConstParams::test_THETA_REF PASSED                 [ 90%]
+test_constant.py::TestConstParams::test_T_AMB PASSED                     [ 95%]
+test_constant.py::TestConstParams::test_T_G PASSED                       [100%]
+
+============================== 20 passed in 0.02s ==============================
+
+Process finished with exit code 0
