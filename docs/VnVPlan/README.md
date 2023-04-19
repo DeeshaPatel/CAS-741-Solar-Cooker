@@ -1,5 +1,3 @@
 # Test Plan
 
-The folders and files for this folder are as follows:
-
-Describe ...
+VnVPlan.pdf contains different test plans. 
