@@ -1,5 +1,11 @@
+ifeq ($(OS),Windows_NT)
+	PYTHON = $(VENV_NAME)/Scripts
+	./$(VENV_NAME)/Scripts/activate
+else
+	PYTHON = $(VENV_NAME)/bin/python3
+endif
+
 PIP = pip3
-PYTHON = $(VENV_NAME)/bin/python3
 SOURCE_DIR = src
 MAIN = main.py
 SEP=/
@@ -30,3 +36,8 @@ test:
 flake:
 	@echo "Flake 8 testing..."
 	$(PYTHON) -m flake8 src/*.py
+
+coverage:
+	@echo "Coverage testing...."
+	$(PYTHON) -m coverage run src/main.py
+	$(PYTHON) -m coverage report -m
