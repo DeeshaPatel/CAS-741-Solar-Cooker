@@ -1,5 +1,3 @@
 # Test Report
 
-The folders and files for this folder are as follows:
-
-Describe ...
+VnVReport.pdf contains Test Report for SCEC. 
