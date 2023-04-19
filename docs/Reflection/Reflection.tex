@@ -2,82 +2,104 @@
 
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
 
-\title{Reflection Report on \progname}
-
-\author{\authname}
-
-\date{}
-
-\input{../Comments}
-\input{../Common}
 
 \begin{document}
 
+\title{Reflection Report on SCEC (Solar Cooker Energy Calculator)}
+
+\author{Deesha Patel}
+
+\date{\today}
+
 \maketitle
 
-\plt{Reflection is an important component of getting the full benefits from a
-learning experience.  Besides the intrinsic benefits of reflection, this
-document will be used to help the TAs grade how well your team responded to
-feedback.  In addition, several CEAB (Canadian Engineering Accreditation Board)
-Learning Outcomes (LOs) will be assessed based on your reflections.}
+~\newpage
+
+\tableofcontents
+
+~\newpage
+
+\section*{Revision History}
+
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+April 19, 2023 & 0.1 & Initial Release\\
+\bottomrule
+\end{tabularx}
+
+~\newpage
+
+\maketitle
+
+This reflection document includes the information about changes in response to feedback for SRS, Design Document, VnV Plan and Report of SCEC System. This document describes the iteration and decisions for system followed by summary of the project goals, success and future changes.    
 
 \section{Changes in Response to Feedback}
 
-\plt{Summarize the changes made over the course of the project in response to
-feedback from TAs, the instructor, teammates, other teams, the project
-supervisor (if present), and from user testers.}
+This section provides the information about how comments and suggestions from instructor and teammates helpful to get success. 
 
-\plt{For those teams with an external supervisor, please highlight how the feedback 
-from the supervisor shaped your project.  In particular, you should highlight the 
-supervisor's response to your Rev 0 demonstration to them.}
+\subsection{SRS}
 
-\subsection{SRS and Hazard Analysis}
+With the help of SRS document, I was able to plan my project in systematic manner. By completing this document, I got a road map to continue working on SCEC System. This was a first step for the system development and I outlines the functional and non-functional requirements in this document by following the guidelines by Dr. Smith. Also, introducing domain expert and secondary reviewer was really good idea to get feedback for the document which help me to maintain the quality of the Software Requirement Specifications. 
 
 \subsection{Design and Design Documentation}
 
+Initially it was really hard to find out and list separate modules to develop the SCEC System as I need to take many decisions for my coding style. However, once I completed my modules, it was really easy to reference it for development process. One concern related to this document is that these documents were developed after the VnV Plan. So, there were many conflicts between the test cases and modules and needed to update VnV plans accordingly.  
+
 \subsection{VnV Plan and Report}
+
+The best and interesting document among all the documents is VnV Plan where I need to thought out of the box. Initially, I gathered simple test cases for SCEC System. But as per Dr. Smith's suggestions, I was able to think more test cases for the system. After completing VnV Plan successfully, it was really easy to write code for test cases and report those results into VnV report. Also, peer feedback for my wrong grammar was helpful to make document more clearer.  
 
 \section{Design Iteration (LO11)}
 
-\plt{Explain how you arrived at your final design and implementation.  How did
-the design evolve from the first version to the final version?} 
+After developing the documents, it passed through the many iterations for the updates. First iteration includes the original document developed and verified by me. Primary reviewer/ Domain expert identifies the weak areas and improvements needed in document during second iteration. I was collecting all the feedbacks on GitHub issues for easy reference. I was updating those issues instantaneously to avoid the same issues occurs during third iteration of Secondary peer review. Last iteration for verify the document performed by Dr. Smith. The major changes for documents include the updates in grammar, constant improvements, and resolve some misconceptions. This process is highly recommended for future software development process.        
 
 \section{Design Decisions (LO12)}
 
-\plt{Reflect and justify your design decisions.  How did limitations,
- assumptions, and constraints influence your decisions?}
-
-\section{Economic Considerations (LO23)}
-
-\plt{Is there a market for your product? What would be involved in marketing your 
-product? What is your estimate of the cost to produce a version that you could 
-sell?  What would you charge for your product?  How many units would you have to 
-sell to make money? If your product isn't something that would be sold, like an 
-open source project, how would you go about attracting users?  How many potential 
-users currently exist?}
+The original idea was to just calculate the temperature of fluid using only 2 equations. However, it was not correct during the process of developing the code. During the developing part, I realised that I need all 5 equation of calculating temperature of fluid, reflector, glass 1, glass 2 and lid of the solar cooker. Also, some initial test cases were so simple to implement. But some new test cases were identified such as testing the negative temperature at every calculation. Inputs for solar incidental radiation needed to be constant but that is not logically true. Due to time constraints, I was not able to change my code to support dynamic incidental radiation.   
 
 \section{Reflection on Project Management (LO24)}
 
-\plt{This question focuses on processes and tools used for project management.}
+This section focuses on processes and tools used for project management. One difficult task for this is to manage the time for planned delivery of the documents. Sometimes, I missed those deadlines and extended to work more on documents. 
 
 \subsection{How Does Your Project Management Compare to Your Development Plan}
 
-\plt{Did you follow your Development plan, with respect to the team meeting plan, 
-team communication plan, team member roles and workflow plan.  Did you use the 
-technology you planned on using?}
+Figure \ref{FigUH} shows the development plan and status for following the same. I have categorized in 3: Less for very less following it, Medium to follow that document, and Highly to follow exact the same as document.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=1\textwidth]{gantt chart.png}
+\caption{Use Hierarchy Among Modules}
+\label{FigUH}
+\end{center}
+\end{figure}
 
 \subsection{What Went Well?}
 
-\plt{What went well for your project management in terms of processes and 
-technology?}
+The software requirements specification (SRS) document was well-defined and provided a clear understanding of software needs and expectations. The design iteration and module guide/interface design documents were well-structured and provided a comprehensive overview of the software's architecture and functionalities. The verification and validation plan document was followed closely, ensuring that the software was thoroughly tested at every stage of development, resulting in a high-quality product. \\ 
+The project documentation, including the development plan, design documents, testing documents, and user manuals, were well-organized, up-to-date, and easily accessible to the team members, resulting in a more efficient and effective development process
 
 \subsection{What Went Wrong?}
 
-\plt{What went wrong in terms of processes and technology?}
+I missed some deadlines and extended my it for some days. To deal with this problem, I prefer to meticulously manage the time with proper timeline to complete it before deadline. I also have difficulties with language it self as I was not aware about python. But I tried my best to learn and implement it with online websites to learn it.  
 
 \subsection{What Would you Do Differently Next Time?}
 
-\plt{What will you do differently for your next project?}
+The paper\cite{MathsModel} I choose was not complete enough to present full solution. Paper do not include all the information about inputs and outputs. So, it is impossible to figure out and verify the correctness of results. Paper also not contains the information about energy calculation. If I have to do this kind of project again, I would first check all the information in the document before choosing it. 
+
+\newpage
+
+\bibliographystyle {plain}
+\bibliography {srs}
 
 \end{document}
