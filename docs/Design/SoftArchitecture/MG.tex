@@ -187,7 +187,6 @@ decisions will be changed.
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucInput_2}:] The source of input is always external to the software. 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucOutput_3}:] The outputs are displayed on the output device. 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucGoal_4}:] Goal of the system is to calculate the temperature and energy of the fluid.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucOde_6}:] The implemented ODEs are reading inputs from the file. 
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucEnergy_7}:] The implemented energy equation is reading inputs from the file.  
 
 \end{description}
@@ -311,7 +310,7 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data from .in file into the data structure used by the
+\item[Services:]Converts the input data from input file into the data structure used by the
   input parameters module.
 \item[Implemented By:] SCEC
 \item[Type of Module:] Abstract Object
@@ -320,7 +319,7 @@ to be implemented.
 \subsubsection{Input Parameter Module (\mref{5_mHH})}
 
 \begin{description}
-\item[Secrets:] The original value of the input parameters. 
+\item[Secrets:] The value of the input parameters. 
 \item[Services:] Stores the parameters needed for the program, including properties, processing conditions and numerical parameters. The values can be read from the file. This module knows how many parameters it stores. 
 \item[Implemented By:] SCEC
 \item[Type of Module:] Record
@@ -332,7 +331,7 @@ to be implemented.
 \item[Secrets:] The format and structure of the output data.
 \item[Services:] Outputs the results of the calculations, including the input parameters, temperatures, energies and times.
 \item[Implemented By:] SCEC
-\item[Type of Module:] Abstract Object
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
 \subsubsection{Control Module (\mref{7_mHH})}
@@ -341,7 +340,7 @@ to be implemented.
 \item[Secrets:] The algorithm for coordinating the running of the program.
 \item[Services:] Provides the main program to call other modules. 
 \item[Implemented By:] SCEC
-\item[Type of Module:] Abstract Object
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
 \subsubsection{Temperature ODE Module (\mref{8_mHH})}
@@ -350,7 +349,7 @@ to be implemented.
 \item[Secrets:] The ODE for solving the temperature using the input parameters.
 \item[Services:] Defines the system of ODE for solving the temperature values using initial values and input parameters module. 
 \item[Implemented By:] SCEC
-\item[Type of Module:] Abstract Object
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
 
@@ -457,7 +456,7 @@ because they use modules from the lower levels.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{HierchyModule.jpg}
-\caption{Use hierarchy among modules}
+\caption{Use Hierarchy Among Modules}
 \label{FigUH}
 \end{figure}
 
