@@ -1,5 +1,5 @@
 # Design Documentation
 
-The folders and files for this folder are as follows:
+SoftArchitecture contains Module Guide document for SCEC. 
 
-Describe ...
+SoftDetailedDes contains Module Interface Specification document for SCEC.
