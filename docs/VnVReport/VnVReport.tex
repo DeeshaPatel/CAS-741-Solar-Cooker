@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -12,13 +13,10 @@
 }
 \usepackage[round]{natbib}
 
-\input{../Comments}
-\input{../Common}
-
 \begin{document}
 
-\title{Verification and Validation Report: \progname} 
-\author{\authname}
+\title{Verification and Validation Report for SCEC (Solar Cooker Energy Calculator)} 
+\author{Deesha Patel}
 \date{\today}
 	
 \maketitle
@@ -30,8 +28,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+April 15, 2023 & 1.0 & Initial Version\\
 \bottomrule
 \end{tabularx}
 
@@ -45,10 +42,12 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  SRS & Software Requirement Specification \\ 
+  VnV & Verification and Validation Plan \\
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
+All the units, symbols, and abbreviations in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/f238dbff9720fb98d3323fd5832d04ab9ce7597f/docs/SRS/SRS.pdf}{SRS} and \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/f238dbff9720fb98d3323fd5832d04ab9ce7597f/docs/VnVPlan/VnVPlan.pdf}{VnV} apply to this document as well.  
 
 \newpage
 
@@ -56,52 +55,246 @@ Date 2 & 1.1 & Notes\\
 
 \listoftables %if appropriate
 
-\listoffigures %if appropriate
-
 \newpage
 
 \pagenumbering{arabic}
 
-This document ...
+This document provides a summary of the Verification and Validation (VnV) of SCEC System. The test cases listed in the \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/f238dbff9720fb98d3323fd5832d04ab9ce7597f/docs/VnVPlan/VnVPlan.pdf}{VnV Plan} were executed, and this document contains a summary of the results. 
+
+The whole system follows the paper \cite{MathsModel}. Section 3 and 4 summarize the results of the functional and non-functional requirements respectively. Subsequent sections summarize the test results in details. 
 
 \section{Functional Requirements Evaluation}
 
+\subsection{Verify Load Parameters} 
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_load\_params
+    \item \textbf{Requirements}: R1: load-input 
+    \item \textbf{Type}: Automated 
+    \item \textbf{Result Summary}: All the test cases passed successfully. 
+    \item \textbf{Result Artifacts Location}: Test result can be found at following \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/f93a820990f621e74d8142be2869c904209dd4e9/test/Functional%20Requirement/test_load_params.log}{link} and to re-generate the same result test user needs to run \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/3e5bf1194efffc31e44fa89c7431ddf429c37407/src/testing/test_load_params.py}{test\_load\_params.py}.  
+\end{itemize}
+
+\subsection{Verify inputs} 
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_invalid\_input
+    \item \textbf{Requirements}: R2: Verify-Input 
+    \item \textbf{Type}: Automated 
+    \item \textbf{Result Summary}: All the test cases passed successfully. 
+    \item \textbf{Result Artifacts Location}: Test result can be found at following \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/a9d97a05582a38b9ade046dc4aaa492b355a299f/test/Functional%20Requirement/test_invalid_input.log}{link} and to re-generate the same result test user needs to run \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/3e5bf1194efffc31e44fa89c7431ddf429c37407/src/testing/test_invalid_inputs.py}{test\_invalid\_input.py}.  
+\end{itemize}
+
+\subsection{Verify Temperature Value} 
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_temperature\_calculation
+    \item \textbf{Requirements}: R3: Calculate-temperature-reflector, R4: Calculate-temperature-fluid    
+    \item \textbf{Type}: Automated 
+    \item \textbf{Result Summary}: Among 4 test cases 1 test case is failed. Calculated temperature for normal, high and medium inputs works good. However, extreme high initial temperature makes the temperature of glass 1 negative.    
+    \item \textbf{Result Artifacts Location}: Test result can be found at following \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/d897d6792e6d9ba9902f98b455a49e7d44018f44/test/Functional%20Requirement/test_temperature_calculation.log}{link} and to re-generate the same result test user needs to run \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/3e5bf1194efffc31e44fa89c7431ddf429c37407/src/testing/test_temperature_calculation.py}{test\_temperature\_calculation.py}.  
+\end{itemize}
+
+
+\subsection{Verify Energy Value} 
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_energy
+    \item \textbf{Requirements}: R5: Calculate-energy   
+    \item \textbf{Type}: Automated 
+    \item \textbf{Result Summary}: Among 4 test cases 1 test case is failed. Calculated energy for high, low and extreme low inputs works good. However, extreme high calculated temperature makes the energy negative.    
+    \item \textbf{Result Artifacts Location}: Test result can be found at following \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/7f47eded73f71ad306630336dbd086cbd7475b7e/test/Functional%20Requirement/test_energy.log}{link} and to re-generate the same result test user needs to run \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/3e5bf1194efffc31e44fa89c7431ddf429c37407/src/testing/test_energy.py}{test\_energy.py}.  
+\end{itemize}
+
+
 \section{Nonfunctional Requirements Evaluation}
 
+\subsection{Understandability}
+
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_id9
+    \item \textbf{Requirements}: NFR1: Understandability
+    \item \textbf{Type}: Automated 
+    \item \textbf{Result Summary}: Understandability test performed using 3 different tools: PyLint, Flake8 and PyFlakes. \\ \textbf{PyFlakes} do not generate any warning for coding style.\\ \textbf{Flake8} contains some minor coding styles for line under-indented and line too long. These warning can be negligible.\\ \textbf{PyLint} generate some issues related to the import using src folder. Makefile is not able to find the location of the imports without "from src" statement. Still, PyLint gives 8.64 rating out of 10.         
+    \item \textbf{Result Artifacts Location}: Test result for Flake8 and PyFlake are located at \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/2ff9134d70eff6a26c63ebc68b9c41ecd9457917/test/Non%20Functional%20Requirement/understandability/result_flake8.log}{result\_flake8.log} and \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/2ff9134d70eff6a26c63ebc68b9c41ecd9457917/test/Non%20Functional%20Requirement/understandability/result_pylint.log}{result\_pylint.log} file respectively.
+\end{itemize}
+
+  
+\subsection{Maintainability}
+
+    As the author has not yet received any response according to Maintainability surveys reporting about this area is postponed to the future drafts of the present document. 
+
 \subsection{Usability}
-		
-\subsection{Performance}
 
-\subsection{etc.}
-	
-\section{Comparison to Existing Implementation}	
+    As the author has not yet received any response according to usability surveys reporting about this area is postponed to the future drafts of the present document. 
 
-This section will not be appropriate for every project.
+
+\subsection{Portability}
+
+For achieving portability, we tested the same system in Linux machine. First we tried to run the code which eventually create a virtual environment and install dependencies. The log file for the same can be found at \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/2ff9134d70eff6a26c63ebc68b9c41ecd9457917/test/Non%20Functional%20Requirement/portability/result_makefile_run.log}{result\_makefile\_run.log}. We also tested it for running test case on linux which can be found at \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/2ff9134d70eff6a26c63ebc68b9c41ecd9457917/test/Non%20Functional%20Requirement/portability/result_makefile_test.log}{result\_makefile\_test.log}. \\ 
+
+As system was already developed and tested on MacOs, this system is portable with MacOs. \\ 
+
+We also tried to test the software with Windows machine. However, it was showing the error for not able to install scipy library on windows machine. The error can be found at \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/1db49527fcbe83165d986f31da2804f1a6012454/test/Non%20Functional%20Requirement/portability/windows_error.log}{windows\_error.log} 
+
 
 \section{Unit Testing}
 
+\subsection{Constant Value Module (M2)} 
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_constant
+    \item \textbf{Module}: test\_constant.py
+    \item \textbf{Type}: Automated 
+    \item \textbf{Result Summary}: All the test cases passed successfully. 
+    \item \textbf{Result Artifacts Location}: Test result can be found at following \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/9a7ae69a1b005561bb8ac5d16c9275f5805ed72f/test/Unit%20test/result_constant.log}{link} and to re-generate the same result test user needs to run \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/aa683cc4b92f631607346b8ae28d9ff73b78d420/src/testing/test_constant.py}{test\_constant.py}.  
+\end{itemize}
+
+\subsection{Temperature ODE Module (M8)} 
+\begin{itemize}
+    \item \textbf{Test Case(s)}: test\_temp\_ode
+    \item \textbf{Module}: calculation.py
+    \item \textbf{Type}: Manual/ Automated 
+    \item \textbf{Result Summary}: All the values of the temperature are present in the print result. 
+    \item \textbf{Result Artifacts Location}: Test result can be found at following \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/9a7ae69a1b005561bb8ac5d16c9275f5805ed72f/test/Unit%20test/result_temperature.log}{link} and to re-generate the same result test user needs to run \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/blob/aa683cc4b92f631607346b8ae28d9ff73b78d420/src/src/main.py}{main.py} by removing comment from print statement.   
+\end{itemize}
+
+
 \section{Changes Due to Testing}
 
+SCEC system is continuously improved and added new modules throughout the testing part. 
+
 \section{Automated Testing}
+
+SCEC system uses PyTest for unit, functional and system test for automated testing. All the test cases for different modules are written on \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/src/testing}{Github repositry} and result associated with those modules are also store at \href{https://github.com/DeeshaPatel/CAS-741-Solar-Cooker/tree/main/test}{Github repositry}.  
 		
 \section{Trace to Requirements}
+
+\autoref{tab:tc-traceability-testcase-and-requirements} contains the mapping of requirements to test cases. 
+
+\begin{table}[h!]
+\begin{center}
+\resizebox{1\textwidth}{!}{ 
+\begin{tabular}{ l|c|c|c|c|c|c|c|c|c }
+\hline
+ & R1   & R2 & R3 & R4 & R5 & NFR1 & NFR2 & NFR3 & NFR4 \\
+\hline
+test-input-area-id1 &  & X & & & & & & \\
+\hline
+test-input-temperature-id2 &  & X & & & & & & \\
+\hline
+test-input-emittance-id3 &  & X & & & & & & \\
+\hline
+test-load-id4 &X  &  &  &  &  & & & \\
+\hline
+test-fluid-temp-id5 & & &X &X & &  & & & \\
+\hline
+test-fluid-energy-id6 & & & &  &X & &  & & \\
+\hline
+test-output-temp-id7 & & &X &X & & & & & \\
+\hline
+test-output-file-id8 & & & X& X& & & & &  \\
+\hline
+test-id9 & & & & & &X & & & \\
+\hline
+test-id10 & & & & & & & X& &  \\
+\hline
+test-id11 & & & & & & & & X&  \\
+\hline
+test-id12 & & & & & & & & & X \\
+\hline
+test-constant-id13 & & & X & X  &  X& & & &  \\
+\hline
+test-temp-ode-id14 & & & X&X & & & & & \\
+
+\hline
+\end{tabular}
+}
+\caption{Tracebility Between Test Cases and Requirements}
+\label{tab:tc-traceability-testcase-and-requirements}
+\end{center}
+\end{table}
+
 		
-\section{Trace to Modules}		
+\section{Trace to Modules}	
+
+\autoref{tab:tc-traceability-testcase-and-modules} contains the mapping of modules to test cases. 
+
+\begin{table}[h!]
+\begin{center}
+\resizebox{1.01\textwidth}{!}{ 
+    \begin{tabular}{ l|c|c|c|c|c|c|c }
+    \hline
+     & calculation.py  & constant.py & energy\_calculation.py & load\_params.py & main.py & parameters.py & plot.py \\
+    \hline
+    test-input-area-id1 &  & & & X & X &  \\
+    \hline
+    test-input-temperature-id2 &  & & & X & X & \\
+    \hline
+    test-input-emittance-id3 &  & & & X & X &\\
+    \hline
+    test-load-id4 &  &  &  &  X&  & X & \\
+    \hline
+    test-fluid-temp-id5 & X & X & &X &  &  &  \\
+    \hline
+    test-fluid-energy-id6 & & X & X & X & & &  \\
+    \hline
+    test-output-temp-id7 & & & & &X & & X  \\
+    \hline
+    test-output-file-id8 & & & & &X & & X   \\
+    \hline
+    test-id9 & & & & & & &   \\
+    \hline
+    test-id10 & & & & & & &   \\
+    \hline
+    test-id11 & & & & & & &   \\
+    \hline
+    test-id12 & & & & & & &   \\
+    \hline
+    test-constant-id13 & & X & & & X & &   \\
+    \hline
+    test-temp-ode-id14 & X & & & &X & &   \\
+    
+    \hline
+    \end{tabular}  
+}
+\caption{Tracebility Between Test Cases and Modules}
+\label{tab:tc-traceability-testcase-and-modules}
+\end{center}
+\end{table}
 
 \section{Code Coverage Metrics}
 
-\bibliographystyle{plainnat}
-\bibliography{../../refs/References}
+The statement coverage is summerized in \autoref{tab:code-coverage-metrics}
 
-\newpage{}
-\section*{Appendix --- Reflection}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ c|c|c|c }
+\hline
+ \textbf{Name} &  \textbf{Stmts} &  \textbf{Miss} &  \textbf{Cover}\\ 
+\hline
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+    calculation.py & 29 & 0 & 100\% \\ 
+    \hline
+    constant.py & 20 & 0 & 100\% \\ 
+    \hline
+    energy\_calculation.py & 6 & 0 & 100\% \\ 
+    \hline
+    load\_params.py  & 22 & 0 & 100\% \\ 
+    \hline
+    main.py  & 15 & 0 & 100\% \\ 
+    \hline
+    parameters.py & 14 & 0 & 100\% \\ 
+    \hline
+    plot.py & 16 & 0 & 100\% \\ 
+    \hline
+    \textbf{Total} & 122 & 0 & 100\% \\ 
+ 
+\hline
+\end{tabular}
 
-\begin{enumerate}
-  \item 
-  \item 
-\end{enumerate}
+\caption{Tracebility Between Test Cases and Requirements}
+\label{tab:code-coverage-metrics}
+\end{center}
+\end{table}
+
+\newpage
+\bibliographystyle {plain}
+\bibliography {srs}
 
 \end{document}
