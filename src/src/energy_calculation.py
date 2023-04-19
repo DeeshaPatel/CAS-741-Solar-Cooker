@@ -2,7 +2,7 @@
 This module calculates the energy of fluid.
 """
 
-from src import constant
+import constant
 
 
 def energywat(twat, temp_fluid):

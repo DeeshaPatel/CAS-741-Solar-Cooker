@@ -1,12 +1,3 @@
-ifeq ($(OS),Windows_NT)
-	PYTHON_VER = py
-	PYTHON = $(VENV_NAME)/Scripts
-	./$(VENV_NAME)/Scripts/activate
-else
-	PYTHON_VER = python3
-	PYTHON = $(VENV_NAME)/bin/python3
-endif
-
 PIP = pip3
 SOURCE_DIR = src
 MAIN = main.py
@@ -14,6 +5,15 @@ SEP=/
 TEST = testing
 REQUIREMENTS = requirements.txt
 VENV_NAME := venv
+
+ifeq ($(OS),Windows_NT)
+    PYTHON_VER = py
+    PYTHON = $(VENV_NAME)/Scripts
+	./$(VENV_NAME)/Scripts/activate
+else
+	PYTHON_VER = python3
+	PYTHON = $(VENV_NAME)/bin/python3
+endif
 
 .PHONY: venv install run test flake
 
@@ -32,7 +32,7 @@ run: venv install
 
 test:
 	@echo "Running test case..."
-	PYTHONPATH=$$PYTHONPATH:testing $(PYTHON) -m pytest $(TEST)
+	PYTHONPATH=$$PYTHONPATH:testing:src $(PYTHON) -m pytest $(TEST)
 	#$(PYTHON) src/ -m pytest $(TEST)
 
 flake:

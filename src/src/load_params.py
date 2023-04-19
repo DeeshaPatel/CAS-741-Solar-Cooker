@@ -2,7 +2,7 @@
 This module load the parameters using the input file.
 """
 
-from src import parameters
+import parameters
 # import src.parameters as parameters
 
 

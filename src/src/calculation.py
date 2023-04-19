@@ -5,7 +5,7 @@ for calculating temperature.
 
 import math
 import numpy as np
-from src import constant
+import constant
 
 
 def calculate_temp(temp, time, params):
