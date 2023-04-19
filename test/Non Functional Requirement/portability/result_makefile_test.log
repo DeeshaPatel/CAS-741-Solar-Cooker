@@ -1,0 +1,47 @@
+[ec2-user@ip-172-31-6-79 src]$ make test 
+Running test case...
+PYTHONPATH=$PYTHONPATH:testing venv/bin/python3 -m pytest testing
+============================= test session starts ==============================
+platform linux -- Python 3.9.16, pytest-7.2.2, pluggy-1.0.0
+rootdir: /home/ec2-user/CAS-741-Solar-Cooker/src
+collected 39 items                                                             
+
+testing/test_energy.py ..F.                                              [ 10%]
+testing/test_invalid_inputs.py ....................                      [ 61%]
+testing/test_load_params.py ...........                                  [ 89%]
+testing/test_temperature_calculation.py F...                             [100%]
+
+=================================== FAILURES ===================================
+__________________________ TestEnergy.test_energy_03 ___________________________
+
+self = <test_energy.TestEnergy testMethod=test_energy_03>
+
+    def test_energy_03(self):
+        temp = [10, 11, 12, 13]
+        energy = energy_calculation.energywat(temp, self.params.t_f)
+        for e1 in energy:
+            if e1 < 0:
+>               pytest.fail("Energy value is negative")
+E               Failed: Energy value is negative
+
+testing/test_energy.py:44: Failed
+_________________ TestTemperature.test_negative_temperature_04 _________________
+
+self = <test_temperature_calculation.TestTemperature testMethod=test_negative_temperature_04>
+
+    def test_negative_temperature_04(self):
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'validInputForTestTemp', 'In04.in'))
+        params = load_params.load_params(file_path)
+        init_temp = [params.t_ref, params.t_f, params.t_g2, params.t_t, params.t_g2]
+        t = [10, 10, 10, 10, 10]
+        temp = calculation.calculate_temp(init_temp, t, params)
+        if temp[4] < 0:
+>           pytest.fail("Temperature of glass 1 should be > 0 \n")
+E           Failed: Temperature of glass 1 should be > 0
+
+testing/test_temperature_calculation.py:63: Failed
+=========================== short test summary info ============================
+FAILED testing/test_energy.py::TestEnergy::test_energy_03 - Failed: Energy value is negative
+FAILED testing/test_temperature_calculation.py::TestTemperature::test_negative_temperature_04 - Failed: Temperature of glass 1 should be > 0
+========================= 2 failed, 37 passed in 0.20s =========================
+make: *** [Makefile:27: test] Error 1
