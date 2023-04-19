@@ -97,6 +97,6 @@ def calculate_temp(temp, time, params):
     # Energy balance for the fluid
     dfdt = (q_11 + q_12 + q_16 + q_17) / (constant.M_F * constant.C_F)
 
-    # print('g1', dg1dt, 'g2', dg2dt, 't', dtdt, 'r', drdt, 'f', dfdt)
+    print('g1', dg1dt, 'g2', dg2dt, 't', dtdt, 'r', drdt, 'f', dfdt)
 
     return np.array([drdt, dfdt, dg2dt, dtdt, dg1dt])
